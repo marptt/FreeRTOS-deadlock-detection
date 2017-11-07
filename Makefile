@@ -56,6 +56,8 @@ C_FILES			+= TimerDemo.c
 # Main Object
 C_FILES			+= helpers.c
 C_FILES			+= main.c
+C_FILES			+= Logger.c
+
 
 # Include Paths
 INCLUDES        += -I$(SRCROOT)/Source/include
