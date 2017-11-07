@@ -109,7 +109,7 @@ CFLAGS += $(INCLUDES) $(CWARNS) -O2
 
 # Rules
 .PHONY : all
-all: setup FreeRTOS-Sim
+all: setup FreeRTOS-deadlock
 
 .PHONY : setup
 setup:
@@ -129,7 +129,7 @@ else
 	@$(CC) $(CFLAGS) -c -o $@ $<
 endif
 
-FreeRTOS-Sim: $(_OBJS)
+FreeRTOS-deadlock: $(_OBJS)
 	@echo ">> Linking $@..."
 ifeq ($(verbose),1)
 	$(CC) $(CFLAGS) $^ $(LINKFLAGS) $(LIBS) -o $@
@@ -143,7 +143,7 @@ endif
 
 .PHONY : clean
 clean:
-	@-rm -rf $(ODIR) FreeRTOS-Sim
+	@-rm -rf $(ODIR) FreeRTOS-deadlock
 	@echo "--------------"
 	@echo "CLEAN COMPLETE"
 	@echo "--------------"
