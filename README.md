@@ -1,1 +1,1 @@
-# freeRTOS-deadlock-detection
+# FreeRTOS-deadlock-detection
