@@ -4,7 +4,7 @@
 #include "logger.h"
 #include <stdio.h>
 
-#define traceTASK_SWITCHED_IN() doTheThing(pxCurrentTCB -> pcTaskName)
+#define traceTASK_SWITCHED_IN() taskSwitchedIn(pxCurrentTCB -> pcTaskName)
 #define traceQUEUE_SEND(xQueue) semaphoreGive(xQueue)
 #define traceQUEUE_SEND_FAILED(xQueue) semaphoreGiveFailed(xQueue)
 

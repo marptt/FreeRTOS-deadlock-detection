@@ -29,7 +29,7 @@ void loggerInit()
 
 char* lastName = "";
 
-void doTheThing(char* thing)
+void taskSwitchedIn(char* thing)
 {
     if(strcmp(lastName, thing))
     {
