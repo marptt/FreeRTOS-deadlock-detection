@@ -10,6 +10,6 @@ void semaphoreGiveFailed(void* qwer);
 
 void semaphoreTake(void* qwer);
 void semaphoreTakeFailed(void* qwer);
-
+void mutexCreated(void* pxNewMutex);
 
 #endif

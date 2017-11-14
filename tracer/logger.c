@@ -5,6 +5,7 @@
 
 
 char* lastName = "";
+int nrSemaCreated = 0;
 
 void taskSwitchedIn(char* thing)
 {
@@ -26,11 +27,20 @@ void semaphoreTakeFailed(void* qwer)
 
 void semaphoreGive(void* qwer)
 {
-    printf("semaphore give\n");
-    //printf("%s\n",(char*)qwer);
+    printf("semaphore give: %s\n", (char*)pcQueueGetName(qwer));
 }
 void semaphoreGiveFailed(void* qwer)
 {
     printf("semaphore give failed\n");
     //printf("%s\n",(char*)qwer);
+}
+
+void mutexCreated(void* pxNewMutex)
+{
+    char str[10];
+    nrSemaCreated++;
+    sprintf(str, "Sema_nr_%i", nrSemaCreated);
+
+    printf("Created: %c\n", str[8]);
+    vQueueAddToRegistry(pxNewMutex, str);
 }

@@ -10,6 +10,6 @@
 
 #define traceQUEUE_RECEIVE(xQueue) semaphoreTake(xQueue)
 #define traceQUEUE_RECEIVE_FAILED(xQueue) semaphoreTakeFailed(xQueue)
-
+#define traceCREATE_MUTEX(pxNewMutex) mutexCreated(pxNewMutex)
 
 #endif
