@@ -643,7 +643,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 		}
 		else
 		{
-			xReturn = xQueueGenericReceive( pxMutex, NULL, xTicksToWait, pdFALSE );
+                    xReturn = xQueueGenericReceive( pxMutex, NULL, xTicksToWait, pdFALSE, __LINE__, __FILE__, __FUNCTION__ );
 
 			/* pdPASS will only be returned if the mutex was successfully
 			obtained.  The calling task may have entered the Blocked state
@@ -1234,7 +1234,7 @@ Queue_t * const pxQueue = ( Queue_t * ) xQueue;
 }
 /*-----------------------------------------------------------*/
 
-BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeeking )
+BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeeking, int line, const char * file, const char * function)
 {
 BaseType_t xEntryTimeSet = pdFALSE;
 TimeOut_t xTimeOut;
@@ -1375,7 +1375,7 @@ Queue_t * const pxQueue = ( Queue_t * ) xQueue;
 		{
 			if( prvIsQueueEmpty( pxQueue ) != pdFALSE )
 			{
-				traceBLOCKING_ON_QUEUE_RECEIVE( pxQueue );
+                            traceBLOCKING_ON_QUEUE_RECEIVE( pxQueue, line, file, function);
 
 				#if ( configUSE_MUTEXES == 1 )
 				{
@@ -2478,7 +2478,7 @@ BaseType_t xReturn;
 	{
 	QueueSetMemberHandle_t xReturn = NULL;
 
-		( void ) xQueueGenericReceive( ( QueueHandle_t ) xQueueSet, &xReturn, xTicksToWait, pdFALSE ); /*lint !e961 Casting from one typedef to another is not redundant. */
+        ( void ) xQueueGenericReceive( ( QueueHandle_t ) xQueueSet, &xReturn, xTicksToWait, pdFALSE, __LINE__, __FILE__, __FUNCTION__); /*lint !e961 Casting from one typedef to another is not redundant. */
 		return xReturn;
 	}
 

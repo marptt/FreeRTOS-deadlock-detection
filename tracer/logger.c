@@ -38,6 +38,11 @@ void taskSwitchedIn(char* thing)
     }
 }
 
+void taskBlocked(void* xQueue, int line,const char* file, const char * function, void* task)
+{
+    printf("Task %s blocked from sema %s: %i, %s, %s", pcTaskGetName(task), (char*)pcQueueGetName(xQueue),line, file, function)
+}
+
 void semaphoreTake(void* qwer)
 {
     writeLog("%s", "semaphore take");
@@ -65,5 +70,5 @@ void mutexCreated(void* pxNewMutex)
     sprintf(str, "Sema_nr_%i", nrSemaCreated);
 
     printf("Created: %c\n", str[8]);
-    vQueueAddToRegistry(pxNewMutex, str);
+    vQueueAddToRegistry(pxNewMutex, "apa");
 }
