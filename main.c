@@ -20,7 +20,6 @@ static const char *pcTextForTask3 = "Task 3 (Periodic) is running\r\n";
 void vContinuousProcessingTask( void *pvParameters );
 void vTaskFunction( void *pvParameters );
 
-
 SemaphoreHandle_t xSemaphore_qwer;
 
 

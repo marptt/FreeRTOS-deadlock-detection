@@ -6,11 +6,11 @@
 #include <signal.h>
 #include <stdlib.h>
 
-#define writeLog( format, data ) {          \
-    vPortEnterCritical();                   \
-    fprintf(logFile, format "\n", data);    \
-    printf(format "\n", data);              \
-    vPortExitCritical();                    \
+#define writeLog( format, data ) {                                     \
+    vPortEnterCritical();                                              \
+    fprintf(logFile, "%i, " format "\n", xTaskGetTickCount(), data); \
+    printf(format "\n", data);                                         \
+    vPortExitCritical();                                               \
 }
 
 void onInterrupt(int signum)
@@ -23,6 +23,7 @@ void loggerInit()
 {
     signal(SIGINT, onInterrupt);
     logFile = fopen("logFile","w");
+    fprintf(logFile, "tickCount, message\n");
 }
 
 char* lastName = "";
