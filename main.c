@@ -8,6 +8,7 @@
 #include "task.h"
 #include "helpers.h"
 #include "semphr.h"
+#include "logger.h"
 
 /* Define the strings that will be passed in as the task parameters. These are
    defined const and not on the stack to ensure they remain valid when the tasks are
@@ -18,7 +19,6 @@ static const char *pcTextForTask3 = "Task 3 (Periodic) is running\r\n";
 
 void vContinuousProcessingTask( void *pvParameters );
 void vTaskFunction( void *pvParameters );
-
 
 SemaphoreHandle_t xSemaphore_qwer;
 
@@ -49,15 +49,19 @@ void vTaskFunction( void *pvParameters )
     }
 }
 
+
+
 int main( void )
 {
+    loggerInit();
     xTaskCreate( vContinuousProcessingTask, "ContinuousTask1", 1000, (void*)pcTextForTask1, 1, NULL );
     xTaskCreate( vContinuousProcessingTask, "ContinuousTask2", 1000, (void*)pcTextForTask2, 1, NULL );
     xTaskCreate( vTaskFunction, "PeriodicTask", 1000, (void*)pcTextForTask3, 2, NULL );
    
     xSemaphore_qwer = xSemaphoreCreateMutex();
-    
+     
     vTaskStartScheduler();
+
     return 0;
 }
 

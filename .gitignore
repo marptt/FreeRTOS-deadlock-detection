@@ -1,3 +1,5 @@
 *.o
 obj/
 FreeRTOS-Sim-Program
+
+logFile
