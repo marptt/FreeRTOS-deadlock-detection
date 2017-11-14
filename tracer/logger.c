@@ -5,6 +5,7 @@
 #include "task.h"
 #include <signal.h>
 #include <stdlib.h>
+#include "queue.h"
 
 #define writeLog( format, data ) {                                     \
     vPortEnterCritical();                                              \
@@ -32,6 +33,8 @@ void loggerInit()
 }
 
 char* lastName = "";
+int nrSemaCreated = 0;
+
 void taskSwitchedIn(char* thing)
 {
     if(strcmp(lastName, thing))
@@ -52,11 +55,21 @@ void semaphoreTakeFailed(void* qwer)
 
 void semaphoreGive(void* qwer)
 {
+    printf("semaphore give: %s\n", (char*)pcQueueGetName(qwer));
     writeLog("%s", "semaphore give");
-    //printf("%s\n",(char*)qwer);
 }
 void semaphoreGiveFailed(void* qwer)
 {
     writeLog("%s", "semaphore give failed");
     //printf("%s\n",(char*)qwer);
+}
+
+void mutexCreated(void* pxNewMutex)
+{
+    char str[10];
+    nrSemaCreated++;
+    sprintf(str, "Sema_nr_%i", nrSemaCreated);
+
+    printf("Created: %c\n", str[8]);
+    vQueueAddToRegistry(pxNewMutex, str);
 }
