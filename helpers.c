@@ -15,9 +15,6 @@ void vPrintString( const portCHAR *pcString )
     xTaskResumeAll();
 }
 
-
-
-
 void vApplicationMallocFailedHook( void )
 {
     /* vApplicationMallocFailedHook() will only be called if

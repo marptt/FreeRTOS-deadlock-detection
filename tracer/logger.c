@@ -1,6 +1,6 @@
 #include <string.h>
 #include "FreeRTOS.h"
-#include "Logger.h"
+#include "logger.h"
 #include "task.h"
 
 
@@ -23,8 +23,6 @@ void semaphoreTakeFailed(void* qwer)
 {
     printf("semaphore take failed\n");
 }
-
-
 
 void semaphoreGive(void* qwer)
 {

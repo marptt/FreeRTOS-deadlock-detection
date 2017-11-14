@@ -11,12 +11,10 @@ SRCROOT         = $(CURDIR)
 ODIR            = obj
 
 # Source VPATHS
-VPATH           += $(SRCROOT)/Source
-VPATH	        += $(SRCROOT)/Source/portable/MemMang
-VPATH	        += $(SRCROOT)/Source/portable/GCC/POSIX
-VPATH           += $(SRCROOT)/Demo
-VPATH			+= $(SRCROOT)/Project/FileIO
-VPATH			+= $(SRCROOT)/Project
+VPATH           += $(SRCROOT)/FreeRTOS
+VPATH	        += $(SRCROOT)/FreeRTOS/portable/MemMang
+VPATH	        += $(SRCROOT)/FreeRTOS/portable/GCC/POSIX
+VPATH           += $(SRCROOT)/tracer
 
 # FreeRTOS Objects
 C_FILES			+= croutine.c
@@ -30,69 +28,48 @@ C_FILES			+= timers.c
 C_FILES			+= heap_3.c
 C_FILES			+= port.c
 
-# Demo Objects
-C_FILES			+= blocktim.c
-C_FILES			+= countsem.c
-C_FILES			+= GenQTest.c
-C_FILES			+= QPeek.c
-C_FILES			+= recmutex.c
-C_FILES			+= BlockQ.c
-C_FILES			+= death.c
-C_FILES			+= dynamic.c
-C_FILES			+= flop.c
-C_FILES			+= integer.c
-C_FILES			+= PollQ.c
-C_FILES			+= semtest.c
-
-C_FILES			+= AbortDelay.c
-C_FILES			+= EventGroupsDemo.c
-C_FILES			+= IntSemTest.c
-C_FILES			+= QueueSet.c
-C_FILES			+= QueueSetPolling.c
-C_FILES			+= QueueOverwrite.c
-C_FILES			+= TaskNotify.c
-C_FILES			+= TimerDemo.c
-
 # Main Object
 C_FILES			+= helpers.c
 C_FILES			+= main.c
-C_FILES			+= Logger.c
 
+# tracer
+C_FILES 		+= logger.c
 
 # Include Paths
-INCLUDES        += -I$(SRCROOT)/Source/include
-INCLUDES        += -I$(SRCROOT)/Source/portable/GCC/POSIX/
-INCLUDES        += -I$(SRCROOT)/Demo/include
-INCLUDES        += -I$(SRCROOT)/Project
+INCLUDES        += -I$(SRCROOT)
+INCLUDES        += -I$(SRCROOT)/FreeRTOS/include
+INCLUDES        += -I$(SRCROOT)/tracer
+INCLUDES        += -I$(SRCROOT)/FreeRTOS/portable/GCC/POSIX/
 
 # Generate OBJS names
 OBJS = $(patsubst %.c,%.o,$(C_FILES))
 
 ######## C Flags ########
 
-# # Warnings
-# CWARNS += -W
-# CWARNS += -Wall
-# CWARNS += -Werror
-# CWARNS += -Wextra
-# CWARNS += -Wformat
-# CWARNS += -Wmissing-braces
-# CWARNS += -Wno-cast-align
-# CWARNS += -Wparentheses
-# CWARNS += -Wshadow
-# CWARNS += -Wno-sign-compare
-# CWARNS += -Wswitch
-# CWARNS += -Wuninitialized
-# CWARNS += -Wunknown-pragmas
-# CWARNS += -Wunused-function
-# CWARNS += -Wunused-label
-# #CWARNS += -Wunused-parameter
-# CWARNS += -Wunused-value
-# #CWARNS += -Wunused-variable
-# CWARNS += -Wmissing-prototypes
+# Warnings
+CWARNS += -W
+#CWARNS += -Wall
+#CWARNS += -Werror
+CWARNS += -Wextra
+CWARNS += -Wformat
+CWARNS += -Wmissing-braces
+CWARNS += -Wno-cast-align
+CWARNS += -Wparentheses
+CWARNS += -Wshadow
+CWARNS += -Wno-sign-compare
+CWARNS += -Wswitch
+CWARNS += -Wuninitialized
+CWARNS += -Wunknown-pragmas
+#CWARNS += -Wunused-function
+#CWARNS += -Wunused-label
+#CWARNS += -Wunused-parameter
+#CWARNS += -Wunused-value
+#CWARNS += -Wunused-variable
+#CWARNS += -Wmissing-prototypes
 
 #CWARNS += -Wno-unused-function
 
+#CFLAGS += -std=c99 -D__EXTENSIONS__
 CFLAGS += -m32
 CFLAGS += -DDEBUG=1
 #CFLAGS += -g -DUSE_STDIO=1 -D__GCC_POSIX__=1
@@ -111,7 +88,7 @@ CFLAGS += $(INCLUDES) $(CWARNS) -O2
 
 # Rules
 .PHONY : all
-all: setup FreeRTOS-deadlock
+all: setup FreeRTOS-Sim-Program
 
 .PHONY : setup
 setup:
@@ -131,7 +108,7 @@ else
 	@$(CC) $(CFLAGS) -c -o $@ $<
 endif
 
-FreeRTOS-deadlock: $(_OBJS)
+FreeRTOS-Sim-Program: $(_OBJS)
 	@echo ">> Linking $@..."
 ifeq ($(verbose),1)
 	$(CC) $(CFLAGS) $^ $(LINKFLAGS) $(LIBS) -o $@
@@ -145,7 +122,7 @@ endif
 
 .PHONY : clean
 clean:
-	@-rm -rf $(ODIR) FreeRTOS-deadlock
+	@-rm -rf $(ODIR) FreeRTOS-Sim-Program
 	@echo "--------------"
 	@echo "CLEAN COMPLETE"
 	@echo "--------------"
