@@ -4,7 +4,7 @@
 #include "FreeRTOS.h"
 
 int testNum;
-void doTheThing(char* thing);
+void taskSwitchedIn(char* thing);
 void semaphoreGive(void* qwer);
 void semaphoreGiveFailed(void* qwer);
 
