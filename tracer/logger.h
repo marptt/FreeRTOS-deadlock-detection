@@ -1,6 +1,7 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
+#include <signal.h>
 #include <stdio.h>
 #include "FreeRTOS.h"
 
@@ -12,6 +13,7 @@ void semaphoreGiveFailed(void* qwer);
 void semaphoreTake(void* qwer);
 void semaphoreTakeFailed(void* qwer);
 
+sigset_t signal_set;
 FILE * logFile;
 void loggerInit();
 void onInterrupt();
