@@ -6,8 +6,6 @@
 #include <signal.h>
 #include <stdlib.h>
 
-
-
 #define writeLog( format, data ) {          \
     vPortEnterCritical();                   \
     fprintf(logFile, format "\n", data);    \

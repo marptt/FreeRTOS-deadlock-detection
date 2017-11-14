@@ -1,6 +1,7 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
+#include <stdio.h>
 #include "FreeRTOS.h"
 
 int testNum;
@@ -12,6 +13,7 @@ void semaphoreTake(void* qwer);
 void semaphoreTakeFailed(void* qwer);
 
 FILE * logFile;
+void loggerInit();
 void onInterrupt();
 
 #endif

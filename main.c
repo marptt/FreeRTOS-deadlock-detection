@@ -8,6 +8,7 @@
 #include "task.h"
 #include "helpers.h"
 #include "semphr.h"
+#include "logger.h"
 
 /* Define the strings that will be passed in as the task parameters. These are
    defined const and not on the stack to ensure they remain valid when the tasks are
