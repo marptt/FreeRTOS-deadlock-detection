@@ -11,5 +11,7 @@ void semaphoreGiveFailed(void* qwer);
 void semaphoreTake(void* qwer);
 void semaphoreTakeFailed(void* qwer);
 
+FILE * logFile;
+void onInterrupt();
 
 #endif

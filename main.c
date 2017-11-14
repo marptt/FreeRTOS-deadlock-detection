@@ -49,15 +49,19 @@ void vTaskFunction( void *pvParameters )
     }
 }
 
+
+
 int main( void )
 {
+    loggerInit();
     xTaskCreate( vContinuousProcessingTask, "ContinuousTask1", 1000, (void*)pcTextForTask1, 1, NULL );
     xTaskCreate( vContinuousProcessingTask, "ContinuousTask2", 1000, (void*)pcTextForTask2, 1, NULL );
     xTaskCreate( vTaskFunction, "PeriodicTask", 1000, (void*)pcTextForTask3, 2, NULL );
    
     xSemaphore_qwer = xSemaphoreCreateMutex();
-    
+     
     vTaskStartScheduler();
+
     return 0;
 }
 
