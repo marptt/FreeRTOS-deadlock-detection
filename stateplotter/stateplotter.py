@@ -1,17 +1,122 @@
-#! /usr/bin/env python
-import sys
-
-from PyQt4.QtGui import *
+# -*- coding: utf-8 -*-
 
 import pyqtgraph as pg
+from pyqtgraph.Qt import QtCore, QtGui
+import numpy as np
 
-app = QApplication(sys.argv)
- 
-window = QWidget()
-window.resize(320, 240)
-window.setWindowTitle("stateplotter")
-window.show()
+# Enable antialiasing for prettier plots
+pg.setConfigOptions(antialias=True)
 
-sys.exit(app.exec_())
+window = pg.GraphicsWindow()
+window.setWindowTitle('stateplotter')
+view = window.addViewBox()
+view.setAspectLocked()
+
+class TaskGraph(pg.GraphItem):
+    def __init__(self):
+        self.dragPoint = None
+        self.dragOffset = None
+        self.textItems = []
+        pg.GraphItem.__init__(self)
+        self.scatter.sigClicked.connect(self.clicked)
+        
+    def setData(self, **kwds):
+        self.text = kwds.pop('text', [])
+        self.data = kwds
+        if 'pos' in self.data:
+            npts = self.data['pos'].shape[0]
+            self.data['data'] = np.empty(npts, dtype=[('index', int)])
+            self.data['data']['index'] = np.arange(npts)
+        self.setTexts(self.text)
+        self.updateGraph()
+        
+    def setTexts(self, text):
+        for i in self.textItems:
+            i.scene().removeItem(i)
+        self.textItems = []
+        for t in text:
+            item = pg.TextItem(t)
+            self.textItems.append(item)
+            item.setParentItem(self)
+        
+    def updateGraph(self):
+        pg.GraphItem.setData(self, **self.data)
+        for i,item in enumerate(self.textItems):
+            item.setPos(*self.data['pos'][i])
+        
+        
+    def mouseDragEvent(self, ev):
+        if ev.button() != QtCore.Qt.LeftButton:
+            ev.ignore()
+            return
+        
+        if ev.isStart():
+            # We are already one step into the drag.
+            # Find the point(s) at the mouse cursor when the button was first 
+            # pressed:
+            pos = ev.buttonDownPos()
+            pts = self.scatter.pointsAt(pos)
+            if len(pts) == 0:
+                ev.ignore()
+                return
+            self.dragPoint = pts[0]
+            ind = pts[0].data()[0]
+            self.dragOffset = self.data['pos'][ind] - pos
+        elif ev.isFinish():
+            self.dragPoint = None
+            return
+        else:
+            if self.dragPoint is None:
+                ev.ignore()
+                return
+        
+        ind = self.dragPoint.data()[0]
+        self.data['pos'][ind] = ev.pos() + self.dragOffset
+        self.updateGraph()
+        ev.accept()
+        
+    def clicked(self, pts):
+        print("clicked: %s" % pts)
 
 
+graph = TaskGraph()
+view.addItem(graph)
+
+## Define positions of nodes
+pos = np.array([
+    [10,0],
+    [0,0],
+    [0,-10],
+    [0,10],
+    ], dtype=float)
+    
+## Define the set of connections in the graph
+adj = np.array([
+    [0,1],
+    [0,2],
+    [0,3],
+    [1,0]
+    ])
+    
+## Define the symbol to use for each node (this is optional)
+symbols = ['o','o','o','o']
+
+## Define the line style for each connection (this is optional)
+lines = np.array([
+    (255,0,0,255,1),
+    (255,0,255,255,2),
+    (255,0,255,255,3),
+    (255,255,0,255,2)
+    ], dtype=[('red',np.ubyte),('green',np.ubyte),('blue',np.ubyte),('alpha',np.ubyte),('width',float)])
+
+
+texts = ["Running","Suspended","Ready","Blocked"]
+## Update the graph
+graph.setData(pos=pos, adj=adj, pen=lines, size=1, symbol=symbols, pxMode=False, text=texts)
+
+
+## Start Qt event loop unless running in interactive mode or using pyside.
+if __name__ == '__main__':
+    import sys
+    if (sys.flags.interactive != 1) or not hasattr(QtCore, 'PYQT_VERSION'):
+        QtGui.QApplication.instance().exec_()
