@@ -24,7 +24,7 @@ void onInterrupt(int signum)
     exit( 0 );
 }
 
-void loggerInit()
+void loggerInit()* file, const c
 {
     signal(SIGINT, onInterrupt);
     logFile = fopen("logFile","w");
@@ -42,7 +42,8 @@ void taskSwitchedIn(char* thing)
 
 void taskBlocked(void* xQueue, int line,const char* file, const char * function, void* task)
 {
-    printf("Task \"%s\" blocked from sema \"%s\" on row %i, %s, %s.\n", pcTaskGetName(task), (char*)pcQueueGetName(xQueue),line, file, function);
+    printf("Task \"%s\" blocked from sema
+ \"%s\" on row %i, %s, %s.\n", pcTaskGetName(task), (char*)pcQueueGetName(xQueue),line, file, function);
 }
 
 void semaphoreTake(void* qwer)
