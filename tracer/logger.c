@@ -35,36 +35,47 @@ void loggerInit()
 char* lastName = "";
 int nrSemaCreated = 0;
 
-void taskSwitchedIn(char* thing)
+void onTraceTaskSwitchedIn(char* pcTaskName)
 {
-    if(strcmp(lastName, thing))
+    if(strcmp(lastName, pcTaskName))
     {
-        writeLog("%s", thing);
-        lastName = thing;
+        writeLog("switched in %s" , pcTaskName);
+        lastName = pcTaskName;
     }
 }
 
-void semaphoreTake(void* qwer)
+char* lastRemovedName = "";
+void onTraceTaskSwitchedOut(char* pcTaskName)
+{
+    if(strcmp(lastRemovedName, pcTaskName))
+    {
+        writeLog("switched out %s", pcTaskName);
+        lastRemovedName = pcTaskName;
+    }
+};
+
+void onTraceQueueReceive(void* xQueue)
 {
     writeLog("%s", "semaphore take");
 }
-void semaphoreTakeFailed(void* qwer)
+
+void onTraceQueueReceiveFailed(void* xQueue)
 {
     writeLog("%s", "semaphore take failed");
 }
 
-void semaphoreGive(void* qwer)
+void onTraceQueueSend(void* xQueue)
 {
-    printf("semaphore give: %s\n", (char*)pcQueueGetName(qwer));
+    printf("semaphore give: %s\n", (char*)pcQueueGetName(xQueue));
     writeLog("%s", "semaphore give");
 }
-void semaphoreGiveFailed(void* qwer)
+
+void onTraceQueueSendFailed(void* xQueue)
 {
     writeLog("%s", "semaphore give failed");
-    //printf("%s\n",(char*)qwer);
 }
 
-void mutexCreated(void* pxNewMutex)
+void onTraceCreateMutex(void* pxNewMutex)
 {
     char str[10];
     nrSemaCreated++;
@@ -72,4 +83,50 @@ void mutexCreated(void* pxNewMutex)
 
     printf("Created: %c\n", str[8]);
     vQueueAddToRegistry(pxNewMutex, str);
+}
+
+
+void onTraceMovedTaskToReadyState(void* xTask)
+{
+    //writeLog("%s","ready");
+}
+
+void onTraceBlockingOnQueueReceive (void* xQueue)
+{
+
+}
+
+void onTraceblockingOnQueueSend(void* xQueue)
+{
+
+}
+
+void onTraceTaskSuspend(void* xTask)
+{
+
+}
+
+void onTraceTaskResume(void* xTask)
+{
+
+}
+
+void onTraceTaskIncrementTick(void* xTickcount)
+{
+
+} 
+
+void onTraceTaskDelete(void* xTask)
+{
+
+}             
+
+void onTraceTaskDelayUntil()
+{
+
+}                     
+
+void onTraceTaskDelay()
+{
+
 }
