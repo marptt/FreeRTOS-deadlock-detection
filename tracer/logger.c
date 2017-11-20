@@ -13,6 +13,11 @@
     vPortExitCritical();                                               \
 }
 
+/*Variables*/
+char* lastName = "";
+int nrSemaCreated = 0;
+
+
 void onInterrupt(int signum)
 {
     fclose( logFile );
@@ -26,9 +31,6 @@ void loggerInit()
     fprintf(logFile, "tickCount, message\n");
 }
 
-char* lastName = "";
-int nrSemaCreated = 0;
-
 void taskSwitchedIn(char* thing)
 {
     if(strcmp(lastName, thing))
@@ -40,7 +42,7 @@ void taskSwitchedIn(char* thing)
 
 void taskBlocked(void* xQueue, int line,const char* file, const char * function, void* task)
 {
-    printf("Task %s blocked from sema %s: %i, %s, %s", pcTaskGetName(task), (char*)pcQueueGetName(xQueue),line, file, function)
+    printf("Task \"%s\" blocked from sema \"%s\" on row %i, %s, %s.\n", pcTaskGetName(task), (char*)pcQueueGetName(xQueue),line, file, function);
 }
 
 void semaphoreTake(void* qwer)

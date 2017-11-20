@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 #define traceTASK_SWITCHED_IN() taskSwitchedIn(pxCurrentTCB -> pcTaskName)
-#define traceBLOCKING_ON_QUEUE_RECEIVE(xQueue, line, file, function) taskBlocked(xQueue, line, file, function, pxCurrentTCB)
+#define traceBLOCKING_ON_QUEUE_RECEIVE(xQueue, line, file, function) taskBlocked(xQueue, line, file, function, xTaskGetCurrentTaskHandle())
 #define traceQUEUE_SEND(xQueue) semaphoreGive(xQueue)
 #define traceQUEUE_SEND_FAILED(xQueue) semaphoreGiveFailed(xQueue)
 
