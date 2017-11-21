@@ -5,3 +5,4 @@ FreeRTOS-Sim-Program
 logFile
 
 pyqtgraph/
+*.pyc

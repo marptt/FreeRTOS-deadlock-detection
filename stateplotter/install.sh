@@ -6,3 +6,5 @@ cd pyqtgraph
 sudo python setup.py install
 
 pip install numpy 
+
+
