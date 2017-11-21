@@ -5,13 +5,16 @@
 #include "task.h"
 #include <signal.h>
 #include <stdlib.h>
+#include "queue.h"
 
 #define GET_SOURCE_CODE_POSITION (source_code_position_t){.file = __FILE__, .function = __FUNCTION__, .line = __LINE__}
 
 #define writeLog( format, data ) {                                     \
     vPortEnterCritical();                                              \
-    fprintf(logFile, "%i, " format "\n", xTaskGetTickCount(), data); \
+    sigprocmask(SIG_BLOCK, &signal_set, NULL);                         \
+    fprintf(logFile, "%i, "format"\n", xTaskGetTickCount(), data);     \
     printf(format "\n", data);                                         \
+    sigprocmask(SIG_UNBLOCK, &signal_set, NULL);                       \
     vPortExitCritical();                                               \
 }
 
@@ -22,15 +25,18 @@ char* lastName = "";
 int nrSemaCreated = 0;
 
 
-void onInterrupt(int signum)
+void onInterrupt()
 {
+    vPortEnterCritical(); // cease other activity
     fclose( logFile );
     exit( 0 );
 }
 
 void loggerInit()
 {
-    signal(SIGINT, onInterrupt);
+    sigemptyset(&signal_set);
+    sigaddset(&signal_set, SIGINT);
+    signal(SIGINT, onInterrupt); // SIGINT, triggered by Ctrl+C
     logFile = fopen("logFile","w");
     fprintf(logFile, "tickCount, message\n");
 }
