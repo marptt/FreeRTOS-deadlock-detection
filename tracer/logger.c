@@ -6,12 +6,16 @@
 #include <signal.h>
 #include <stdlib.h>
 
+#define GET_SOURCE_CODE_POSITION (source_code_position_t){.file = __FILE__, .function = __FUNCTION__, .line = __LINE__}
+
 #define writeLog( format, data ) {                                     \
     vPortEnterCritical();                                              \
     fprintf(logFile, "%i, " format "\n", xTaskGetTickCount(), data); \
     printf(format "\n", data);                                         \
     vPortExitCritical();                                               \
 }
+
+void printSCP(source_code_position_t scp);
 
 /*Variables*/
 char* lastName = "";
@@ -24,7 +28,7 @@ void onInterrupt(int signum)
     exit( 0 );
 }
 
-void loggerInit()* file, const c
+void loggerInit()
 {
     signal(SIGINT, onInterrupt);
     logFile = fopen("logFile","w");
@@ -35,15 +39,15 @@ void taskSwitchedIn(char* thing)
 {
     if(strcmp(lastName, thing))
     {
-        writeLog("%s", thing);
+	writeLog("%s", thing);
         lastName = thing;
     }
 }
 
-void taskBlocked(void* xQueue, int line,const char* file, const char * function, void* task)
+void taskBlocked(void* xQueue, source_code_position_t source_code_position)
 {
-    printf("Task \"%s\" blocked from sema
- \"%s\" on row %i, %s, %s.\n", pcTaskGetName(task), (char*)pcQueueGetName(xQueue),line, file, function);
+    printf("Task \"%s\" blocked from sema '%s': ", pcTaskGetName(xTaskGetCurrentTaskHandle()), (char*)pcQueueGetName(xQueue) );
+	printSCP(source_code_position);
 }
 
 void semaphoreTake(void* qwer)
@@ -55,9 +59,10 @@ void semaphoreTakeFailed(void* qwer)
     writeLog("%s", "semaphore take failed");
 }
 
-void semaphoreGive(void* qwer)
+void semaphoreGive(void* qwer, source_code_position_t source_code_position)
 {
-    printf("semaphore give: %s\n", (char*)pcQueueGetName(qwer));
+    printf("semaphore '%s' give: ", (char*)pcQueueGetName(qwer));
+	printSCP(source_code_position);
     writeLog("%s", "semaphore give");
 }
 void semaphoreGiveFailed(void* qwer)
@@ -74,4 +79,9 @@ void mutexCreated(void* pxNewMutex)
 
     printf("Created: %c\n", str[8]);
     vQueueAddToRegistry(pxNewMutex, "apa");
+}
+
+void printSCP(source_code_position_t scp)
+{
+	printf( "'%s','%s','%i'\n", scp.file, scp.function, scp.line );
 }

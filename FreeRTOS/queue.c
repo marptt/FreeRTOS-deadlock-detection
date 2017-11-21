@@ -168,6 +168,10 @@ typedef struct QueueDefinition
 name below to enable the use of older kernel aware debuggers. */
 typedef xQUEUE Queue_t;
 
+/* A variable to input to trace functions where the source code position isn't interesting.*/
+const source_code_position_t source_code_position = (source_code_position_t){.file = "", .function = "", .line = 0};
+
+
 /*-----------------------------------------------------------*/
 
 /*
@@ -490,7 +494,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 			traceCREATE_MUTEX( pxNewQueue );
 
 			/* Start with the semaphore in the expected state. */
-			( void ) xQueueGenericSend( pxNewQueue, NULL, ( TickType_t ) 0U, queueSEND_TO_BACK );
+			( void ) xQueueGenericSend( pxNewQueue, NULL, ( TickType_t ) 0U, queueSEND_TO_BACK, source_code_position );
 		}
 		else
 		{
@@ -569,7 +573,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 
 #if ( configUSE_RECURSIVE_MUTEXES == 1 )
 
-	BaseType_t xQueueGiveMutexRecursive( QueueHandle_t xMutex )
+	BaseType_t xQueueGiveMutexRecursive( QueueHandle_t xMutex, source_code_position_t source_code_position )
 	{
 	BaseType_t xReturn;
 	Queue_t * const pxMutex = ( Queue_t * ) xMutex;
@@ -598,7 +602,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 			{
 				/* Return the mutex.  This will automatically unblock any other
 				task that might be waiting to access the mutex. */
-				( void ) xQueueGenericSend( pxMutex, NULL, queueMUTEX_GIVE_BLOCK_TIME, queueSEND_TO_BACK );
+			    ( void ) xQueueGenericSend( pxMutex, NULL, queueMUTEX_GIVE_BLOCK_TIME, queueSEND_TO_BACK, source_code_position );
 			}
 			else
 			{
@@ -624,7 +628,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 
 #if ( configUSE_RECURSIVE_MUTEXES == 1 )
 
-	BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait )
+	BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait, source_code_position_t source_code_position )
 	{
 	BaseType_t xReturn;
 	Queue_t * const pxMutex = ( Queue_t * ) xMutex;
@@ -643,7 +647,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 		}
 		else
 		{
-                    xReturn = xQueueGenericReceive( pxMutex, NULL, xTicksToWait, pdFALSE, __LINE__, __FILE__, __FUNCTION__ );
+                    xReturn = xQueueGenericReceive( pxMutex, NULL, xTicksToWait, pdFALSE, source_code_position );
 
 			/* pdPASS will only be returned if the mutex was successfully
 			obtained.  The calling task may have entered the Blocked state
@@ -720,7 +724,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 #endif /* ( ( configUSE_COUNTING_SEMAPHORES == 1 ) && ( configSUPPORT_DYNAMIC_ALLOCATION == 1 ) ) */
 /*-----------------------------------------------------------*/
 
-BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
+BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition, source_code_position_t source_code_position )
 {
 BaseType_t xEntryTimeSet = pdFALSE, xYieldRequired;
 TimeOut_t xTimeOut;
@@ -2477,8 +2481,8 @@ BaseType_t xReturn;
 	QueueSetMemberHandle_t xQueueSelectFromSet( QueueSetHandle_t xQueueSet, TickType_t const xTicksToWait )
 	{
 	QueueSetMemberHandle_t xReturn = NULL;
-
-        ( void ) xQueueGenericReceive( ( QueueHandle_t ) xQueueSet, &xReturn, xTicksToWait, source_code_position); /*lint !e961 Casting from one typedef to another is not redundant. */
+	/*TODO: Fixa detta hårdkodade!!!*/
+        ( void ) xQueueGenericReceive( ( QueueHandle_t ) xQueueSet, &xReturn, xTicksToWait, pdFALSE,(source_code_position_t){.file = "LALA", .function = "lala", .line = 5} ); /*lint !e961 Casting from one typedef to another is not redundant. */
 		return xReturn;
 	}
 
