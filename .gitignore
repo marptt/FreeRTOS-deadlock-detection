@@ -3,3 +3,5 @@ obj/
 FreeRTOS-Sim-Program
 
 logFile
+
+pyqtgraph/
