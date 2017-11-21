@@ -41,43 +41,50 @@ void loggerInit()
     fprintf(logFile, "tickCount, message\n");
 }
 
-void taskSwitchedIn(char* thing)
+
+void onTraceTaskSwitchedIn(char* pcTaskName)
 {
-    if(strcmp(lastName, thing))
+    if(strcmp(lastName, pcTaskName))
     {
-	writeLog("%s", thing);
-        lastName = thing;
+        writeLog("switched in %s" , pcTaskName);
+        lastName = pcTaskName;
     }
 }
 
-void taskBlocked(void* xQueue, source_code_position_t source_code_position)
-{
-    printf("Task \"%s\" blocked from sema '%s': ", pcTaskGetName(xTaskGetCurrentTaskHandle()), (char*)pcQueueGetName(xQueue) );
-	printSCP(source_code_position);
-}
 
-void semaphoreTake(void* qwer)
+char* lastRemovedName = "";
+void onTraceTaskSwitchedOut(char* pcTaskName)
+{
+    if(strcmp(lastRemovedName, pcTaskName))
+    {
+        writeLog("switched out %s", pcTaskName);
+        lastRemovedName = pcTaskName;
+    }
+};
+
+void onTraceQueueReceive(void* xQueue)
 {
     writeLog("%s", "semaphore take");
 }
-void semaphoreTakeFailed(void* qwer)
+
+void onTraceQueueReceiveFailed(void* xQueue)
 {
     writeLog("%s", "semaphore take failed");
 }
 
-void semaphoreGive(void* qwer, source_code_position_t source_code_position)
+void onTraceQueueSend(void* xQueue, source_code_position_t source_code_position)
 {
-    printf("semaphore '%s' give: ", (char*)pcQueueGetName(qwer));
+    printf("semaphore '%s' give: ", (char*)pcQueueGetName(xQueue));
 	printSCP(source_code_position);
     writeLog("%s", "semaphore give");
 }
-void semaphoreGiveFailed(void* qwer)
+
+void onTraceQueueSendFailed(void* xQueue)
 {
     writeLog("%s", "semaphore give failed");
-    //printf("%s\n",(char*)qwer);
 }
 
-void mutexCreated(void* pxNewMutex)
+void onTraceCreateMutex(void* pxNewMutex)
 {
     char str[10];
     nrSemaCreated++;
@@ -90,4 +97,51 @@ void mutexCreated(void* pxNewMutex)
 void printSCP(source_code_position_t scp)
 {
 	printf( "'%s','%s','%i'\n", scp.file, scp.function, scp.line );
+}
+
+
+void onTraceMovedTaskToReadyState(void* xTask)
+{
+    //writeLog("%s","ready");
+}
+
+void onTraceBlockingOnQueueReceive (void* xQueue, source_code_position_t source_code_position)
+{
+	    printf("Task \"%s\" blocked from sema '%s': ", pcTaskGetName(xTaskGetCurrentTaskHandle()), (char*)pcQueueGetName(xQueue) );
+	printSCP(source_code_position);
+}
+
+void onTraceblockingOnQueueSend(void* xQueue)
+{
+
+}
+
+void onTraceTaskSuspend(void* xTask)
+{
+
+}
+
+void onTraceTaskResume(void* xTask)
+{
+
+}
+
+void onTraceTaskIncrementTick(uint32_t xTickcount)
+{
+
+} 
+
+void onTraceTaskDelete(void* xTask)
+{
+
+}             
+
+void onTraceTaskDelayUntil()
+{
+
+}                     
+
+void onTraceTaskDelay()
+{
+
 }
