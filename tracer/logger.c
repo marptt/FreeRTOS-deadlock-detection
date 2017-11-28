@@ -9,13 +9,25 @@
 
 #define GET_SOURCE_CODE_POSITION (source_code_position_t){.file = __FILE__, .function = __FUNCTION__, .line = __LINE__}
 
-#define writeLog( format, data ) {                                     \
+#define JSON_STRING(key, value) "\""key"\": " "\""value"\""
+#define writeLog( format, data... ) {                                  \
     vPortEnterCritical();                                              \
     sigprocmask(SIG_BLOCK, &signal_set, NULL);                         \
     fprintf(logFile, "%i, "format"\n", xTaskGetTickCount(), data);     \
     sigprocmask(SIG_UNBLOCK, &signal_set, NULL);                       \
     vPortExitCritical();                                               \
 }
+
+#define SEMAPHORE_EVENT_FORMAT					\
+	"{\n"										\
+	"    \"Event\": \"%s\",\n"					\
+	"    \"Semaphore\": %p,\n"					\
+	"    \"File\": \"%s\",\n"					\
+	"    \"Function\": \"%s\",\n"				\
+	"    \"Line\": %i\n"						\
+	"}"											\
+
+
 
 /*Function for testing trace macros*/
 void printSCP( const char* function, source_code_position_t scp);
@@ -54,10 +66,13 @@ void printSCP( const char* function, source_code_position_t scp )
 
 /*###### Trace functions ######*/
 
-void onTraceBlockingOnQueueReceive (void* xQueue, source_code_position_t source_code_position)
+void onTraceBlockingOnQueueReceive (void* xQueue, source_code_position_t scp)
 {
 	/* printf("Task \"%s\" blocked from sema '%s': ", pcTaskGetName(xTaskGetCurrentTaskHandle()), (char*)pcQueueGetName(xQueue) ); */
-	printSCP(__FUNCTION__,source_code_position);
+	/* printf("%s:\n",pcQueueGetName(xQueue)); */
+	
+	writeLog(SEMAPHORE_EVENT_FORMAT, "Blocked on Take",xQueue, scp.file, scp.function, scp.line);
+	printSCP(__FUNCTION__, scp);
 }
 
 void onTraceBlockingOnQueueSend(void* xQueue, source_code_position_t source_code_position )
@@ -68,19 +83,24 @@ void onTraceBlockingOnQueueSend(void* xQueue, source_code_position_t source_code
 
 void onTraceCreateMutex(void* pxNewMutex, source_code_position_t source_code_position)
 {
-    /* char str[10]; */
-    /* nrSemaCreated++; */
-    /* sprintf(str, "Sema_nr_%i", nrSemaCreated); */
-
-    /* printf("Created: %c\n", str[8]); */
-   	printSCP(__FUNCTION__,source_code_position);
-	vQueueAddToRegistry(pxNewMutex, "apa");
+    nrSemaCreated++;
+   
+	char* text = "Mutex_nr_";
+	char* nr = (char *)malloc( nrSemaCreated/10 + 1 );
+	sprintf(nr, "%d", nrSemaCreated);
+	char *out;
+	out = (char *)malloc(strlen(text) + strlen(nr) + 1);
+	strcpy(out, text);
+	strcat(out, nr);
+	
+	printSCP(__FUNCTION__,source_code_position);
+	vQueueAddToRegistry(pxNewMutex,out);
 }
 
 
 void onTraceMovedTaskToReadyState(void* xTask)
 {
-    //writeLog("%s","ready");
+    writeLog("%s","ready");
 }
 
 
