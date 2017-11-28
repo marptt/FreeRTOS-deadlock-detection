@@ -232,6 +232,14 @@ a statically allocated stack and a dynamically allocated TCB. */
 
 #endif /* configUSE_PORT_OPTIMISED_TASK_SELECTION */
 
+
+
+
+
+/*DEADLOCK DETECTION: A variable to input to trace functions where the source code position isn't interesting.*/
+static const source_code_position_t source_code_position = (source_code_position_t){.file = "", .function = "", .line = 0};
+
+
 /*-----------------------------------------------------------*/
 
 /* pxDelayedTaskList and pxOverflowDelayedTaskList are switched when the tick
@@ -284,6 +292,8 @@ to its original value when it is released. */
 #else
 	#define taskEVENT_LIST_ITEM_VALUE_IN_USE	0x80000000UL
 #endif
+
+
 
 /*
  * Task control block.  A task control block (TCB) is allocated for each task,
@@ -1137,7 +1147,11 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB )
 
 #if ( INCLUDE_vTaskDelayUntil == 1 )
 
-	void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement )
+    /*DEADLOCK DETECTION: function vTaskDelayUntil() modified to
+      vTaskDelayUntil_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position. Original function
+	  vTaskDelayUntil() is instead a macro "#define vTaskDelayUntil vTaskDelayUntil_scp()"*/
+    void vTaskDelayUntil_scp( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement, source_code_position_t source_code_position )
 	{
 	TickType_t xTimeToWake;
 	BaseType_t xAlreadyYielded, xShouldDelay = pdFALSE;
@@ -1220,8 +1234,11 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB )
 /*-----------------------------------------------------------*/
 
 #if ( INCLUDE_vTaskDelay == 1 )
-
-	void vTaskDelay( const TickType_t xTicksToDelay )
+    /*DEADLOCK DETECTION: function vTaskDelay() modified to
+      vTaskDelay_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position. Original function
+	  vTaskDelay() is instead a macro "#define vTaskDelay vTaskDelay_scp()"*/
+    void vTaskDelay_scp( const TickType_t xTicksToDelay, source_code_position_t source_code_position )
 	{
 	BaseType_t xAlreadyYielded = pdFALSE;
 
@@ -2884,7 +2901,7 @@ void vTaskPlaceOnUnorderedEventList( List_t * pxEventList, const TickType_t xIte
 			xTicksToWait = portMAX_DELAY;
 		}
 
-		traceTASK_DELAY_UNTIL( ( xTickCount + xTicksToWait ) );
+	//	traceTASK_DELAY_UNTIL( ( xTickCount + xTicksToWait ) );
 		prvAddCurrentTaskToDelayedList( xTicksToWait, xWaitIndefinitely );
 	}
 

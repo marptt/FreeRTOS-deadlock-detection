@@ -692,7 +692,11 @@ void vTaskDelete( TaskHandle_t xTaskToDelete ) PRIVILEGED_FUNCTION;
  * \defgroup vTaskDelay vTaskDelay
  * \ingroup TaskCtrl
  */
-void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
+/*DEADLOCK DETECTION: function vTaskDelay() modified to
+      vTaskDelay_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position. Original function
+	  vTaskDelay() is instead a macro "#define vTaskDelay vTaskDelay_scp()"*/
+	void vTaskDelay_scp( const TickType_t xTicksToDelay, source_code_position_t source_code_position ) PRIVILEGED_FUNCTION;
 
 /**
  * task. h
@@ -751,7 +755,11 @@ void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
  * \defgroup vTaskDelayUntil vTaskDelayUntil
  * \ingroup TaskCtrl
  */
-void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
+/*DEADLOCK DETECTION: function vTaskDelayUntil() modified to
+      vTaskDelayUntil_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position. Original function
+	  vTaskDelayUntil() is instead a macro "#define vTaskDelayUntil vTaskDelayUntil_scp()"*/
+	void vTaskDelayUntil_scp( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement, source_code_position_t source_code_position ) PRIVILEGED_FUNCTION;
 
 /**
  * task. h

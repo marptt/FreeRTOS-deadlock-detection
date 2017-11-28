@@ -13,18 +13,20 @@
     vPortEnterCritical();                                              \
     sigprocmask(SIG_BLOCK, &signal_set, NULL);                         \
     fprintf(logFile, "%i, "format"\n", xTaskGetTickCount(), data);     \
-    printf(format "\n", data);                                         \
     sigprocmask(SIG_UNBLOCK, &signal_set, NULL);                       \
     vPortExitCritical();                                               \
 }
 
-void printSCP(source_code_position_t scp);
+/*Function for testing trace macros*/
+void printSCP( const char* function, source_code_position_t scp);
 
 /*Variables*/
 char* lastName = "";
 int nrSemaCreated = 0;
+char* lastRemovedName = "";
 
 
+/*Functions*/
 void onInterrupt()
 {
     vPortEnterCritical(); // cease other activity
@@ -42,61 +44,37 @@ void loggerInit()
 }
 
 
-void onTraceTaskSwitchedIn(char* pcTaskName)
+void printSCP( const char* function, source_code_position_t scp )
 {
-    if(strcmp(lastName, pcTaskName))
-    {
-        writeLog("switched in %s" , pcTaskName);
-        lastName = pcTaskName;
-    }
+	printf( "%s:\t '%s','%s()','%i'\n", function, scp.file, scp.function, scp.line );
 }
 
 
-char* lastRemovedName = "";
-void onTraceTaskSwitchedOut(char* pcTaskName)
-{
-    if(strcmp(lastRemovedName, pcTaskName))
-    {
-        writeLog("switched out %s", pcTaskName);
-        lastRemovedName = pcTaskName;
-    }
-};
 
-void onTraceQueueReceive(void* xQueue)
+
+/*###### Trace functions ######*/
+
+void onTraceBlockingOnQueueReceive (void* xQueue, source_code_position_t source_code_position)
 {
-    writeLog("%s", "semaphore take");
+	/* printf("Task \"%s\" blocked from sema '%s': ", pcTaskGetName(xTaskGetCurrentTaskHandle()), (char*)pcQueueGetName(xQueue) ); */
+	printSCP(__FUNCTION__,source_code_position);
 }
 
-void onTraceQueueReceiveFailed(void* xQueue)
+void onTraceBlockingOnQueueSend(void* xQueue, source_code_position_t source_code_position )
 {
-    writeLog("%s", "semaphore take failed");
+	printSCP(__FUNCTION__,source_code_position);
 }
 
-void onTraceQueueSend(void* xQueue, source_code_position_t source_code_position)
-{
-    printf("semaphore '%s' give: ", (char*)pcQueueGetName(xQueue));
-	printSCP(source_code_position);
-    writeLog("%s", "semaphore give");
-}
 
-void onTraceQueueSendFailed(void* xQueue)
+void onTraceCreateMutex(void* pxNewMutex, source_code_position_t source_code_position)
 {
-    writeLog("%s", "semaphore give failed");
-}
+    /* char str[10]; */
+    /* nrSemaCreated++; */
+    /* sprintf(str, "Sema_nr_%i", nrSemaCreated); */
 
-void onTraceCreateMutex(void* pxNewMutex)
-{
-    char str[10];
-    nrSemaCreated++;
-    sprintf(str, "Sema_nr_%i", nrSemaCreated);
-
-    printf("Created: %c\n", str[8]);
-    vQueueAddToRegistry(pxNewMutex, "apa");
-}
-
-void printSCP(source_code_position_t scp)
-{
-	printf( "'%s','%s','%i'\n", scp.file, scp.function, scp.line );
+    /* printf("Created: %c\n", str[8]); */
+   	printSCP(__FUNCTION__,source_code_position);
+	vQueueAddToRegistry(pxNewMutex, "apa");
 }
 
 
@@ -105,43 +83,87 @@ void onTraceMovedTaskToReadyState(void* xTask)
     //writeLog("%s","ready");
 }
 
-void onTraceBlockingOnQueueReceive (void* xQueue, source_code_position_t source_code_position)
+
+void onTraceQueueReceive(void* xQueue, source_code_position_t source_code_position )
 {
-	    printf("Task \"%s\" blocked from sema '%s': ", pcTaskGetName(xTaskGetCurrentTaskHandle()), (char*)pcQueueGetName(xQueue) );
-	printSCP(source_code_position);
+    writeLog("%s", "semaphore take");
+   	printSCP(__FUNCTION__, source_code_position);
 }
 
-void onTraceblockingOnQueueSend(void* xQueue)
+
+void onTraceQueueReceiveFailed(void* xQueue, source_code_position_t source_code_position)
+{
+    /* writeLog("%s", "semaphore take failed"); */
+   	printSCP(__FUNCTION__, source_code_position);
+}
+
+
+void onTraceQueueSend(void* xQueue, source_code_position_t source_code_position)
+{
+    /* printf("semaphore '%s' give: ", (char*)pcQueueGetName(xQueue)); */
+	printSCP(__FUNCTION__, source_code_position);
+    writeLog("%s", "semaphore give");
+}
+
+
+void onTraceQueueSendFailed(void* xQueue, source_code_position_t source_code_position)
+{
+	printSCP(__FUNCTION__, source_code_position);
+	writeLog("%s", "semaphore give failed");
+}
+
+
+void onTraceTaskDelay(source_code_position_t source_code_position)
+{
+	printSCP(__FUNCTION__, source_code_position);
+}
+
+
+void onTraceTaskDelayUntil(uint32_t xTickCount, source_code_position_t source_code_position)
+{
+	printSCP(__FUNCTION__, source_code_position);
+}
+
+
+void onTraceTaskDelete(void* xTask)
 {
 
 }
 
-void onTraceTaskSuspend(void* xTask)
-{
-
-}
-
-void onTraceTaskResume(void* xTask)
-{
-
-}
 
 void onTraceTaskIncrementTick(uint32_t xTickcount)
 {
 
 } 
 
-void onTraceTaskDelete(void* xTask)
-{
-
-}             
-
-void onTraceTaskDelayUntil()
+             
+void onTraceTaskResume(void* xTask)
 {
 
 }                     
 
-void onTraceTaskDelay()
+
+void onTraceTaskSuspend(void* xTask)
 {
 
+}
+
+
+void onTraceTaskSwitchedIn(char* pcTaskName)
+{
+    if(strcmp(lastName, pcTaskName))
+    {
+        /* writeLog("switched in %s" , pcTaskName); */
+        lastName = pcTaskName;
+    }
+}
+
+
+void onTraceTaskSwitchedOut(char* pcTaskName)
+{
+    if(strcmp(lastRemovedName, pcTaskName))
+    {
+        /* writeLog("switched out %s", pcTaskName); */
+        lastRemovedName = pcTaskName;
+    }
 }
