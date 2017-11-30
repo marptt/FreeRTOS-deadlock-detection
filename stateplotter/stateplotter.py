@@ -1,6 +1,7 @@
 from PyQt4 import QtGui, QtCore  
 import pyqtgraph as pg
 from TaskGraph import TaskGraph, makeTaskGraph
+from EventLog import EventLog
 
 app = QtGui.QApplication([])
 pg.setConfigOptions(antialias=True)
@@ -33,13 +34,7 @@ tasks_v2 = pg.GraphicsView()
 tasks_v2.addItem(tasks_vb2)
 tasks_v2.setCentralWidget(tasks_vb2)
 
-
-listwidget = QtGui.QListWidget()
-listwidget.addItem('Item 1')
-item = QtGui.QListWidgetItem('Item 2')
-listwidget.addItem(item)
-QtGui.QListWidgetItem('Item 3', listwidget)
-
+listwidget = EventLog()
 
 layout.addWidget(tasks_v)
 layout.addWidget(tasks_v2) 
