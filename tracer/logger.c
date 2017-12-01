@@ -28,6 +28,20 @@
 	"}"											\
 
 
+#define TASK_EVENT_FORMAT						\
+	"{\n"										\
+	"    \"Event\": \"%s\",\n"					\
+	"    \"Task\": %p,\n"						\
+	"    \"Task Name\": \"%s\"\n"  	   			\
+	"}"											\
+
+#define DELAY_EVENT_FORMAT						\
+	"{\n"										\
+	"    \"Event\": \"%s\",\n"					\
+	"    \"Task\": %p,\n"						\
+	"    \"Task Name\": \"%s\",\n"		   		\
+	"    \"Duration\": %i\n"					\
+	"}"											\
 
 /*Function for testing trace macros*/
 void printSCP( const char* function, source_code_position_t scp);
@@ -81,7 +95,7 @@ void onTraceBlockingOnQueueSend(void* xQueue, source_code_position_t source_code
 }
 
 
-void onTraceCreateMutex(void* pxNewMutex, source_code_position_t source_code_position)
+void onTraceCreateMutex(void* pxNewMutex, source_code_position_t scp)
 {
     nrSemaCreated++;
    
@@ -93,14 +107,15 @@ void onTraceCreateMutex(void* pxNewMutex, source_code_position_t source_code_pos
 	strcpy(out, text);
 	strcat(out, nr);
 	
-	printSCP(__FUNCTION__,source_code_position);
+	printSCP(__FUNCTION__,scp);
 	vQueueAddToRegistry(pxNewMutex,out);
+	writeLog(SEMAPHORE_EVENT_FORMAT, "Mutex created",pxNewMutex, scp.file, scp.function, scp.line);
 }
 
 
 void onTraceMovedTaskToReadyState(void* xTask)
 {
-    writeLog("%s","ready");
+    writeLog(TASK_EVENT_FORMAT,"Moved to ready", xTask, pcTaskGetName(xTask));
 }
 
 
@@ -118,11 +133,11 @@ void onTraceQueueReceiveFailed(void* xQueue, source_code_position_t source_code_
 }
 
 
-void onTraceQueueSend(void* xQueue, source_code_position_t source_code_position)
+void onTraceQueueSend(void* xQueue, source_code_position_t scp)
 {
     /* printf("semaphore '%s' give: ", (char*)pcQueueGetName(xQueue)); */
-	printSCP(__FUNCTION__, source_code_position);
-    writeLog("%s", "semaphore give");
+	printSCP(__FUNCTION__, scp);
+	writeLog(SEMAPHORE_EVENT_FORMAT, "Semaphore give",xQueue, scp.file, scp.function, scp.line);
 }
 
 
@@ -130,6 +145,13 @@ void onTraceQueueSendFailed(void* xQueue, source_code_position_t source_code_pos
 {
 	printSCP(__FUNCTION__, source_code_position);
 	writeLog("%s", "semaphore give failed");
+}
+
+
+void onTraceTaskCreate(void* xTask)
+{
+    writeLog(TASK_EVENT_FORMAT,"Created", xTask, pcTaskGetName(xTask));
+    printf("Lala: %s\n", pcTaskGetName(xTask));
 }
 
 

@@ -17,6 +17,7 @@
 #define traceQUEUE_RECEIVE_FAILED(xQueue) onTraceQueueReceiveFailed(xQueue, source_code_position)
 #define traceQUEUE_SEND(xQueue) onTraceQueueSend(xQueue, source_code_position )
 #define traceQUEUE_SEND_FAILED(xQueue) onTraceQueueSendFailed( xQueue, source_code_position )
+#define traceTASK_CREATE_DEADLOCK(xTask) onTraceTaskCreate(xTask)
 #define traceTASK_DELAY() onTraceTaskDelay(source_code_position)
 #define traceTASK_DELAY_UNTIL(xTickCount) onTraceTaskDelayUntil(xTickCount, source_code_position)
 // #define traceTASK_DELETE(xTask) onTraceTaskDelete(xTask)       	

@@ -1026,6 +1026,7 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB )
 		}
 		#endif /* configUSE_TRACE_FACILITY */
 		traceTASK_CREATE( pxNewTCB );
+		traceTASK_CREATE_DEADLOCK( pxNewTCB );
 
 		prvAddTaskToReadyList( pxNewTCB );
 
