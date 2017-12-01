@@ -39,7 +39,7 @@ class TaskGraph(pg.GraphItem):
         pg.GraphItem.__init__(self)
         self.scatter.sigClicked.connect(self.clicked)
         self.setTexts( ["Running","Suspended","Ready","Blocked"])
-
+        
     def setActiveState():
         return
         
@@ -101,3 +101,7 @@ class TaskGraph(pg.GraphItem):
         
     def clicked(self, pts):
         print("clicked: %s" % pts)
+
+    def onStateChange(self, state):
+        print('TaskGraph: new state '+str(state))
+        
