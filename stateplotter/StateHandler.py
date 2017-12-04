@@ -10,21 +10,31 @@ TASK_READY     = 'Blocked'
 
 
 
-
-
 class StateSnapshot():
     def __init__(self, tasks, semaphores, event):
         self.tasks = tasks
         self.semaphores = semaphores
         self.event = event
 
+# TODO make this a dict
 class TaskState():
-    def __init__(self, taskName, currentState, previousState, eventName,enableArrow):
+    def __init__(self,
+                 taskName,
+                 currentState,
+                 previousState,
+                 eventName,
+                 requestedSemaphores,
+                 heldSemaphores,
+                 enableArrow
+    ):
         self.currentState = currentState
         self.previousState = previousState
         self.taskName = taskName
         self.eventName = eventName
+        self.requestedSemaphores = requestedSemaphores
+        self.heldSemaphores = heldSemaphores
         self.enableArrow = enableArrow
+        
         
 class StateHandler():
     def __init__(self):
@@ -60,6 +70,8 @@ class StateHandler():
                         currentState=TASK_READY,
                         previousState=TASK_BLOCKED,
                         eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
                         enableArrow = False
                     ),
                     TaskState(
@@ -67,9 +79,11 @@ class StateHandler():
                         currentState=TASK_SUSPENDED,
                         previousState=TASK_BLOCKED,
                         eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
                         enableArrow = True
                     )],
-                [],
+                ["RedSemaphore", "GreenSemaphore", "BlueSemaphore"],
                 'something happened first'
             ),
             StateSnapshot(
@@ -79,6 +93,8 @@ class StateHandler():
                         currentState=TASK_BLOCKED,
                         previousState=TASK_SUSPENDED,
                         eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
                         enableArrow = False
                     ),
                     TaskState(
@@ -86,6 +102,8 @@ class StateHandler():
                         currentState=TASK_READY,
                         previousState=TASK_BLOCKED,
                         eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
                         enableArrow = True
                     ),
                     TaskState(
@@ -93,10 +111,12 @@ class StateHandler():
                         currentState=TASK_READY,
                         previousState=TASK_BLOCKED,
                         eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
                         enableArrow = False
                     )
                 ],
-                [],
+                ["RedSemaphore", "GreenSemaphore", "BlueSemaphore"],
                 'something happened then'
             ),
             StateSnapshot(
@@ -106,6 +126,8 @@ class StateHandler():
                         currentState=TASK_SUSPENDED,
                         previousState=TASK_READY,
                         eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
                         enableArrow = False
                     ),
                     TaskState(
@@ -113,6 +135,8 @@ class StateHandler():
                         currentState=TASK_READY,
                         previousState=TASK_BLOCKED,
                         eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
                         enableArrow = True
                     ),
                     TaskState(
@@ -120,10 +144,66 @@ class StateHandler():
                         currentState=TASK_READY,
                         previousState=TASK_BLOCKED,
                         eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
                         enableArrow = False
-                    )
+                    ),
+                    TaskState(
+                        taskName="egg",
+                        currentState=TASK_SUSPENDED,
+                        previousState=TASK_READY,
+                        eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
+                        enableArrow = False
+                    ),
+                    TaskState(
+                        taskName="bacon",
+                        currentState=TASK_READY,
+                        previousState=TASK_BLOCKED,
+                        eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
+                        enableArrow = True
+                    ),
+                    TaskState(
+                        taskName="bacon",
+                        currentState=TASK_READY,
+                        previousState=TASK_BLOCKED,
+                        eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
+                        enableArrow = False
+                    ),
+                    TaskState(
+                        taskName="egg",
+                        currentState=TASK_SUSPENDED,
+                        previousState=TASK_READY,
+                        eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
+                        enableArrow = False
+                    ),
+                    TaskState(
+                        taskName="bacon",
+                        currentState=TASK_READY,
+                        previousState=TASK_BLOCKED,
+                        eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
+                        enableArrow = True
+                    ),
+                    TaskState(
+                        taskName="bacon",
+                        currentState=TASK_READY,
+                        previousState=TASK_BLOCKED,
+                        eventName="something caused this",
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
+                        enableArrow = False
+                    )                    
                 ],
-                [],
+                ["RedSemaphore", "GreenSemaphore", "BlueSemaphore"],
                 'something happened then'
             )
         ])

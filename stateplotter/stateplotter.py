@@ -1,27 +1,24 @@
 from PyQt4 import QtGui, QtCore  
 import pyqtgraph as pg
 from TaskGraph import TaskGraphWidget
+from SemaphoreGraph import SemaphoreWidget
 from EventLog import EventLog
 from StateHandler import StateHandler
+
 app = QtGui.QApplication([])
 pg.setConfigOptions(antialias=True)
 
 w = QtGui.QWidget()
 
 layout = QtGui.QHBoxLayout()
-
 stateHandler = StateHandler()
 
 taskWidget = TaskGraphWidget(stateHandler)
-
-tasks_vb2 = pg.ViewBox()
-tasks_v2 = pg.GraphicsView()
-tasks_v2.setCentralWidget(tasks_vb2)
-
+semaphoreWidget = SemaphoreWidget(stateHandler)
 listwidget = EventLog(stateHandler)
 
 layout.addWidget(taskWidget)
-layout.addWidget(tasks_v2) 
+layout.addWidget(semaphoreWidget) 
 layout.addWidget(listwidget)   
 
 layout.setStretch(0,3)
@@ -35,4 +32,3 @@ stateHandler.testStates()
 
 w.show()
 app.exec_()
-

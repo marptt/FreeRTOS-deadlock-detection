@@ -16,14 +16,8 @@ class GraphNodes(pg.GraphItem):
     def __init__(self, x_offset, y_offset):
         self.x_offset = x_offset
         self.y_offset = y_offset
-        
-        self.dragPoint = None
-        self.dragOffset = None
-        self.textItems = []
         pg.GraphItem.__init__(self)
-        
         self.scatter.setData(pxMode=False)
-
                 
     def setCurrentState(self, state):
         self.nodes = {}
@@ -45,28 +39,6 @@ class GraphNodes(pg.GraphItem):
                 'symbol': 'o',
             } for key in self.nodes 
         ])
-
-    def setData(self, **kwds):
-        self.data = kwds
-        if 'pos' in self.data:
-            npts = self.data['pos'].shape[0]
-            self.data['data'] = np.empty(npts, dtype=[('index', int)])
-            self.data['data']['index'] = np.arange(npts)
-        self.updateGraph()
-        
-    def setTexts(self, text):
-        for i in self.textItems:
-            i.scene().removeItem(i)
-        self.textItems = []
-        for t in text:
-            item = pg.TextItem(t)
-            self.textItems.append(item)
-            item.setParentItem(self)
-        
-    def updateGraph(self):
-        pg.GraphItem.setData(self, **self.data)
-        for i,item in enumerate(self.textItems):
-            item.setPos(*self.data['pos'][i])
 
 class GraphArrows():
     def __init__(self, x0, x1, y0, y1):
@@ -113,10 +85,11 @@ class TaskGraphWidget(pg.GraphicsView):
         self.stateHandler.subscribeToCurrentState(self.onStateChange)
 
 
-    def makeLabel(self, text, x, y):
+    def makeLabel(self, text, x, y, angle):
         t = pg.TextItem(
             text,
-            anchor=(0.5,0.5),
+            anchor=(1,0.5),
+            angle=angle
             )
         t.setPos(x, y)
         return t
@@ -148,10 +121,10 @@ class TaskGraphWidget(pg.GraphicsView):
               self.viewBox.addItem(nodes)            
               
               labels = [
-                   self.makeLabel("Running",   x+10, y), 
-                   self.makeLabel("Suspended", x,    y), 
-                   self.makeLabel("Ready",     x,    y-10), 
-                   self.makeLabel("Blocked",   x,    y+10) 
+                   self.makeLabel("Running",   x+10 , y+NODE_RADIUS,-90), 
+                   self.makeLabel("Suspended", x - NODE_RADIUS,    y,0), 
+                   self.makeLabel("Ready",     x - NODE_RADIUS,    y-10,0), 
+                   self.makeLabel("Blocked",   x - NODE_RADIUS,    y+10, 0) 
               ]
 
               for label in labels:
