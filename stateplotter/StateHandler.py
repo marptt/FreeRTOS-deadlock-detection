@@ -1,3 +1,17 @@
+global TASK_BLOCKED   
+global TASK_SUSPENDED 
+global TASK_RUNNING   
+global TASK_READY     
+ 
+TASK_BLOCKED   = 'Running'    
+TASK_SUSPENDED = 'Suspended' 
+TASK_RUNNING   = 'Ready'    
+TASK_READY     = 'Blocked'   
+
+
+
+
+
 class StateSnapshot():
     def __init__(self, tasks, semaphores, event):
         self.tasks = tasks
@@ -5,26 +19,17 @@ class StateSnapshot():
         self.event = event
 
 class TaskState():
-    def __init__(self, name, taskState):
-        self.taskState = taskState
-        self.name = name
-
-class TaskEvent():
-    def __init_(self, name, fromstate, tostate):
-        self.name = name
-        self.fromstate = fromstate
-        self.tostate = tostate
+    def __init__(self, taskName, currentState, previousState, eventName,enableArrow):
+        self.currentState = currentState
+        self.previousState = previousState
+        self.taskName = taskName
+        self.eventName = eventName
+        self.enableArrow = enableArrow
         
 class StateHandler():
     def __init__(self):
         self.currentStateCallbacks = []
-        self.statesCallbacks = []
-
-        self.TASK_BLOCKED = 0
-        self.TASK_SUSPENDED =1
-        self.TASK_RUNNING = 2
-        self.TASK_READY = 3
-
+        self.statesCallbacks = [] 
         self.testStates()
         
     def subscribeToCurrentState(self, callback):
@@ -49,82 +54,76 @@ class StateHandler():
     def testStates(self):
         self.setStates( [
             StateSnapshot(
-                [TaskState("eggs", self.TASK_READY)],
+                [
+                    TaskState(
+                        taskName="egg",
+                        currentState=TASK_READY,
+                        previousState=TASK_BLOCKED,
+                        eventName="something caused this",
+                        enableArrow = False
+                    ),
+                    TaskState(
+                        taskName="bacon",
+                        currentState=TASK_SUSPENDED,
+                        previousState=TASK_BLOCKED,
+                        eventName="something caused this",
+                        enableArrow = True
+                    )],
                 [],
                 'something happened first'
             ),
             StateSnapshot(
-                [TaskState("eggs", self.TASK_READY)],
-                [],
-                'something happened second'
-            ),
-            StateSnapshot(
-               [
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("bacon", self.TASK_SUSPENDED)
+                [
+                    TaskState(
+                        taskName="egg",
+                        currentState=TASK_BLOCKED,
+                        previousState=TASK_SUSPENDED,
+                        eventName="something caused this",
+                        enableArrow = False
+                    ),
+                    TaskState(
+                        taskName="bacon",
+                        currentState=TASK_READY,
+                        previousState=TASK_BLOCKED,
+                        eventName="something caused this",
+                        enableArrow = True
+                    ),
+                    TaskState(
+                        taskName="bacon",
+                        currentState=TASK_READY,
+                        previousState=TASK_BLOCKED,
+                        eventName="something caused this",
+                        enableArrow = False
+                    )
                 ],
                 [],
-                'something happened third'
-            ),
-            StateSnapshot(
-                [TaskState("eggs", self.TASK_RUNNING)],
-                [],
-                'something  else happened'
+                'something happened then'
             ),
             StateSnapshot(
                 [
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("bacon", self.TASK_SUSPENDED)
+                    TaskState(
+                        taskName="egg",
+                        currentState=TASK_SUSPENDED,
+                        previousState=TASK_READY,
+                        eventName="something caused this",
+                        enableArrow = False
+                    ),
+                    TaskState(
+                        taskName="bacon",
+                        currentState=TASK_READY,
+                        previousState=TASK_BLOCKED,
+                        eventName="something caused this",
+                        enableArrow = True
+                    ),
+                    TaskState(
+                        taskName="bacon",
+                        currentState=TASK_READY,
+                        previousState=TASK_BLOCKED,
+                        eventName="something caused this",
+                        enableArrow = False
+                    )
                 ],
                 [],
-                'something more happened'
-            ),
-            StateSnapshot(
-                [
-                    TaskState("eggs", self.TASK_READY),
-                    TaskState("bacon", self.TASK_SUSPENDED)
-                ],
-                [],
-                'something additionally happened'
-            ),
-            StateSnapshot(
-                [
-                    TaskState("eggs", self.TASK_READY),
-                    TaskState("bacon", self.TASK_SUSPENDED)
-                ],
-                [],
-                'something happened again'
-            ),
-            StateSnapshot(
-                [
-                    TaskState("eggs", self.TASK_SUSPENDED),
-                    TaskState("bacon", self.TASK_READY),
-                    TaskState("milk", self.TASK_RUNNING)
-                ],
-                [],
-                'something happened yet again'
-            ),
-            StateSnapshot(
-                [TaskState("eggs", self.TASK_READY)],
-                [],
-                'something happened yet yet again'
-            ),
-            StateSnapshot(
-                [TaskState("eggs", self.TASK_READY)],
-                [],
-                'something happened yet yet yet again'
+                'something happened then'
             )
         ])

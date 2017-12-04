@@ -30,7 +30,6 @@ layout.setStretch(2,1)
 
 w.setLayout(layout)
 
-
 stateHandler.testStates()
 
 
