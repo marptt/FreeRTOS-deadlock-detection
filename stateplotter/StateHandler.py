@@ -1,3 +1,8 @@
+class StateSnapshot():
+    def __init__(self, tasks, semaphores, event):
+        self.tasks = tasks
+        self.semaphores = semaphores
+        self.event = event
 
 class TaskState():
     def __init__(self, name, taskState):
@@ -23,8 +28,9 @@ class StateHandler():
         self.statesCallbacks.append(callback)
         
     def emitCurrentStateChange(self, index):
+        newState = self.states[index]
         for cb in self.currentStateCallbacks:
-            cb(index)
+            cb(newState)
 
     def emitStatesChange(self, states):
         for cb in self.statesCallbacks:
@@ -36,9 +42,67 @@ class StateHandler():
         
     def testStates(self):
         self.setStates( [
-            TaskState("ready task", self.TASK_READY),
-            TaskState("suspended task", self.TASK_SUSPENDED),
-            TaskState("running task", self.TASK_RUNNING),
-            TaskState("also runningtask", self.TASK_RUNNING),
-            TaskState("blocked task", self.TASK_BLOCKED)
+            StateSnapshot(
+                [TaskState("eggs", self.TASK_READY)],
+                [],
+                'something happened first'
+            ),
+            StateSnapshot(
+                [TaskState("eggs", self.TASK_READY)],
+                [],
+                'something happened second'
+            ),
+            StateSnapshot(
+                [TaskState("eggs", self.TASK_BLOCKED)],
+                [],
+                'something happened third'
+            ),
+            StateSnapshot(
+                [TaskState("eggs", self.TASK_RUNNING)],
+                [],
+                'something  else happened'
+            ),
+            StateSnapshot(
+                [
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("bacon", self.TASK_SUSPENDED)
+                ],
+                [],
+                'something more happened'
+            ),
+            StateSnapshot(
+                [
+                    TaskState("eggs", self.TASK_READY),
+                    TaskState("bacon", self.TASK_SUSPENDED)
+                ],
+                [],
+                'something additionally happened'
+            ),
+            StateSnapshot(
+                [
+                    TaskState("eggs", self.TASK_READY),
+                    TaskState("bacon", self.TASK_SUSPENDED)
+                ],
+                [],
+                'something happened again'
+            ),
+            StateSnapshot(
+                [
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("bacon", self.TASK_READY),
+                    TaskState("milk", self.TASK_RUNNING)
+                ],
+                [],
+                'something happened yet again'
+            ),
+            StateSnapshot(
+                [TaskState("eggs", self.TASK_READY)],
+                [],
+                'something happened yet yet again'
+            ),
+            StateSnapshot(
+                [TaskState("eggs", self.TASK_READY)],
+                [],
+                'something happened yet yet yet again'
+            )
         ])

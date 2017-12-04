@@ -26,22 +26,16 @@ lines = np.array([
     ], dtype=[('red',np.ubyte),('green',np.ubyte),('blue',np.ubyte),('alpha',np.ubyte),('width',float)])
 
 
-def makeTaskGraph():
-    graph = TaskGraph()
-    graph.setData(pos=positions, adj=adjacencies, symbol=symbols, size=sizes,  pxMode = False)
-    return graph
-
 class TaskGraph(pg.GraphItem):
     def __init__(self):
+        self.tasks = []
         self.dragPoint = None
         self.dragOffset = None
         self.textItems = []
         pg.GraphItem.__init__(self)
+        self.setData(pos=positions, adj=adjacencies, symbol=symbols, size=sizes,  pxMode = False)
         self.scatter.sigClicked.connect(self.clicked)
         self.setTexts( ["Running","Suspended","Ready","Blocked"])
-        
-    def setActiveState():
-        return
         
     def setOffset(self, x, y):
         self.pos = positions + [x,y]
@@ -69,39 +63,23 @@ class TaskGraph(pg.GraphItem):
         for i,item in enumerate(self.textItems):
             item.setPos(*self.data['pos'][i])
         
-    def mouseDragEvent(self, ev):
-        if ev.button() != QtCore.Qt.LeftButton:
-            ev.ignore()
-            return
-        
-        if ev.isStart():
-            # We are already one step into the drag.
-            # Find the point(s) at the mouse cursor when the button was first 
-            # pressed:
-            pos = ev.buttonDownPos()
-            pts = self.scatter.pointsAt(pos)
-            if len(pts) == 0:
-                ev.ignore()
-                return
-            self.dragPoint = pts[0]
-            ind = pts[0].data()[0]
-            self.dragOffset = self.data['pos'][ind] - pos
-        elif ev.isFinish():
-            self.dragPoint = None
-            return
-        else:
-            if self.dragPoint is None:
-                ev.ignore()
-                return
-        
-        ind = self.dragPoint.data()[0]
-        self.data['pos'][ind] = ev.pos() + self.dragOffset
-        self.updateGraph()
-        ev.accept()
-        
     def clicked(self, pts):
         print("clicked: %s" % pts)
+        self.brush = pg.mkColor(100,255, 100)
 
+    def blobItem(self, x, y, color, text):
+        poop
+        
+
+class TaskGraphWidget():
+    def __init__(self, stateHandler):
+        self.graph = TaskGraph()
+        self.stateHandler = stateHandler
+        self.stateHandler.subscribeToCurrentState(self.onStateChange)
+        
     def onStateChange(self, state):
         print('TaskGraph: new state '+str(state))
+        print(state.event)
+
+            
         

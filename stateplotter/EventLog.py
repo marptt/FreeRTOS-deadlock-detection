@@ -3,10 +3,10 @@ from pyqtgraph.Qt import QtCore, QtGui
 import numpy as np
 
 class EventItem(QtGui.QListWidgetItem):
-    def __init__(self, index, item):
-        QtGui.QListWidgetItem.__init__(self, item.name + ' in state ' + str(item.taskState))
+    def __init__(self, index, stateSnapshot):
+        QtGui.QListWidgetItem.__init__(self, stateSnapshot.event)
         self.index = index
-        self.item = item
+        self.stateSnapshot = stateSnapshot
         
 class EventLog(QtGui.QListWidget):
     def __init__(self, stateHandler):
@@ -19,8 +19,8 @@ class EventLog(QtGui.QListWidget):
     def clicked(self, item):
         self.stateHandler.emitCurrentStateChange(item.index)
         
-    def onStatesChange(self, states):
-        for state in states:
-            self.addItem(EventItem(0, state))
-         
-
+    def onStatesChange(self, stateSnapshots):
+        i = 0
+        for stateSnapshot in stateSnapshots:
+            self.addItem(EventItem(i, stateSnapshot))
+            i = i + 1
