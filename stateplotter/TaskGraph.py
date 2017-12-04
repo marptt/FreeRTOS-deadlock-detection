@@ -1,31 +1,6 @@
 import pyqtgraph as pg
 import numpy as np
 
-
-positions = np.array([
-    [10,0],
-    [0,0],
-    [0,-10],
-    [0,10],
-    ], dtype=float)
-
-adjacencies = np.array([
-    [0,1],
-    [0,2],
-    [0,3],
-    [1,0]
-    ])
-
-symbols = ['o','o','o','o']
-sizes = [3 for i in range(0, 4)]
-
-lines = np.array([
-    (255,0,0,  255,1),
-    (255,0,255,255,2),
-    (255,0,255,255,3),
-    (255,255,0,255,2)
-    ], dtype=[('red',np.ubyte),('green',np.ubyte),('blue',np.ubyte),('alpha',np.ubyte),('width',float)])
-
 BLUE = (0, 0, 100, 255)
 RED = (100,0,0, 255)
 
@@ -33,7 +8,7 @@ brush=pg.mkBrush(color=(200, 10, 0,1))
 
 brush = (30, 100, 2, 255)
 
-class TaskGraph(pg.GraphItem):    
+class GraphNodes(pg.GraphItem):
     def __init__(self, x_offset, y_offset):
         self.x_offset = x_offset
         self.y_offset = y_offset
@@ -46,15 +21,17 @@ class TaskGraph(pg.GraphItem):
         # self.setData(pos=positions, adj=adjacencies, symbol=symbols, size=sizes,  pxMode = False,symbolBrush = brush)
         # self.setData(adj=adjacencies, symbol=symbols, size=sizes,  pxMode = False,symbolBrush = brush)
 
+        self.scatter.setData(pxMode=False)
         self.scatter.addPoints([
             {
                 'pos': (self.nodes[key]['x'] + x_offset, self.nodes[key]['y'] + y_offset),
-                'size': 100,
+                'size': 3,
                 'brush': BLUE
             } for key in self.nodes 
         ])
 
-        self.setTexts( ["Running","Suspended","Ready","Blocked"])
+
+      #  self.setTexts( ["Running","Suspended","Ready","Blocked"])
         
     def setCurrentState(self, state):
         self.nodes = {}
@@ -89,32 +66,63 @@ class TaskGraph(pg.GraphItem):
         pg.GraphItem.setData(self, **self.data)
         for i,item in enumerate(self.textItems):
             item.setPos(*self.data['pos'][i])
-         
+
+class GraphArrows():
+    def __init__(self, x, y):
+        self.arrowList = []
+        self.arrowList.append(self.makeArrow(0, 0, 0, -10))
+        
+    def makeArrow(self, x0, x1, y0, y1):
+        if x0 == x1:
+            angle = -90*np.sign(y1-y0)
+        else:
+            angle = np.degrees(np.arctan((y1-y0)/(x1-x0))) 
+        if np.sign(x1-x0) == 1:
+            angle = angle + 180
+            
+        length = np.sqrt(np.power(y1-y0, 2) + np.power(x1-x0, 2)) 
+            
+        return pg.ArrowItem(
+            angle=angle,
+            tipAngle=30,
+            baseAngle=0,
+            headLen=1,
+            tailLen=length-1,
+            tailWidth=0.3,
+            pen=None,
+            brush='w',
+            pos=(x1,y1),
+            pxMode = False
+        )
+            
 class TaskGraphWidget(pg.GraphicsView):
     def __init__(self, stateHandler):
-        
-        #tasks_vb.addItem(pg.ArrowItem(angle=-120, tipAngle=30, baseAngle=20, headLen=40, tailLen=40, tailWidth=8, pen=None, brush='y'))
-
-        graph = TaskGraph(0,0)
-        #taskGraph = taskWidget.graph
         tasks_vb = pg.ViewBox()
-        tasks_vb.addItem(graph)
+
+        nodes = GraphNodes(0,0)
+        tasks_vb.addItem(nodes)
+
+
+        arrows = GraphArrows(0,0)
+        for arrow in arrows.arrowList:
+            tasks_vb.addItem(arrow)
+        
+     
         tasks_vb.setAspectLocked(1.0)
         tasks_vb.setMouseEnabled(False, False)
+        
         
         pg.GraphicsView.__init__(self)
         self.addItem(tasks_vb)
         self.setCentralWidget(tasks_vb)
-
+       
         self.stateHandler = stateHandler
         self.stateHandler.subscribeToCurrentState(self.onStateChange)
-        
+
     def onStateChange(self, state):
         print('TaskGraph: new state '+str(state))
         print(state.event)
 
-            
-        
 
 
 
