@@ -125,10 +125,20 @@ class TaskGraphWidget(pg.GraphicsView):
         i = 0
         
         for task in state.tasks:
-              y = i % gridwidth
-              x = i // gridwidth
+              y = (i % gridwidth ) * -35
+              x = (i // gridwidth) * 30
               i = i + 1 
-              nodes = GraphNodes(x*30,-y*35)
+              nodes = GraphNodes(x,y)
+              title = pg.TextItem(
+                    text = task.name,
+                    border='w',
+                    fill=(0, 0, 255, 100),
+                    anchor=(0,1)
+                    )
+
+              
+              title.setPos(x+3, y+10)
+              self.viewbox.addItem(title)
               self.viewbox.addItem(nodes)            
               
         arrows = GraphArrows(0,0)

@@ -9,6 +9,12 @@ class TaskState():
         self.taskState = taskState
         self.name = name
 
+class TaskEvent():
+    def __init_(self, name, fromstate, tostate):
+        self.name = name
+        self.fromstate = fromstate
+        self.tostate = tostate
+        
 class StateHandler():
     def __init__(self):
         self.currentStateCallbacks = []
