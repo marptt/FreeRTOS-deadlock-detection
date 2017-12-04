@@ -5,10 +5,6 @@ import numpy as np
 BLUE = (0, 0, 100, 255)
 RED = (100,0,0, 255)
 
-brush=pg.mkBrush(color=(200, 10, 0,1))
-
-brush = (30, 100, 2, 255)
-
 TASK_BLOCKED   = 'Running'    
 TASK_SUSPENDED = 'Suspended' 
 TASK_RUNNING   = 'Ready'
@@ -100,14 +96,6 @@ class GraphArrows():
             pos=arrowTarget,
             pxMode = False
         )
-        # text = pg.TextItem(
-        #     text = "some sort of event",
-        #     border='w',
-        #     fill=(0, 0, 255, 100),
-        #     angle=angle+180,
-        #     anchor=(-0.1,1.2)
-        # )
-        # return [text,arrow]
         return [arrow]
             
 class TaskGraphWidget(pg.GraphicsView):
