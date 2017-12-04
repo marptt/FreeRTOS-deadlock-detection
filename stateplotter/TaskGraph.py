@@ -18,15 +18,14 @@ class GraphNodes(pg.GraphItem):
         self.dragOffset = None
         self.textItems = []
         pg.GraphItem.__init__(self)
-        # self.setData(pos=positions, adj=adjacencies, symbol=symbols, size=sizes,  pxMode = False,symbolBrush = brush)
-        # self.setData(adj=adjacencies, symbol=symbols, size=sizes,  pxMode = False,symbolBrush = brush)
 
         self.scatter.setData(pxMode=False)
         self.scatter.addPoints([
             {
                 'pos': (self.nodes[key]['x'] + x_offset, self.nodes[key]['y'] + y_offset),
                 'size': 3,
-                'brush': BLUE
+                'brush': BLUE,
+                'symbol': 's'
             } for key in self.nodes 
         ])
 
@@ -69,8 +68,8 @@ class GraphNodes(pg.GraphItem):
 
 class GraphArrows():
     def __init__(self, x, y):
-        self.arrowList = []
-        self.arrowList.append(self.makeArrow(0, 0, 0, -10))
+        self.arrowItemList = []
+        self.arrowItemList.append(self.makeArrow(0,0, 0, 10))
         
     def makeArrow(self, x0, x1, y0, y1):
         if x0 == x1:
@@ -82,7 +81,7 @@ class GraphArrows():
             
         length = np.sqrt(np.power(y1-y0, 2) + np.power(x1-x0, 2)) 
             
-        return pg.ArrowItem(
+        arrow = pg.ArrowItem(
             angle=angle,
             tipAngle=30,
             baseAngle=0,
@@ -94,27 +93,38 @@ class GraphArrows():
             pos=(x1,y1),
             pxMode = False
         )
+        text = pg.TextItem(
+            text = "some sort of event",
+            border='w',
+            fill=(0, 0, 255, 100),
+            angle=angle+180,
+            anchor=(-0.1,1.2)
+        )
+
+        return [text,arrow]
+
+    
             
 class TaskGraphWidget(pg.GraphicsView):
     def __init__(self, stateHandler):
-        tasks_vb = pg.ViewBox()
+        viewbox = pg.ViewBox()
 
         nodes = GraphNodes(0,0)
-        tasks_vb.addItem(nodes)
-
+        viewbox.addItem(nodes)
 
         arrows = GraphArrows(0,0)
-        for arrow in arrows.arrowList:
-            tasks_vb.addItem(arrow)
+        for bunch in arrows.arrowItemList:
+            for item in bunch:
+                viewbox.addItem(item)
+            
         
-     
-        tasks_vb.setAspectLocked(1.0)
-        tasks_vb.setMouseEnabled(False, False)
+        viewbox.setAspectLocked(1.0)
+        viewbox.setMouseEnabled(False, False)
         
         
         pg.GraphicsView.__init__(self)
-        self.addItem(tasks_vb)
-        self.setCentralWidget(tasks_vb)
+        self.addItem(viewbox)
+        self.setCentralWidget(viewbox)
        
         self.stateHandler = stateHandler
         self.stateHandler.subscribeToCurrentState(self.onStateChange)
