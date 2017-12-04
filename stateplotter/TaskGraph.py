@@ -10,7 +10,7 @@ TASK_SUSPENDED = 'Suspended'
 TASK_RUNNING   = 'Ready'
 TASK_READY     = 'Blocked'   
 
-NODE_RADIUS = 2
+NODE_RADIUS = 3
 
 class GraphNodes(pg.GraphItem):
     def __init__(self, x_offset, y_offset):
@@ -124,12 +124,13 @@ class TaskGraphWidget(pg.GraphicsView):
     def onStateChange(self, state):
         self.viewBox.clear()
 
-        gridwidth = np.around(np.sqrt(len(state.tasks)))
+        # text boxes scale much better like this
+        gridheight = 10000#np.around(np.sqrt(len(state.tasks)))
         i = 0
         
         for task in state.tasks:            
-              y = (i % gridwidth ) * -35
-              x = (i // gridwidth) *  30
+              y = (i % gridheight ) * -35
+              x = (i // gridheight) *  30
               i = i + 1 
               nodes = GraphNodes(x,y)
               nodes.setCurrentState(task.currentState)
@@ -142,7 +143,7 @@ class TaskGraphWidget(pg.GraphicsView):
                   anchor=(0,0.5),
                   angle = 0
                   )
-              title.setPos(x+3, y+10)
+              title.setPos(x+NODE_RADIUS*2+10, y)
 
               self.viewBox.addItem(nodes)            
               
