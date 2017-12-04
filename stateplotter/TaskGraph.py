@@ -25,10 +25,9 @@ class GraphNodes(pg.GraphItem):
                 'pos': (self.nodes[key]['x'] + x_offset, self.nodes[key]['y'] + y_offset),
                 'size': 3,
                 'brush': BLUE,
-                'symbol': 's'
+                'symbol': 'o'
             } for key in self.nodes 
         ])
-
 
       #  self.setTexts( ["Running","Suspended","Ready","Blocked"])
         
@@ -38,9 +37,8 @@ class GraphNodes(pg.GraphItem):
         self.nodes['Suspended'] = {'x': 0, 'y': 0,  'color': BLUE} 
         self.nodes['Ready'] =     {'x': 0, 'y': -10,'color': BLUE}
         self.nodes['Blocked'] =   {'x': 0, 'y': 10, 'color': BLUE}
-        
+
         self.nodes[state]['color'] = RED
-       
         for key in self.nodes:
             node = self.nodes[key]            
 
@@ -73,14 +71,14 @@ class GraphArrows():
         
     def makeArrow(self, x0, x1, y0, y1):
         if x0 == x1:
-            angle = -90*np.sign(y1-y0)
+            angle = - 90*np.sign(y1-y0)
         else:
             angle = np.degrees(np.arctan((y1-y0)/(x1-x0))) 
         if np.sign(x1-x0) == 1:
             angle = angle + 180
             
         length = np.sqrt(np.power(y1-y0, 2) + np.power(x1-x0, 2)) 
-            
+
         arrow = pg.ArrowItem(
             angle=angle,
             tipAngle=30,
@@ -102,29 +100,18 @@ class GraphArrows():
         )
 
         return [text,arrow]
-
-    
             
 class TaskGraphWidget(pg.GraphicsView):
     def __init__(self, stateHandler):
-        viewbox = pg.ViewBox()
+        self.viewbox = pg.ViewBox()
 
-        nodes = GraphNodes(0,0)
-        viewbox.addItem(nodes)
-
-        arrows = GraphArrows(0,0)
-        for bunch in arrows.arrowItemList:
-            for item in bunch:
-                viewbox.addItem(item)
-            
         
-        viewbox.setAspectLocked(1.0)
-        viewbox.setMouseEnabled(False, False)
-        
+        self.viewbox.setAspectLocked(1.0)
+        self.viewbox.setMouseEnabled(False, False)
         
         pg.GraphicsView.__init__(self)
-        self.addItem(viewbox)
-        self.setCentralWidget(viewbox)
+        self.addItem(self.viewbox)
+        self.setCentralWidget(self.viewbox)
        
         self.stateHandler = stateHandler
         self.stateHandler.subscribeToCurrentState(self.onStateChange)
@@ -132,6 +119,22 @@ class TaskGraphWidget(pg.GraphicsView):
     def onStateChange(self, state):
         print('TaskGraph: new state '+str(state))
         print(state.event)
+        self.viewbox.clear()
+
+        gridwidth = np.around(np.sqrt(len(state.tasks)))
+        i = 0
+        
+        for task in state.tasks:
+              y = i % gridwidth
+              x = i // gridwidth
+              i = i + 1 
+              nodes = GraphNodes(x*30,-y*35)
+              self.viewbox.addItem(nodes)            
+              
+        arrows = GraphArrows(0,0)
+        for bunch in arrows.arrowItemList:
+            for item in bunch:
+                self.viewbox.addItem(item)
 
 
 

@@ -53,7 +53,23 @@ class StateHandler():
                 'something happened second'
             ),
             StateSnapshot(
-                [TaskState("eggs", self.TASK_BLOCKED)],
+               [
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("eggs", self.TASK_SUSPENDED),
+                    TaskState("bacon", self.TASK_SUSPENDED)
+                ],
                 [],
                 'something happened third'
             ),
