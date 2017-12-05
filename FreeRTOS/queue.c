@@ -168,8 +168,10 @@ typedef struct QueueDefinition
 name below to enable the use of older kernel aware debuggers. */
 typedef xQUEUE Queue_t;
 
-/* A variable to input to trace functions where the source code position isn't interesting.*/
-const source_code_position_t source_code_position = (source_code_position_t){.file = "", .function = "", .line = 0};
+
+/*DEADLOCK DETECTION: A variable to input to trace functions where the source code position isn't interesting.*/
+static const source_code_position_t source_code_position = (source_code_position_t){.file = "", .function = "", .line = 0};
+
 
 
 /*-----------------------------------------------------------*/
@@ -255,8 +257,9 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
  * queue is created, then prvInitialiseMutex() is called to configure the queue
  * as a mutex.
  */
+/*DEADLOCK DETECTION: Modified to take a source_code_position as input*/
 #if( configUSE_MUTEXES == 1 )
-	static void prvInitialiseMutex( Queue_t *pxNewQueue ) PRIVILEGED_FUNCTION;
+	static void prvInitialiseMutex( Queue_t *pxNewQueue, source_code_position_t source_code_position ) PRIVILEGED_FUNCTION;
 #endif
 
 /*-----------------------------------------------------------*/
@@ -477,7 +480,8 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 
 #if( configUSE_MUTEXES == 1 )
 
-	static void prvInitialiseMutex( Queue_t *pxNewQueue )
+    /*DEADLOCK DETECTION: Modified to take a source_code_position as input*/
+    static void prvInitialiseMutex( Queue_t *pxNewQueue, source_code_position_t source_code_position )
 	{
 		if( pxNewQueue != NULL )
 		{
@@ -506,14 +510,14 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 /*-----------------------------------------------------------*/
 
 #if( ( configUSE_MUTEXES == 1 ) && ( configSUPPORT_DYNAMIC_ALLOCATION == 1 ) )
-
-	QueueHandle_t xQueueCreateMutex( const uint8_t ucQueueType )
+    /*DEADLOCK DETECTION: Modified to take a source_code_position as input*/
+	QueueHandle_t xQueueCreateMutex( const uint8_t ucQueueType, source_code_position_t source_code_position )
 	{
 	Queue_t *pxNewQueue;
 	const UBaseType_t uxMutexLength = ( UBaseType_t ) 1, uxMutexSize = ( UBaseType_t ) 0;
 
 		pxNewQueue = ( Queue_t * ) xQueueGenericCreate( uxMutexLength, uxMutexSize, ucQueueType );
-		prvInitialiseMutex( pxNewQueue );
+		prvInitialiseMutex( pxNewQueue, source_code_position );
 
 		return pxNewQueue;
 	}
@@ -522,8 +526,8 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 /*-----------------------------------------------------------*/
 
 #if( ( configUSE_MUTEXES == 1 ) && ( configSUPPORT_STATIC_ALLOCATION == 1 ) )
-
-	QueueHandle_t xQueueCreateMutexStatic( const uint8_t ucQueueType, StaticQueue_t *pxStaticQueue )
+    /*DEADLOCK DETECTION: Modified to take a source_code_position as input*/
+	QueueHandle_t xQueueCreateMutexStatic( const uint8_t ucQueueType, StaticQueue_t *pxStaticQueue, source_code_position_t source_code_position )
 	{
 	Queue_t *pxNewQueue;
 	const UBaseType_t uxMutexLength = ( UBaseType_t ) 1, uxMutexSize = ( UBaseType_t ) 0;
@@ -533,7 +537,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 		( void ) ucQueueType;
 
 		pxNewQueue = ( Queue_t * ) xQueueGenericCreateStatic( uxMutexLength, uxMutexSize, NULL, pxStaticQueue, ucQueueType );
-		prvInitialiseMutex( pxNewQueue );
+		prvInitialiseMutex( pxNewQueue, source_code_position );
 
 		return pxNewQueue;
 	}
@@ -572,7 +576,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 /*-----------------------------------------------------------*/
 
 #if ( configUSE_RECURSIVE_MUTEXES == 1 )
-
+    /*DEADLOCK DETECTION: Modified to take a source_code_position as input*/
 	BaseType_t xQueueGiveMutexRecursive( QueueHandle_t xMutex, source_code_position_t source_code_position )
 	{
 	BaseType_t xReturn;
@@ -627,7 +631,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 /*-----------------------------------------------------------*/
 
 #if ( configUSE_RECURSIVE_MUTEXES == 1 )
-
+    /*DEADLOCK DETECTION: Modified to take a source_code_position as input*/
 	BaseType_t xQueueTakeMutexRecursive( QueueHandle_t xMutex, TickType_t xTicksToWait, source_code_position_t source_code_position )
 	{
 	BaseType_t xReturn;
@@ -724,6 +728,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 #endif /* ( ( configUSE_COUNTING_SEMAPHORES == 1 ) && ( configSUPPORT_DYNAMIC_ALLOCATION == 1 ) ) */
 /*-----------------------------------------------------------*/
 
+/*DEADLOCK DETECTION: Modified to take a source_code_position as input*/
 BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition, source_code_position_t source_code_position )
 {
 BaseType_t xEntryTimeSet = pdFALSE, xYieldRequired;
@@ -753,7 +758,7 @@ Queue_t * const pxQueue = ( Queue_t * ) xQueue;
 			queue is full. */
 			if( ( pxQueue->uxMessagesWaiting < pxQueue->uxLength ) || ( xCopyPosition == queueOVERWRITE ) )
 			{
-				traceQUEUE_SEND( pxQueue );
+	            traceQUEUE_SEND( pxQueue );
 				xYieldRequired = prvCopyDataToQueue( pxQueue, pvItemToQueue, xCopyPosition );
 
 				#if ( configUSE_QUEUE_SETS == 1 )
@@ -1238,6 +1243,7 @@ Queue_t * const pxQueue = ( Queue_t * ) xQueue;
 }
 /*-----------------------------------------------------------*/
 
+/*DEADLOCK DETECTION: Modified to take a source_code_position as input*/
 BaseType_t xQueueGenericReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait, const BaseType_t xJustPeeking, source_code_position_t source_code_position)
 {
 BaseType_t xEntryTimeSet = pdFALSE;
@@ -2481,8 +2487,8 @@ BaseType_t xReturn;
 	QueueSetMemberHandle_t xQueueSelectFromSet( QueueSetHandle_t xQueueSet, TickType_t const xTicksToWait )
 	{
 	QueueSetMemberHandle_t xReturn = NULL;
-	/*TODO: Fixa detta hårdkodade!!!*/
-        ( void ) xQueueGenericReceive( ( QueueHandle_t ) xQueueSet, &xReturn, xTicksToWait, pdFALSE,(source_code_position_t){.file = "LALA", .function = "lala", .line = 5} ); /*lint !e961 Casting from one typedef to another is not redundant. */
+	    /*DEADLOCK DETECTION: Modified to input source_code_position*/
+        ( void ) xQueueGenericReceive( ( QueueHandle_t ) xQueueSet, &xReturn, xTicksToWait, pdFALSE,source_code_position ); /*lint !e961 Casting from one typedef to another is not redundant. */
 		return xReturn;
 	}
 

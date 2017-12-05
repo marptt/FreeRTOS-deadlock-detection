@@ -31,7 +31,7 @@ void vContinuousProcessingTask( void *pvParameters )
     for( ;; )
     {
         xSemaphoreTake( xSemaphore_qwer, portMAX_DELAY );
-        vTaskDelayUntil( &xLastWakeTime_qwer, ( 1000 / portTICK_RATE_MS ) );
+        vTaskDelayUntil( &xLastWakeTime_qwer, ( 500 / portTICK_RATE_MS ) );
         xSemaphoreGive( xSemaphore_qwer );
         //vTaskDelayUntil( &xLastWakeTime_qwer, ( 1 / portTICK_RATE_MS ) );
     }

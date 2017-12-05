@@ -232,6 +232,14 @@ a statically allocated stack and a dynamically allocated TCB. */
 
 #endif /* configUSE_PORT_OPTIMISED_TASK_SELECTION */
 
+
+
+
+
+/*DEADLOCK DETECTION: A variable to input to trace functions where the source code position isn't interesting.*/
+static const source_code_position_t source_code_position = (source_code_position_t){.file = "", .function = "", .line = 0};
+
+
 /*-----------------------------------------------------------*/
 
 /* pxDelayedTaskList and pxOverflowDelayedTaskList are switched when the tick
@@ -284,6 +292,8 @@ to its original value when it is released. */
 #else
 	#define taskEVENT_LIST_ITEM_VALUE_IN_USE	0x80000000UL
 #endif
+
+
 
 /*
  * Task control block.  A task control block (TCB) is allocated for each task,
@@ -577,7 +587,8 @@ static void prvInitialiseNewTask( 	TaskFunction_t pxTaskCode,
  * Called after a new task has been created and initialised to place the task
  * under the control of the scheduler.
  */
-static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
+/*DEADLOCK DETECTION: Modified to input source_code_position*/
+static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB, source_code_position_t source_code_position ) PRIVILEGED_FUNCTION;
 
 /*-----------------------------------------------------------*/
 
@@ -613,7 +624,7 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 			#endif /* configSUPPORT_DYNAMIC_ALLOCATION */
 
 			prvInitialiseNewTask( pxTaskCode, pcName, ulStackDepth, pvParameters, uxPriority, &xReturn, pxNewTCB, NULL );
-			prvAddNewTaskToReadyList( pxNewTCB );
+			prvAddNewTaskToReadyList( pxNewTCB, source_code_position );
 		}
 		else
 		{
@@ -660,7 +671,7 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 										pxCreatedTask, pxNewTCB,
 										pxTaskDefinition->xRegions );
 
-				prvAddNewTaskToReadyList( pxNewTCB );
+				prvAddNewTaskToReadyList( pxNewTCB, source_code_position );
 				xReturn = pdPASS;
 			}
 		}
@@ -672,13 +683,18 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 /*-----------------------------------------------------------*/
 
 #if( configSUPPORT_DYNAMIC_ALLOCATION == 1 )
-
-	BaseType_t xTaskCreate(	TaskFunction_t pxTaskCode,
-							const char * const pcName,
-							const uint16_t usStackDepth,
-							void * const pvParameters,
-							UBaseType_t uxPriority,
-							TaskHandle_t * const pxCreatedTask ) /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+	/*DEADLOCK DETECTION: function xTaskCreate() modified to
+      xTaskCreate_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position to be able to see in trace
+	  where function were called. Original function xTaskCreate() is instead a
+	  macro "#define xTaskCreate() xTaskCreate_scp()"*/
+	BaseType_t xTaskCreate_scp(	TaskFunction_t pxTaskCode,
+								const char * const pcName,
+								const uint16_t usStackDepth,
+								void * const pvParameters,
+								UBaseType_t uxPriority,
+								TaskHandle_t * const pxCreatedTask,
+								source_code_position_t source_code_position) /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
 	{
 	TCB_t *pxNewTCB;
 	BaseType_t xReturn;
@@ -750,7 +766,7 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 			#endif /* configSUPPORT_STATIC_ALLOCATION */
 
 			prvInitialiseNewTask( pxTaskCode, pcName, ( uint32_t ) usStackDepth, pvParameters, uxPriority, pxCreatedTask, pxNewTCB, NULL );
-			prvAddNewTaskToReadyList( pxNewTCB );
+			prvAddNewTaskToReadyList( pxNewTCB, source_code_position );
 			xReturn = pdPASS;
 		}
 		else
@@ -959,8 +975,8 @@ UBaseType_t x;
 	}
 }
 /*-----------------------------------------------------------*/
-
-static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB )
+/*DEADLOCK DETECTION: Modified to input source_code_position*/
+static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB, source_code_position_t source_code_position )
 {
 	/* Ensure interrupts don't access the task lists while the lists are being
 	updated. */
@@ -1016,6 +1032,7 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB )
 		}
 		#endif /* configUSE_TRACE_FACILITY */
 		traceTASK_CREATE( pxNewTCB );
+		traceTASK_CREATE_DEADLOCK( pxNewTCB );
 
 		prvAddTaskToReadyList( pxNewTCB );
 
@@ -1137,7 +1154,11 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB )
 
 #if ( INCLUDE_vTaskDelayUntil == 1 )
 
-	void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement )
+    /*DEADLOCK DETECTION: function vTaskDelayUntil() modified to
+      vTaskDelayUntil_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position. Original function
+	  vTaskDelayUntil() is instead a macro "#define vTaskDelayUntil vTaskDelayUntil_scp()"*/
+    void vTaskDelayUntil_scp( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement, source_code_position_t source_code_position )
 	{
 	TickType_t xTimeToWake;
 	BaseType_t xAlreadyYielded, xShouldDelay = pdFALSE;
@@ -1220,8 +1241,11 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB )
 /*-----------------------------------------------------------*/
 
 #if ( INCLUDE_vTaskDelay == 1 )
-
-	void vTaskDelay( const TickType_t xTicksToDelay )
+    /*DEADLOCK DETECTION: function vTaskDelay() modified to
+      vTaskDelay_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position. Original function
+	  vTaskDelay() is instead a macro "#define vTaskDelay vTaskDelay_scp()"*/
+    void vTaskDelay_scp( const TickType_t xTicksToDelay, source_code_position_t source_code_position )
 	{
 	BaseType_t xAlreadyYielded = pdFALSE;
 
@@ -2884,7 +2908,7 @@ void vTaskPlaceOnUnorderedEventList( List_t * pxEventList, const TickType_t xIte
 			xTicksToWait = portMAX_DELAY;
 		}
 
-		traceTASK_DELAY_UNTIL( ( xTickCount + xTicksToWait ) );
+	//	traceTASK_DELAY_UNTIL( ( xTickCount + xTicksToWait ) );
 		prvAddCurrentTaskToDelayedList( xTicksToWait, xWaitIndefinitely );
 	}
 

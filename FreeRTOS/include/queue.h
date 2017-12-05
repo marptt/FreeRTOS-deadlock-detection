@@ -114,6 +114,8 @@ typedef void * QueueSetMemberHandle_t;
 #define queueQUEUE_TYPE_BINARY_SEMAPHORE	( ( uint8_t ) 3U )
 #define queueQUEUE_TYPE_RECURSIVE_MUTEX		( ( uint8_t ) 4U )
 
+
+
 /**
  * queue. h
  * <pre>
@@ -357,7 +359,7 @@ typedef void * QueueSetMemberHandle_t;
 /**
  * queue. h
  * <pre>
- BaseType_t xQueueSendToBack(
+ BaseTypge_t xQueueSendToBack(
 								   QueueHandle_t	xQueue,
 								   const void		*pvItemToQueue,
 								   TickType_t		xTicksToWait
@@ -1556,8 +1558,8 @@ BaseType_t xQueueCRReceive( QueueHandle_t xQueue, void *pvBuffer, TickType_t xTi
  * xSemaphoreCreateCounting() or xSemaphoreGetMutexHolder() instead of calling
  * these functions directly.
  */
-QueueHandle_t xQueueCreateMutex( const uint8_t ucQueueType ) PRIVILEGED_FUNCTION;
-QueueHandle_t xQueueCreateMutexStatic( const uint8_t ucQueueType, StaticQueue_t *pxStaticQueue ) PRIVILEGED_FUNCTION;
+QueueHandle_t xQueueCreateMutex( const uint8_t ucQueueType, source_code_position_t source_code_position ) PRIVILEGED_FUNCTION;
+QueueHandle_t xQueueCreateMutexStatic( const uint8_t ucQueueType, StaticQueue_t *pxStaticQueue, source_code_position_t source_code_position ) PRIVILEGED_FUNCTION;
 QueueHandle_t xQueueCreateCountingSemaphore( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount ) PRIVILEGED_FUNCTION;
 QueueHandle_t xQueueCreateCountingSemaphoreStatic( const UBaseType_t uxMaxCount, const UBaseType_t uxInitialCount, StaticQueue_t *pxStaticQueue ) PRIVILEGED_FUNCTION;
 void* xQueueGetMutexHolder( QueueHandle_t xSemaphore ) PRIVILEGED_FUNCTION;

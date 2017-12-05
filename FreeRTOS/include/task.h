@@ -357,12 +357,18 @@ is used in assert() statements. */
  * \ingroup Tasks
  */
 #if( configSUPPORT_DYNAMIC_ALLOCATION == 1 )
-	BaseType_t xTaskCreate(	TaskFunction_t pxTaskCode,
-							const char * const pcName,
-							const uint16_t usStackDepth,
-							void * const pvParameters,
-							UBaseType_t uxPriority,
-							TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+	/*DEADLOCK DETECTION: function vTaskCreate() modified to
+      vTaskCreate_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position to be able to see in trace
+	  where function were called. Original function
+	  vTaskCreate() is instead a macro "#define vTaskCreate() vTaskCreate_scp()"*/
+	BaseType_t xTaskCreate_scp(	TaskFunction_t pxTaskCode,
+								const char * const pcName,
+								const uint16_t usStackDepth,
+								void * const pvParameters,
+								UBaseType_t uxPriority,
+								TaskHandle_t * const pxCreatedTask,
+								source_code_position_t source_code_position) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
 #endif
 
 /**
@@ -692,7 +698,11 @@ void vTaskDelete( TaskHandle_t xTaskToDelete ) PRIVILEGED_FUNCTION;
  * \defgroup vTaskDelay vTaskDelay
  * \ingroup TaskCtrl
  */
-void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
+/*DEADLOCK DETECTION: function vTaskDelay() modified to
+      vTaskDelay_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position. Original function
+	  vTaskDelay() is instead a macro "#define vTaskDelay vTaskDelay_scp()"*/
+	void vTaskDelay_scp( const TickType_t xTicksToDelay, source_code_position_t source_code_position ) PRIVILEGED_FUNCTION;
 
 /**
  * task. h
@@ -751,7 +761,11 @@ void vTaskDelay( const TickType_t xTicksToDelay ) PRIVILEGED_FUNCTION;
  * \defgroup vTaskDelayUntil vTaskDelayUntil
  * \ingroup TaskCtrl
  */
-void vTaskDelayUntil( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement ) PRIVILEGED_FUNCTION;
+/*DEADLOCK DETECTION: function vTaskDelayUntil() modified to
+      vTaskDelayUntil_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position. Original function
+	  vTaskDelayUntil() is instead a macro "#define vTaskDelayUntil vTaskDelayUntil_scp()"*/
+	void vTaskDelayUntil_scp( TickType_t * const pxPreviousWakeTime, const TickType_t xTimeIncrement, source_code_position_t source_code_position ) PRIVILEGED_FUNCTION;
 
 /**
  * task. h
