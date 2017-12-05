@@ -13,7 +13,7 @@
 #define writeLog( format, data... ) {                                  \
     vPortEnterCritical();                                              \
     sigprocmask(SIG_BLOCK, &signal_set, NULL);                         \
-    fprintf(logFile, format",\n", data, xTaskGetTickCount());			   \
+    fprintf(logFile, format",\n", data, xTaskGetTickCount());		   \
     sigprocmask(SIG_UNBLOCK, &signal_set, NULL);                       \
     vPortExitCritical();                                               \
 }
@@ -64,8 +64,9 @@
 	"    \"Tick\": %i\n"						\
 	"}"											\
 
-/* Function for testing trace macros */
+/* Function  */
 void printSCP( const char* function, source_code_position_t scp);
+void closeJSONandFile();
 
 /* Variables */
 char* lastName = "";
@@ -76,9 +77,15 @@ char* lastRemovedName = "";
 /* Functions */
 void onInterrupt()
 {
-    vPortEnterCritical(); /* cease other activity */
-    fclose( logFile );
-    exit( 0 );
+	vPortEnterCritical(); /* cease other activity */
+	closeJSONandFile();
+	exit( 0 );
+}
+
+void closeJSONandFile()
+{
+	fprintf(logFile, "{\n    \"Event Type\": \"The End\",\n    \"Tick\": %i\n}]", xTaskGetTickCount());
+	fclose( logFile );
 }
 
 void loggerInit()
