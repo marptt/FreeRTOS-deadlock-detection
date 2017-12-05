@@ -587,7 +587,8 @@ static void prvInitialiseNewTask( 	TaskFunction_t pxTaskCode,
  * Called after a new task has been created and initialised to place the task
  * under the control of the scheduler.
  */
-static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
+/*DEADLOCK DETECTION: Modified to input source_code_position*/
+static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB, source_code_position_t source_code_position ) PRIVILEGED_FUNCTION;
 
 /*-----------------------------------------------------------*/
 
@@ -623,7 +624,7 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 			#endif /* configSUPPORT_DYNAMIC_ALLOCATION */
 
 			prvInitialiseNewTask( pxTaskCode, pcName, ulStackDepth, pvParameters, uxPriority, &xReturn, pxNewTCB, NULL );
-			prvAddNewTaskToReadyList( pxNewTCB );
+			prvAddNewTaskToReadyList( pxNewTCB, source_code_position );
 		}
 		else
 		{
@@ -670,7 +671,7 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 										pxCreatedTask, pxNewTCB,
 										pxTaskDefinition->xRegions );
 
-				prvAddNewTaskToReadyList( pxNewTCB );
+				prvAddNewTaskToReadyList( pxNewTCB, source_code_position );
 				xReturn = pdPASS;
 			}
 		}
@@ -682,13 +683,18 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 /*-----------------------------------------------------------*/
 
 #if( configSUPPORT_DYNAMIC_ALLOCATION == 1 )
-
-	BaseType_t xTaskCreate(	TaskFunction_t pxTaskCode,
-							const char * const pcName,
-							const uint16_t usStackDepth,
-							void * const pvParameters,
-							UBaseType_t uxPriority,
-							TaskHandle_t * const pxCreatedTask ) /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+	/*DEADLOCK DETECTION: function xTaskCreate() modified to
+      xTaskCreate_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position to be able to see in trace
+	  where function were called. Original function xTaskCreate() is instead a
+	  macro "#define xTaskCreate() xTaskCreate_scp()"*/
+	BaseType_t xTaskCreate_scp(	TaskFunction_t pxTaskCode,
+								const char * const pcName,
+								const uint16_t usStackDepth,
+								void * const pvParameters,
+								UBaseType_t uxPriority,
+								TaskHandle_t * const pxCreatedTask,
+								source_code_position_t source_code_position) /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
 	{
 	TCB_t *pxNewTCB;
 	BaseType_t xReturn;
@@ -760,7 +766,7 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 			#endif /* configSUPPORT_STATIC_ALLOCATION */
 
 			prvInitialiseNewTask( pxTaskCode, pcName, ( uint32_t ) usStackDepth, pvParameters, uxPriority, pxCreatedTask, pxNewTCB, NULL );
-			prvAddNewTaskToReadyList( pxNewTCB );
+			prvAddNewTaskToReadyList( pxNewTCB, source_code_position );
 			xReturn = pdPASS;
 		}
 		else
@@ -969,8 +975,8 @@ UBaseType_t x;
 	}
 }
 /*-----------------------------------------------------------*/
-
-static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB )
+/*DEADLOCK DETECTION: Modified to input source_code_position*/
+static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB, source_code_position_t source_code_position )
 {
 	/* Ensure interrupts don't access the task lists while the lists are being
 	updated. */

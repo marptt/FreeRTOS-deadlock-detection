@@ -357,12 +357,18 @@ is used in assert() statements. */
  * \ingroup Tasks
  */
 #if( configSUPPORT_DYNAMIC_ALLOCATION == 1 )
-	BaseType_t xTaskCreate(	TaskFunction_t pxTaskCode,
-							const char * const pcName,
-							const uint16_t usStackDepth,
-							void * const pvParameters,
-							UBaseType_t uxPriority,
-							TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+	/*DEADLOCK DETECTION: function vTaskCreate() modified to
+      vTaskCreate_scp(). Only difference is one added input argument
+	  source_code_position_t source_code_position to be able to see in trace
+	  where function were called. Original function
+	  vTaskCreate() is instead a macro "#define vTaskCreate() vTaskCreate_scp()"*/
+	BaseType_t xTaskCreate_scp(	TaskFunction_t pxTaskCode,
+								const char * const pcName,
+								const uint16_t usStackDepth,
+								void * const pvParameters,
+								UBaseType_t uxPriority,
+								TaskHandle_t * const pxCreatedTask,
+								source_code_position_t source_code_position) PRIVILEGED_FUNCTION; /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
 #endif
 
 /**

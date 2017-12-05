@@ -13,49 +13,70 @@
 #define writeLog( format, data... ) {                                  \
     vPortEnterCritical();                                              \
     sigprocmask(SIG_BLOCK, &signal_set, NULL);                         \
-    fprintf(logFile, "%i, "format"\n", xTaskGetTickCount(), data);     \
+    fprintf(logFile, format",\n", data, xTaskGetTickCount());			   \
     sigprocmask(SIG_UNBLOCK, &signal_set, NULL);                       \
     vPortExitCritical();                                               \
 }
 
-#define SEMAPHORE_EVENT_FORMAT					\
+#define EVENT_FORMAT_SEMAPHORE					\
 	"{\n"										\
+	"    \"Event Type\": \"SEMAPHORE\",\n"		\
 	"    \"Event\": \"%s\",\n"					\
-	"    \"Semaphore\": %p,\n"					\
+	"    \"Handle\": %p,\n"						\
 	"    \"File\": \"%s\",\n"					\
 	"    \"Function\": \"%s\",\n"				\
-	"    \"Line\": %i\n"						\
+	"    \"Line\": %i,\n"						\
+	"    \"Tick\": %i\n"						\
 	"}"											\
 
 
-#define TASK_EVENT_FORMAT						\
+#define EVENT_FORMAT_DELAY						\
 	"{\n"										\
+	"    \"Event Type\": \"DELAY\",\n"			\
 	"    \"Event\": \"%s\",\n"					\
-	"    \"Task\": %p,\n"						\
-	"    \"Task Name\": \"%s\"\n"  	   			\
+	"    \"Duration\": %i,\n"					\
+	"    \"File\": \"%s\",\n"					\
+	"    \"Function\": \"%s\",\n"				\
+	"    \"Line\": %i,\n"						\
+	"    \"Tick\": %i\n"						\
 	"}"											\
 
-#define DELAY_EVENT_FORMAT						\
+#define EVENT_FORMAT_TASK_KERNEL				\
 	"{\n"										\
+	"    \"Event Type\": \"TASK KERNEL\",\n"	\
 	"    \"Event\": \"%s\",\n"					\
-	"    \"Task\": %p,\n"						\
-	"    \"Task Name\": \"%s\",\n"		   		\
-	"    \"Duration\": %i\n"					\
+	"    \"Task Handle\": %p,\n"				\
+	"    \"Task Name\": \"%s\",\n"				\
+	"    \"Task Priority\": %d,\n"				\
+	"    \"Tick\": %i\n"						\
 	"}"											\
 
-/*Function for testing trace macros*/
+#define EVENT_FORMAT_TASK_USER					\
+	"{\n"										\
+	"    \"Event Type\": \"TASK USER\",\n"		\
+	"    \"Event\": \"%s\",\n"					\
+	"    \"Task Handle\": %p,\n"				\
+	"    \"Task Name\": \"%s\",\n"				\
+	"    \"Task Priority\": %d,\n"				\
+	"    \"File\": \"%s\",\n"					\
+	"    \"Function\": \"%s\",\n"				\
+	"    \"Line\": %i,\n"						\
+	"    \"Tick\": %i\n"						\
+	"}"											\
+
+/* Function for testing trace macros */
 void printSCP( const char* function, source_code_position_t scp);
 
-/*Variables*/
+/* Variables */
 char* lastName = "";
 int nrSemaCreated = 0;
 char* lastRemovedName = "";
 
 
-/*Functions*/
+/* Functions */
 void onInterrupt()
 {
-    vPortEnterCritical(); // cease other activity
+    vPortEnterCritical(); /* cease other activity */
     fclose( logFile );
     exit( 0 );
 }
@@ -64,9 +85,9 @@ void loggerInit()
 {
     sigemptyset(&signal_set);
     sigaddset(&signal_set, SIGINT);
-    signal(SIGINT, onInterrupt); // SIGINT, triggered by Ctrl+C
+    signal(SIGINT, onInterrupt); /* SIGINT, triggered by Ctrl+C */
     logFile = fopen("logFile","w");
-    fprintf(logFile, "tickCount, message\n");
+    fprintf(logFile, "{\"log\":[");
 }
 
 
@@ -78,14 +99,14 @@ void printSCP( const char* function, source_code_position_t scp )
 
 
 
-/*###### Trace functions ######*/
+/* ###### Trace functions ###### */
 
 void onTraceBlockingOnQueueReceive (void* xQueue, source_code_position_t scp)
 {
-	/* printf("Task \"%s\" blocked from sema '%s': ", pcTaskGetName(xTaskGetCurrentTaskHandle()), (char*)pcQueueGetName(xQueue) ); */
-	/* printf("%s:\n",pcQueueGetName(xQueue)); */
+	printf("Task \"%s\" blocked from sema '%s': ", pcTaskGetName(xTaskGetCurrentTaskHandle()), (char*)pcQueueGetName(xQueue) );
+	printf("%s:\n",pcQueueGetName(xQueue));
 	
-	writeLog(SEMAPHORE_EVENT_FORMAT, "Blocked on Take",xQueue, scp.file, scp.function, scp.line);
+	writeLog(EVENT_FORMAT_SEMAPHORE, "Blocked on Take",xQueue, scp.file, scp.function, scp.line);
 	printSCP(__FUNCTION__, scp);
 }
 
@@ -97,32 +118,33 @@ void onTraceBlockingOnQueueSend(void* xQueue, source_code_position_t source_code
 
 void onTraceCreateMutex(void* pxNewMutex, source_code_position_t scp)
 {
-    nrSemaCreated++;
-   
-	char* text = "Mutex_nr_";
-	char* nr = (char *)malloc( nrSemaCreated/10 + 1 );
-	sprintf(nr, "%d", nrSemaCreated);
-	char *out;
-	out = (char *)malloc(strlen(text) + strlen(nr) + 1);
-	strcpy(out, text);
-	strcat(out, nr);
+    /* nrSemaCreated++; */
+	/* char* text = "Mutex_"; */
+	/* char* line = (char *)malloc( scp.line/10 + 1 ); */
+	/* /\* char* nr = (char *)malloc( nrSemaCreated/10 + 1 ); *\/ */
+	/* sprintf(line, "%d", scp.line); */
+	/* /\* sprintf(nr, "%d", nrSemaCreated); *\/ */
+	/* char *out; */
+	/* /\* out = (char *)malloc(strlen(text) + strlen(scp.)  +strlen(line) + 1); *\/ */
+	/* strcpy(out, text); */
+	/* strcat(out, nr); */
+	/* vQueueAddToRegistry(pxNewMutex,out);	 */
 	
 	printSCP(__FUNCTION__,scp);
-	vQueueAddToRegistry(pxNewMutex,out);
-	writeLog(SEMAPHORE_EVENT_FORMAT, "Mutex created",pxNewMutex, scp.file, scp.function, scp.line);
+	writeLog(EVENT_FORMAT_SEMAPHORE, "Mutex created",pxNewMutex, scp.file, scp.function, scp.line);
 }
 
 
 void onTraceMovedTaskToReadyState(void* xTask)
 {
-    writeLog(TASK_EVENT_FORMAT,"Moved to ready", xTask, pcTaskGetName(xTask));
+	writeLog(EVENT_FORMAT_TASK_KERNEL, "Moved to ready", xTask, pcTaskGetName(xTask), (int)uxTaskPriorityGet(xTask));
 }
 
 
-void onTraceQueueReceive(void* xQueue, source_code_position_t source_code_position )
+void onTraceQueueReceive(void* xQueue, source_code_position_t scp )
 {
-    writeLog("%s", "semaphore take");
-   	printSCP(__FUNCTION__, source_code_position);
+    writeLog(EVENT_FORMAT_SEMAPHORE, "Take", xQueue, scp.file, scp.function, scp.line);
+   	printSCP(__FUNCTION__, scp);
 }
 
 
@@ -135,35 +157,37 @@ void onTraceQueueReceiveFailed(void* xQueue, source_code_position_t source_code_
 
 void onTraceQueueSend(void* xQueue, source_code_position_t scp)
 {
-    /* printf("semaphore '%s' give: ", (char*)pcQueueGetName(xQueue)); */
+    printf("semaphore '%s' give: ", (char*)pcQueueGetName(xQueue));
 	printSCP(__FUNCTION__, scp);
-	writeLog(SEMAPHORE_EVENT_FORMAT, "Semaphore give",xQueue, scp.file, scp.function, scp.line);
+	writeLog(EVENT_FORMAT_SEMAPHORE, "Semaphore give",xQueue, scp.file, scp.function, scp.line);
 }
 
 
 void onTraceQueueSendFailed(void* xQueue, source_code_position_t source_code_position)
 {
 	printSCP(__FUNCTION__, source_code_position);
-	writeLog("%s", "semaphore give failed");
+	/* writeLog("%s", "semaphore give failed"); */
 }
 
 
-void onTraceTaskCreate(void* xTask)
+void onTraceTaskCreate(void* xTask, source_code_position_t scp)
 {
-    writeLog(TASK_EVENT_FORMAT,"Created", xTask, pcTaskGetName(xTask));
+	writeLog(EVENT_FORMAT_TASK_USER, "Create", xTask, pcTaskGetName(xTask), (int)uxTaskPriorityGet(xTask), scp.file, scp.function, scp.line);
     printf("Lala: %s\n", pcTaskGetName(xTask));
 }
 
 
-void onTraceTaskDelay(source_code_position_t source_code_position)
+void onTraceTaskDelay(source_code_position_t scp)
 {
-	printSCP(__FUNCTION__, source_code_position);
+	printSCP(__FUNCTION__, scp);
 }
 
 
-void onTraceTaskDelayUntil(uint32_t xTickCount, source_code_position_t source_code_position)
+void onTraceTaskDelayUntil(uint32_t xTickCount, source_code_position_t scp)
 {
-	printSCP(__FUNCTION__, source_code_position);
+	int a = 10;
+	writeLog(EVENT_FORMAT_DELAY, "Delay until", xTickCount, scp.file, scp.function,scp.line);
+	printSCP(__FUNCTION__, scp);
 }
 
 
@@ -191,21 +215,23 @@ void onTraceTaskSuspend(void* xTask)
 }
 
 
-void onTraceTaskSwitchedIn(char* pcTaskName)
+void onTraceTaskSwitchedIn(void* xTask)
 {
-    if(strcmp(lastName, pcTaskName))
+    char* taskName = pcTaskGetName(xTask);
+    if(strcmp(lastName, taskName))
     {
-        /* writeLog("switched in %s" , pcTaskName); */
-        lastName = pcTaskName;
+        writeLog(EVENT_FORMAT_TASK_KERNEL, "Task switched in", xTask, taskName, (int)uxTaskPriorityGet(xTask));
+        lastName = taskName;
     }
 }
 
 
-void onTraceTaskSwitchedOut(char* pcTaskName)
+void onTraceTaskSwitchedOut(void* xTask)
 {
-    if(strcmp(lastRemovedName, pcTaskName))
+    char* taskName = pcTaskGetName(xTask);
+    if(strcmp(lastRemovedName, taskName))
     {
         /* writeLog("switched out %s", pcTaskName); */
-        lastRemovedName = pcTaskName;
+        lastRemovedName = taskName;
     }
 }

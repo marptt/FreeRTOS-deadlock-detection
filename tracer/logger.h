@@ -30,14 +30,14 @@ void onTraceQueueReceive(void* xQueue, source_code_position_t source_code_positi
 void onTraceQueueReceiveFailed(void* xQueue, source_code_position_t source_code_position);
 void onTraceQueueSend(void* xQueue, source_code_position_t source_code_position);
 void onTraceQueueSendFailed(void* xQueue, source_code_position_t source_code_position );
-void onTraceTaskCreate(void* xTask);
+void onTraceTaskCreate(void* xTask, source_code_position_t source_code_position );
 void onTraceTaskDelay(source_code_position_t source_code_position);
 void onTraceTaskDelayUntil(uint32_t xTickCount, source_code_position_t source_code_position); /*Borde vara TickType_t? */ 
 void onTraceTaskDelete(void* xTask);
 void onTraceTaskIncrementTick(uint32_t xTickcount); /*Borde vara TickType_t? */ 
 void onTraceTaskResume(void* xTask);
 void onTraceTaskSuspend(void* xTask);
-void onTraceTaskSwitchedIn(char* pcTaskName);
-void onTraceTaskSwitchedOut(char* pcTaskName);
+void onTraceTaskSwitchedIn(void* xTask);
+void onTraceTaskSwitchedOut(void* xTask);
 
 #endif
