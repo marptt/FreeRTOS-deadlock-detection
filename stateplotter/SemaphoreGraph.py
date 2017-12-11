@@ -4,6 +4,8 @@ import numpy as np
 
 
 NODE_RADIUS = 3
+BLUE = (0, 0, 100, 255)
+RED = (100,0,0, 255)
 
 class GraphNodes(pg.GraphItem):
     def __init__(self):
@@ -15,7 +17,7 @@ class GraphNodes(pg.GraphItem):
         self.scatter.addPoints(points)
 
 
-def makeArrow(x0, x1, y0, y1):
+def makeArrow(x1, x0, y1, y0, brush):
     if x0 == x1:
         angle = - 90*np.sign(y1-y0)
     else:
@@ -33,7 +35,7 @@ def makeArrow(x0, x1, y0, y1):
         tailLen=length-2,
         tailWidth=0.3,
         pen=None,
-        brush='w',
+        brush=brush,
         pos=(x1,y1),
         pxMode = False
     )
@@ -90,7 +92,7 @@ class SemaphoreWidget(pg.GraphicsView):
             points.append({
                 'pos': (0, i),
                 'size': NODE_RADIUS * 2,
-                'brush': (255,0,0),
+                'brush': RED,
                 'symbol': 'd',
             })
             self.viewBox.addItem(self.makeLabel(semph, -NODE_RADIUS, i, 1,0))
@@ -102,7 +104,7 @@ class SemaphoreWidget(pg.GraphicsView):
             points.append({
                 'pos': (30, i),
                 'size': NODE_RADIUS * 2,
-                'brush': (255,0,0),
+                'brush':  BLUE,
                 'symbol': 's',
             })
             self.viewBox.addItem(self.makeLabel(task.taskName, 30+NODE_RADIUS, i, 0, 0))
@@ -114,7 +116,8 @@ class SemaphoreWidget(pg.GraphicsView):
                     30.0,
                     0.0,
                     i,
-                    semph_index * semph_spacing                    
+                    semph_index * semph_spacing,
+                    (225,225,225)
                 ))
 
             for request_semph in task.requestedSemaphores:
@@ -123,7 +126,8 @@ class SemaphoreWidget(pg.GraphicsView):
                     0.0,
                     30.0,
                     semph_index * semph_spacing,
-                    i                    
+                    i,
+                    (120,120,120)
                 ))
             
             i = i + task_spacing
