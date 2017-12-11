@@ -1,12 +1,17 @@
+import json
+from pprint import pprint
+import copy
+
 global TASK_BLOCKED   
 global TASK_SUSPENDED 
 global TASK_RUNNING   
 global TASK_READY     
- 
+
 TASK_BLOCKED   = 'Running'    
 TASK_SUSPENDED = 'Suspended' 
 TASK_RUNNING   = 'Ready'    
-TASK_READY     = 'Blocked'   
+TASK_READY     = 'Blocked'
+TASK_NONEXISTENT = 'Nonexistent'
 
 
 
@@ -39,7 +44,13 @@ class StateHandler():
     def __init__(self):
         self.currentStateCallbacks = []
         self.statesCallbacks = [] 
-        self.testStates()
+
+        self.logFile = ""
+        json_data=open("logFile.json").read()
+
+        data = json.loads(json_data)
+
+        #pprint(data)
         
     def subscribeToCurrentState(self, callback):
         self.currentStateCallbacks.append(callback)
@@ -59,7 +70,46 @@ class StateHandler():
     def setStates(self, states):
         self.states = states
         self.emitStatesChange(states)
+
+    def stateFromFile(self):
+        json_data=open("logFile.json").read()
+        data = json.loads(json_data)
+        self.setStates(self.generateState(data))
         
+    def generateState(self, logFile):
+        log = logFile["log"]
+
+        nextState = StateSnapshot( [],[],"" )
+        states = []
+        
+        for obj in log:
+            eventName =  str(obj["event"])
+            
+            if obj["type"] == "SEMAPHORE":
+                if( obj["event"]["data"]) == "Mutex created":
+                    nextState.semaphores.append(str(obj["handle"]))
+                    nextState.event = eventName
+
+            elif obj["type"] == "TASK_USER":
+                if obj["event"]["data"] == "Create":
+                    nextState.tasks.append(TaskState(
+                        taskName = obj["taskName"],
+                        currentState = TASK_NONEXISTENT,
+                        previousState=TASK_NONEXISTENT,
+                        eventName = eventName,
+                        requestedSemaphores = [],
+                        heldSemaphores = [],
+                        enableArrow = False
+                    ))
+                    
+            states.append(copy.copy(nextState))
+            nextState = copy.deepcopy(states[-1])
+
+        return states
+
+    def mutexCreated():
+        print("sdfh")
+    
     def testStates(self):
         self.setStates( [
             StateSnapshot(

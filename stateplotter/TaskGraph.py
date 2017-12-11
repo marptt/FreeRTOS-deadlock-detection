@@ -9,6 +9,7 @@ TASK_BLOCKED   = 'Running'
 TASK_SUSPENDED = 'Suspended' 
 TASK_RUNNING   = 'Ready'
 TASK_READY     = 'Blocked'   
+TASK_NONEXISTENT = 'Nonexistent'
 
 NODE_RADIUS = 3
 
@@ -26,7 +27,8 @@ class GraphNodes(pg.GraphItem):
         self.nodes['Ready'] =     {'x': 0, 'y': -10,'color': BLUE}
         self.nodes['Blocked'] =   {'x': 0, 'y': 10, 'color': BLUE}
 
-        self.nodes[state]['color'] = RED
+        if state is not TASK_NONEXISTENT:
+            self.nodes[state]['color'] = RED
         for key in self.nodes:
             node = self.nodes[key]
 
@@ -130,19 +132,18 @@ class TaskGraphWidget(pg.GraphicsView):
                   self.viewBox.addItem(label)
               self.viewBox.addItem(title)
 
-            
-              
-              source = nodes.nodes[task.previousState]
-              target = nodes.nodes[task.currentState]
+              if task.previousState is not TASK_NONEXISTENT:
+                  source = nodes.nodes[task.previousState]
+                  target = nodes.nodes[task.currentState]
 
-              debugArrows = True
-              if task.enableArrow or debugArrows:
-                  arrows = GraphArrows(
-                      source['x'] + x,
-                      target['x'] + x,
-                      source['y'] + y,
-                      target['y'] + y
+                  debugArrows = True
+                  if task.enableArrow or debugArrows:
+                      arrows = GraphArrows(
+                          source['x'] + x,
+                          target['x'] + x,
+                          source['y'] + y,
+                          target['y'] + y
                       )
-                  for bunch in arrows.arrowItemList:
-                      for item in bunch:
-                          self.viewBox.addItem(item)
+                      for bunch in arrows.arrowItemList:
+                          for item in bunch:
+                              self.viewBox.addItem(item)

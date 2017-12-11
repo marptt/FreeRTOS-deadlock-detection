@@ -74,10 +74,16 @@ class SemaphoreWidget(pg.GraphicsView):
         default_distance = 10
         if semaphore_count < task_count:
             task_spacing = 10
-            semph_spacing = 10 * (task_count - 1) / (semaphore_count -1)
+            if (semaphore_count -1) == 0:
+                semph_spacing = 0
+            else:
+                semph_spacing = 10 * (task_count - 1) / (semaphore_count -1)
         else: 
             semph_spacing = 10
-            task_spacing = 10 * (semaphore_count - 1) / (task_count -1)
+            if  (task_count -1) == 0:
+                task_spacing = 0
+            else:
+                task_spacing = 10 * (semaphore_count - 1) / (task_count -1)
        
         i = 0
         for semph in state.semaphores:
