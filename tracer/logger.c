@@ -77,7 +77,8 @@ void closeJSONandFile();
 char* lastName = "";
 int nrSemaCreated = 0;
 char* lastRemovedName = "";
-
+void* idle_handle;
+void* tmr_handle;
 
 /* Functions */
 void onInterrupt()
@@ -132,7 +133,10 @@ void onTraceCreateMutex(void* pxNewMutex, source_code_position_t scp)
 
 void onTraceMovedTaskToReadyState(void* xTask)
 {
-    writeLog(EVENT_FORMAT_TASK_KERNEL, (int)xTask, pcTaskGetName(xTask), (int)uxTaskPriorityGet(xTask), "Moved to ready");
+    if(xTask!=idle_handle && xTask!=tmr_handle )
+    {
+        writeLog(EVENT_FORMAT_TASK_KERNEL, (int)xTask, pcTaskGetName(xTask), (int)uxTaskPriorityGet(xTask), "Moved to ready");
+    }
 }
 
 
@@ -166,7 +170,18 @@ void onTraceQueueSendFailed(void* xQueue, source_code_position_t source_code_pos
 
 void onTraceTaskCreate(void* xTask, source_code_position_t scp)
 {
-    writeLog(EVENT_FORMAT_TASK_USER, (int)xTask, pcTaskGetName(xTask), (int)uxTaskPriorityGet(xTask), scp.file, scp.function, scp.line, "Create");
+    if(strcmp(pcTaskGetName(xTask),"IDLE")) 
+    {
+        idle_handle = xTask;
+    }
+    else if(strcmp(pcTaskGetName(xTask),"Tmr svc"))
+    {
+        tmr_handle = xTask;        
+    }
+    else
+    {
+        writeLog(EVENT_FORMAT_TASK_USER, (int)xTask, pcTaskGetName(xTask), (int)uxTaskPriorityGet(xTask), scp.file, scp.function, scp.line, "Create");
+    }
 }
 
 
@@ -209,11 +224,16 @@ void onTraceTaskSuspend(void* xTask)
 
 void onTraceTaskSwitchedIn(void* xTask)
 {
-    char* taskName = pcTaskGetName(xTask);
-    if(strcmp(lastName, taskName))
+    /* char* taskName = pcTaskGetName(xTask); */
+    /* if(strcmp(lastName, taskName)) */
+    /* { */
+    /*     writeLog(EVENT_FORMAT_TASK_KERNEL, (int)xTask, taskName, (int)uxTaskPriorityGet(xTask), "Task switched in"); */
+    /*     lastName = taskName; */
+    /* } */
+    
+    if(xTask!=idle_handle && xTask!=tmr_handle )
     {
-        writeLog(EVENT_FORMAT_TASK_KERNEL, (int)xTask, taskName, (int)uxTaskPriorityGet(xTask), "Task switched in");
-        lastName = taskName;
+        writeLog(EVENT_FORMAT_TASK_KERNEL, (int)xTask, pcTaskGetName(xTask), (int)uxTaskPriorityGet(xTask), "Task switched in");
     }
 }
 
