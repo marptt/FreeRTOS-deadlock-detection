@@ -27,10 +27,10 @@ def makeArrow(x0, x1, y0, y1):
          
     arrow = pg.ArrowItem(
         angle=angle,
-        tipAngle=30,
+        tipAngle=40,
         baseAngle=0,
-        headLen=1,
-        tailLen=length-1,
+        headLen=2,
+        tailLen=length-2,
         tailWidth=0.3,
         pen=None,
         brush='w',
@@ -74,10 +74,16 @@ class SemaphoreWidget(pg.GraphicsView):
         default_distance = 10
         if semaphore_count < task_count:
             task_spacing = 10
-            semph_spacing = 10 * (task_count - 1) / (semaphore_count -1)
+            if (semaphore_count -1) == 0:
+                semph_spacing = 0
+            else:
+                semph_spacing = 10 * (task_count - 1) / (semaphore_count -1)
         else: 
             semph_spacing = 10
-            task_spacing = 10 * (semaphore_count - 1) / (task_count -1)
+            if  (task_count -1) == 0:
+                task_spacing = 0
+            else:
+                task_spacing = 10 * (semaphore_count - 1) / (task_count -1)
        
         i = 0
         for semph in state.semaphores:
@@ -92,6 +98,7 @@ class SemaphoreWidget(pg.GraphicsView):
 
         i = 0        
         for task in state.tasks:
+            
             points.append({
                 'pos': (30, i),
                 'size': NODE_RADIUS * 2,
@@ -101,7 +108,8 @@ class SemaphoreWidget(pg.GraphicsView):
             self.viewBox.addItem(self.makeLabel(task.taskName, 30+NODE_RADIUS, i, 0, 0))
             
             for held_semph in task.heldSemaphores:
-                semph_index = state.semaphores.index(held_semph)
+                
+                semph_index = state.semaphores.index( str(held_semph))
                 self.viewBox.addItem(makeArrow(
                     30.0,
                     0.0,
@@ -110,7 +118,7 @@ class SemaphoreWidget(pg.GraphicsView):
                 ))
 
             for request_semph in task.requestedSemaphores:
-                semph_index = state.semaphores.index(request_semph)
+                semph_index = state.semaphores.index(str(request_semph))
                 self.viewBox.addItem(makeArrow(
                     0.0,
                     30.0,

@@ -27,8 +27,8 @@ layout.setStretch(2,1)
 
 w.setLayout(layout)
 
-stateHandler.testStates()
-
+#stateHandler.testStates()
+stateHandler.stateFromFile()
 
 w.show()
 app.exec_()

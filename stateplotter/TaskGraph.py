@@ -5,10 +5,11 @@ import numpy as np
 BLUE = (0, 0, 100, 255)
 RED = (100,0,0, 255)
 
-TASK_BLOCKED   = 'Running'    
+TASK_BLOCKED   = 'Blocked'    
 TASK_SUSPENDED = 'Suspended' 
-TASK_RUNNING   = 'Ready'
-TASK_READY     = 'Blocked'   
+TASK_RUNNING   = 'Running'    
+TASK_READY     = 'Ready'
+TASK_NONEXISTENT = 'Nonexistent'
 
 NODE_RADIUS = 3
 
@@ -22,11 +23,12 @@ class GraphNodes(pg.GraphItem):
     def setCurrentState(self, state):
         self.nodes = {}
         self.nodes['Running'] =   {'x': 10,'y': 0,  'color': BLUE} 
-        self.nodes['Suspended'] = {'x': 0, 'y': 0,  'color': BLUE} 
-        self.nodes['Ready'] =     {'x': 0, 'y': -10,'color': BLUE}
+        self.nodes['Ready'] = {'x': 0, 'y': 0,  'color': BLUE} 
+        self.nodes['Suspended'] =     {'x': 0, 'y': -10,'color': BLUE}
         self.nodes['Blocked'] =   {'x': 0, 'y': 10, 'color': BLUE}
 
-        self.nodes[state]['color'] = RED
+        if state is not TASK_NONEXISTENT:
+            self.nodes[state]['color'] = RED
         for key in self.nodes:
             node = self.nodes[key]
 
@@ -121,8 +123,8 @@ class TaskGraphWidget(pg.GraphicsView):
               
               labels = [
                    self.makeLabel("Running",   x+10 , y+NODE_RADIUS,-90), 
-                   self.makeLabel("Suspended", x - NODE_RADIUS,    y,0), 
-                   self.makeLabel("Ready",     x - NODE_RADIUS,    y-10,0), 
+                   self.makeLabel("Ready", x - NODE_RADIUS,    y,0), 
+                   self.makeLabel("Suspended",     x - NODE_RADIUS,    y-10,0), 
                    self.makeLabel("Blocked",   x - NODE_RADIUS,    y+10, 0) 
               ]
 
@@ -130,19 +132,18 @@ class TaskGraphWidget(pg.GraphicsView):
                   self.viewBox.addItem(label)
               self.viewBox.addItem(title)
 
-            
-              
-              source = nodes.nodes[task.previousState]
-              target = nodes.nodes[task.currentState]
+              if task.previousState is not TASK_NONEXISTENT:
+                  source = nodes.nodes[task.previousState]
+                  target = nodes.nodes[task.currentState]
 
-              debugArrows = True
-              if task.enableArrow or debugArrows:
-                  arrows = GraphArrows(
-                      source['x'] + x,
-                      target['x'] + x,
-                      source['y'] + y,
-                      target['y'] + y
+                  debugArrows = True
+                  if task.enableArrow or debugArrows:
+                      arrows = GraphArrows(
+                          source['x'] + x,
+                          target['x'] + x,
+                          source['y'] + y,
+                          target['y'] + y
                       )
-                  for bunch in arrows.arrowItemList:
-                      for item in bunch:
-                          self.viewBox.addItem(item)
+                      for bunch in arrows.arrowItemList:
+                          for item in bunch:
+                              self.viewBox.addItem(item)

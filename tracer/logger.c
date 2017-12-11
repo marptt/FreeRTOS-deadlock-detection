@@ -90,7 +90,15 @@ void onInterrupt()
 
 void closeJSONandFile()
 {
-    fprintf(logFile, "{\n    \"type\": \"The End\",\n    \"tick\": %i\n}]}\n", xTaskGetTickCount());
+    fprintf(logFile,
+	    "{\n"\
+	    "    \"type\":\"The End\",\n"			 \
+	    "    \"event\":{\n"					 \
+	    "        \"data\": \"end of file\",\n"               \
+	    "        \"tick\": %i\n"				 \
+	    "    }\n"						 \
+	    "}]}\n"						 \
+	    , xTaskGetTickCount());
     fclose( logFile );
 }
 
