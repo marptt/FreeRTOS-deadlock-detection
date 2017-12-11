@@ -89,10 +89,13 @@ class StateHandler():
             if obj["type"] == "SEMAPHORE":
                 if( obj["event"]["data"]) == "Mutex created":
                     nextState.semaphores.append(str(obj["handle"]))
+                    
                 elif(obj["event"]["data"] == "Take"):
                     runningTask = [task for task in nextState.tasks if task.currentState == TASK_RUNNING][0]
                     runningTask.heldSemaphores.append(obj["handle"])
-
+                    if obj["handle"] in runningTask.requestedSemaphores:
+                        runningTask.requestedSemaphores.remove(obj["handle"])
+                    
                 elif(obj["event"]["data"] == "Blocked on Take"):
                     runningTask = [task for task in nextState.tasks if task.currentState == TASK_RUNNING][0]
                     runningTask.requestedSemaphores.append(obj["handle"])

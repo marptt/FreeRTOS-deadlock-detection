@@ -78,8 +78,9 @@ void vPhilosopherTask_a(void *pvParameters)
     for( ;; )
     {
         xSemaphoreTake( xSemaphore_fork_a, portMAX_DELAY );
+	vTaskDelayUntil( &xLastWakeTime, ( 3 / portTICK_RATE_MS ) );
         xSemaphoreTake( xSemaphore_fork_b, portMAX_DELAY );
-        vTaskDelayUntil( &xLastWakeTime, ( 500 / portTICK_RATE_MS ) );
+        vTaskDelayUntil( &xLastWakeTime, ( 10 / portTICK_RATE_MS ) );
         xSemaphoreGive( xSemaphore_fork_b );
         xSemaphoreGive( xSemaphore_fork_a );
     }
@@ -92,13 +93,13 @@ void vPhilosopherTask_b(void *pvParameters)
     for( ;; )
     {
         xSemaphoreTake( xSemaphore_fork_b, portMAX_DELAY );
+	vTaskDelayUntil( &xLastWakeTime, ( 5 / portTICK_RATE_MS ) );
         xSemaphoreTake( xSemaphore_fork_c, portMAX_DELAY );
-        vTaskDelayUntil( &xLastWakeTime, ( 500 / portTICK_RATE_MS ) );
+        vTaskDelayUntil( &xLastWakeTime, ( 13 / portTICK_RATE_MS ) );
         xSemaphoreGive( xSemaphore_fork_c );
         xSemaphoreGive( xSemaphore_fork_b );
     }
 }
-
 
 void vPhilosopherTask_c(void *pvParameters)
 {
@@ -107,8 +108,9 @@ void vPhilosopherTask_c(void *pvParameters)
     for( ;; )
     {
         xSemaphoreTake( xSemaphore_fork_c, portMAX_DELAY );
+	vTaskDelayUntil( &xLastWakeTime, ( 7 / portTICK_RATE_MS ) );
         xSemaphoreTake( xSemaphore_fork_a, portMAX_DELAY );
-        vTaskDelayUntil( &xLastWakeTime, ( 500 / portTICK_RATE_MS ) );
+        vTaskDelayUntil( &xLastWakeTime, ( 17 / portTICK_RATE_MS ) );
         xSemaphoreGive( xSemaphore_fork_a );
         xSemaphoreGive( xSemaphore_fork_c );
     }
