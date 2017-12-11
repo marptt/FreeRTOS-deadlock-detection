@@ -19,7 +19,7 @@ static const char *pcTextForTask3 = "Task 3 (Periodic) is running\r\n";
 
 void vContinuousProcessingTask( void *pvParameters );
 void vTaskFunction( void *pvParameters );
-
+void continuousPeriodicExample( void );
 SemaphoreHandle_t xSemaphore_qwer;
 
 
@@ -51,7 +51,7 @@ void vTaskFunction( void *pvParameters )
 
 
 
-int main( void )
+void continuousPeriodicExample( void )
 {
     loggerInit();
     xTaskCreate( vContinuousProcessingTask, "ContinuousTask1", 1000, (void*)pcTextForTask1, 1, NULL );
@@ -61,7 +61,87 @@ int main( void )
     xSemaphore_qwer = xSemaphoreCreateMutex();
      
     vTaskStartScheduler();
-
-    return 0;
 }
 
+
+
+
+
+SemaphoreHandle_t xSemaphore_fork_a;
+SemaphoreHandle_t xSemaphore_fork_b;
+SemaphoreHandle_t xSemaphore_fork_c;
+
+void vPhilosopherTask_a(void *pvParameters)
+{
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
+    for( ;; )
+    {
+        xSemaphoreTake( xSemaphore_fork_a, portMAX_DELAY );
+        xSemaphoreTake( xSemaphore_fork_b, portMAX_DELAY );
+        vTaskDelayUntil( &xLastWakeTime, ( 500 / portTICK_RATE_MS ) );
+        xSemaphoreGive( xSemaphore_fork_b );
+        xSemaphoreGive( xSemaphore_fork_a );
+    }
+}
+
+void vPhilosopherTask_b(void *pvParameters)
+{
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
+    for( ;; )
+    {
+        xSemaphoreTake( xSemaphore_fork_b, portMAX_DELAY );
+        xSemaphoreTake( xSemaphore_fork_c, portMAX_DELAY );
+        vTaskDelayUntil( &xLastWakeTime, ( 500 / portTICK_RATE_MS ) );
+        xSemaphoreGive( xSemaphore_fork_c );
+        xSemaphoreGive( xSemaphore_fork_b );
+    }
+}
+
+
+void vPhilosopherTask_c(void *pvParameters)
+{
+    portTickType xLastWakeTime;
+    xLastWakeTime = xTaskGetTickCount();
+    for( ;; )
+    {
+        xSemaphoreTake( xSemaphore_fork_c, portMAX_DELAY );
+        xSemaphoreTake( xSemaphore_fork_a, portMAX_DELAY );
+        vTaskDelayUntil( &xLastWakeTime, ( 500 / portTICK_RATE_MS ) );
+        xSemaphoreGive( xSemaphore_fork_a );
+        xSemaphoreGive( xSemaphore_fork_c );
+    }
+}
+
+void diningPhilosophersExample( void )
+{
+    /* As defined by wikipedia: */
+    /* think until the left fork is available; when it is, pick it up; */
+    /* think until the right fork is available; when it is, pick it up; */
+    /* when both forks are held, eat for a fixed amount of time; */
+    /* then, put the right fork down; */
+    /* then, put the left fork down; */
+    /* repeat from the beginning. */
+    loggerInit();
+
+    xSemaphore_fork_a = xSemaphoreCreateMutex();
+    xSemaphore_fork_b = xSemaphoreCreateMutex();
+    xSemaphore_fork_c = xSemaphoreCreateMutex();
+
+    xTaskCreate( vPhilosopherTask_a, "philosopher_a", 1000, NULL, 1, NULL );
+    xTaskCreate( vPhilosopherTask_b, "philosopher_b", 1000, NULL, 1, NULL );
+    xTaskCreate( vPhilosopherTask_c, "philosopher_c", 1000, NULL, 1, NULL );
+   
+    //xSemaphore_qwer = xSemaphoreCreateMutex();
+     
+    vTaskStartScheduler();
+}
+
+int main( void )
+{
+    //continuousPeriodicExample();
+    diningPhilosophersExample();
+    
+    return 0;
+}
