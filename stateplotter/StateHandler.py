@@ -35,7 +35,6 @@ class TaskState():
         self.heldSemaphores = heldSemaphores
         self.enableArrow = enableArrow
         
-        
 class StateHandler():
     def __init__(self):
         self.currentStateCallbacks = []
@@ -207,3 +206,6 @@ class StateHandler():
                 'something happened then'
             )
         ])
+
+
+    

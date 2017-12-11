@@ -57,10 +57,10 @@ class SemaphoreWidget(pg.GraphicsView):
         self.stateHandler = stateHandler
         self.stateHandler.subscribeToCurrentState(self.onStateChange)
 
-    def makeLabel(self, text, x, y, angle):
+    def makeLabel(self, text, x, y, xjustify, angle):
         t = pg.TextItem(
             text,
-            anchor=(1,0.5),
+            anchor=(xjustify,0.5),
             angle=angle
             )
         t.setPos(x, y)
@@ -71,34 +71,40 @@ class SemaphoreWidget(pg.GraphicsView):
         nodes = GraphNodes()
         self.viewBox.addItem(nodes)   
         points = []
-        
+
+        semaphore_count = len(state.semaphores)
+        task_count = len(state.tasks)
+        default_distance = 10
+        if semaphore_count < task_count:
+            task_spacing = 10
+            semph_spacing = 10 * (task_count - 1) / (semaphore_count -1)
+        else: 
+            semph_spacing = 10
+            task_spacing = 10 * (semaphore_count - 1) / (task_count -1)
+       
         i = 0
         for semph in state.semaphores:
-            i = i + 10
             points.append({
                 'pos': (0, i),
                 'size': NODE_RADIUS * 2,
                 'brush': (255,0,0),
                 'symbol': 'd',
             })
+            self.viewBox.addItem(self.makeLabel(semph, -NODE_RADIUS, i, 1,0))
+            i = i + semph_spacing
 
-        i = 0
-        for semph in state.semaphores:
-            i = i + 10
-            self.viewBox.addItem(self.makeLabel(semph, -NODE_RADIUS, i, 0))
-        
+            
         i = 0        
         for task in state.tasks:
-            i = i + 10
             points.append({
                 'pos': (30, i),
                 'size': NODE_RADIUS * 2,
                 'brush': (255,0,0),
                 'symbol': 's',
             })
-
+            self.viewBox.addItem(self.makeLabel(task.taskName, 30+NODE_RADIUS, i, 0, 0))
+            i = i + task_spacing
         nodes.addPoints(points)
 
-
-        # arrows = GraphArrows()
         
+                 
