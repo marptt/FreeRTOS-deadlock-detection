@@ -53,19 +53,18 @@ class GraphArrows():
         if np.sign(x1-x0) == 1:
             angle = angle + 180
             
-        length = np.sqrt(np.power(y1-y0, 2) + np.power(x1-x0, 2)) - NODE_RADIUS * 2
-        arrowTarget = (x1+np.cos(angle)*NODE_RADIUS,y1+np.sin(angle)*NODE_RADIUS)
+        length = np.sqrt(np.power(y1-y0, 2) + np.power(x1-x0, 2))
              
         arrow = pg.ArrowItem(
             angle=angle,
-            tipAngle=30,
+            tipAngle=40,
             baseAngle=0,
-            headLen=1,
+            headLen=2,
             tailLen=length-1,
             tailWidth=0.3,
             pen=None,
             brush='w',
-            pos=arrowTarget,
+            pos=(x1,y1),
             pxMode = False
         )
         return [arrow]
@@ -136,7 +135,8 @@ class TaskGraphWidget(pg.GraphicsView):
               source = nodes.nodes[task.previousState]
               target = nodes.nodes[task.currentState]
 
-              if task.enableArrow:
+              debugArrows = True
+              if task.enableArrow or debugArrows:
                   arrows = GraphArrows(
                       source['x'] + x,
                       target['x'] + x,

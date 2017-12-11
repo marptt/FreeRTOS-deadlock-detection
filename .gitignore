@@ -2,7 +2,7 @@
 obj/
 FreeRTOS-Sim-Program
 
-logFile
+logFile.json
 
 pyqtgraph/
 *.pyc
