@@ -115,7 +115,7 @@ void onTraceBlockingOnQueueReceive (void* xQueue, source_code_position_t scp)
 	/* printf("Task \"%s\" blocked from sema '%s': ", pcTaskGetName(xTaskGetCurrentTaskHandle()), (char*)pcQueueGetName(xQueue) ); */
 	/* printf("%s:\n",pcQueueGetName(xQueue)); */
 	
-	writeLog(EVENT_FORMAT_SEMAPHORE, "Blocked on Take",xQueue, scp.file, scp.function, scp.line);
+	writeLog(EVENT_FORMAT_SEMAPHORE, "Blocked on Take",(int)xQueue, scp.file, scp.function, scp.line);
 	/* printSCP(__FUNCTION__, scp); */
 }
 
@@ -140,27 +140,26 @@ void onTraceCreateMutex(void* pxNewMutex, source_code_position_t scp)
 	/* vQueueAddToRegistry(pxNewMutex,out);	 */
 	
 	/* printSCP(__FUNCTION__,scp); */
-	writeLog(EVENT_FORMAT_SEMAPHORE, "Mutex created",pxNewMutex, scp.file, scp.function, scp.line);
+	writeLog(EVENT_FORMAT_SEMAPHORE, "Mutex created",(int)pxNewMutex, scp.file, scp.function, scp.line);
 }
 
 
 void onTraceMovedTaskToReadyState(void* xTask)
 {
-	writeLog(EVENT_FORMAT_TASK_KERNEL, "Moved to ready", xTask, pcTaskGetName(xTask), (int)uxTaskPriorityGet(xTask));
+	writeLog(EVENT_FORMAT_TASK_KERNEL, "Moved to ready", (int)xTask, pcTaskGetName(xTask), (int)uxTaskPriorityGet(xTask));
 }
 
 
 void onTraceQueueReceive(void* xQueue, source_code_position_t scp )
 {
-    writeLog(EVENT_FORMAT_SEMAPHORE, "Take", xQueue, scp.file, scp.function, scp.line);
+    writeLog(EVENT_FORMAT_SEMAPHORE, "Take", (int)xQueue, scp.file, scp.function, scp.line);
    	/* printSCP(__FUNCTION__, scp); */
 }
 
 
-void onTraceQueueReceiveFailed(void* xQueue, source_code_position_t source_code_position)
+void onTraceQueueReceiveFailed(void* xQueue, source_code_position_t scp)
 {
-    /* writeLog("%s", "semaphore take failed"); */
-   	/* printSCP(__FUNCTION__, source_code_position); */
+    writeLog(EVENT_FORMAT_SEMAPHORE, "Failed take - time out", (int)xQueue, scp.file, scp.function, scp.line);
 }
 
 
@@ -168,7 +167,7 @@ void onTraceQueueSend(void* xQueue, source_code_position_t scp)
 {
     /* printf("semaphore '%s' give: ", (char*)pcQueueGetName(xQueue)); */
 	/* printSCP(__FUNCTION__, scp); */
-	writeLog(EVENT_FORMAT_SEMAPHORE, "Semaphore give",xQueue, scp.file, scp.function, scp.line);
+	writeLog(EVENT_FORMAT_SEMAPHORE, "Semaphore give",(int)xQueue, scp.file, scp.function, scp.line);
 }
 
 
@@ -181,7 +180,7 @@ void onTraceQueueSendFailed(void* xQueue, source_code_position_t source_code_pos
 
 void onTraceTaskCreate(void* xTask, source_code_position_t scp)
 {
-	writeLog(EVENT_FORMAT_TASK_USER, "Create", xTask, pcTaskGetName(xTask), (int)uxTaskPriorityGet(xTask), scp.file, scp.function, scp.line);
+	writeLog(EVENT_FORMAT_TASK_USER, "Create", (int)xTask, pcTaskGetName(xTask), (int)uxTaskPriorityGet(xTask), scp.file, scp.function, scp.line);
     /* printf("Lala: %s\n", pcTaskGetName(xTask)); */
 }
 
@@ -229,7 +228,7 @@ void onTraceTaskSwitchedIn(void* xTask)
     char* taskName = pcTaskGetName(xTask);
     if(strcmp(lastName, taskName))
     {
-        writeLog(EVENT_FORMAT_TASK_KERNEL, "Task switched in", xTask, taskName, (int)uxTaskPriorityGet(xTask));
+        writeLog(EVENT_FORMAT_TASK_KERNEL, "Task switched in", (int)xTask, taskName, (int)uxTaskPriorityGet(xTask));
         lastName = taskName;
     }
 }
