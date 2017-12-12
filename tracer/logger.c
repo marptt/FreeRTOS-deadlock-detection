@@ -178,11 +178,11 @@ void onTraceQueueSendFailed(void* xQueue, source_code_position_t source_code_pos
 
 void onTraceTaskCreate(void* xTask, source_code_position_t scp)
 {
-    if(strcmp(pcTaskGetName(xTask),"IDLE")) 
+    if(strcmp(pcTaskGetName(xTask),"IDLE")==0) 
     {
         idle_handle = xTask;
     }
-    else if(strcmp(pcTaskGetName(xTask),"Tmr svc"))
+    else if(strcmp(pcTaskGetName(xTask),"Tmr svc")==0)
     {
         tmr_handle = xTask;        
     }
