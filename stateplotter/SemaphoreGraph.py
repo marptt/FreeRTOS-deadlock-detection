@@ -55,7 +55,8 @@ class SemaphoreWidget(pg.GraphicsView):
        
         self.stateHandler = stateHandler
         self.stateHandler.subscribeToCurrentState(self.onStateChange)
-
+        self.nodes = GraphNodes()
+        
     def makeLabel(self, text, x, y, xjustify, angle):
         t = pg.TextItem(
             text,
@@ -67,8 +68,7 @@ class SemaphoreWidget(pg.GraphicsView):
         
     def onStateChange(self, state):
         self.viewBox.clear()
-        nodes = GraphNodes()
-        self.viewBox.addItem(nodes)   
+        self.viewBox.addItem(self.nodes)   
         points = []
 
         semaphore_count = len(state.semaphores)
@@ -100,7 +100,6 @@ class SemaphoreWidget(pg.GraphicsView):
 
         i = 0        
         for task in state.tasks:
-            
             points.append({
                 'pos': (30, i),
                 'size': NODE_RADIUS * 2,
@@ -129,9 +128,9 @@ class SemaphoreWidget(pg.GraphicsView):
                     i,
                     (120,120,120)
                 ))
-            
             i = i + task_spacing
-        nodes.addPoints(points)
+
+        self.nodes.addPoints(points)
         
       
         

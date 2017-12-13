@@ -96,6 +96,7 @@ class TaskGraphWidget(pg.GraphicsView):
         return t
 
     def onStateChange(self, state):
+        
         self.viewBox.clear()
 
         # text boxes scale much better like this

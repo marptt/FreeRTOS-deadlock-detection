@@ -51,8 +51,6 @@ class StateHandler():
         json_data=open("logFile.json").read()
 
         data = json.loads(json_data)
-
-        #pprint(data)
         
     def subscribeToCurrentState(self, callback):
         self.currentStateCallbacks.append(callback)
@@ -84,8 +82,14 @@ class StateHandler():
         nextState = StateSnapshot( [],[],"" )
         states = []
         semphNames = {}
+        logLength = len(log)
+        print("read log file: " + str(logLength) +" objects")
+        counter = 0
         
         for obj in log:
+            counter = counter + 1
+            if counter % 100 == 0:
+                print(str(counter) + "/" + str(logLength))
             eventName = str(obj["event"]["tick"]) +":"+ str(obj["event"]["data"]) 
             
             if obj["type"] == "SEMAPHORE":
@@ -114,13 +118,12 @@ class StateHandler():
                     runningTask = [task for task in nextState.tasks if task.currentState == TASK_RUNNING]
 
                     if runningTask:
-                        eventName = eventName + ":"+runningTask.taskName+"->"+str(semphNames[obj["handle"]])  
+                        eventName = eventName + ":"+runningTask[0].taskName+"->"+str(semphNames[obj["handle"]])  
                         runningTask[0].heldSemaphores.remove(semphNames[obj["handle"]])
                         runningTask[0].eventName = eventName
                     else:
                         eventName = eventName + ":"+str(semphNames[obj["handle"]])  
         
-                        
             elif obj["type"] == "TASK_USER":
                 if obj["event"]["data"] == "Create":
                     eventName = eventName + ":"+obj['taskName']  
@@ -169,6 +172,7 @@ class StateHandler():
             states.append(copy.copy(nextState))
             nextState = copy.deepcopy(states[-1])
 
+        print("generated " + str(len(states)) + " states")
         return states
 
     def mutexCreated():
