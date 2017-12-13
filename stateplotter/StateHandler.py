@@ -101,14 +101,17 @@ class StateHandler():
                 elif(obj["event"]["data"] == "Take"):
                     runningTask = [task for task in nextState.tasks if task.currentState == TASK_RUNNING][0]
                     runningTask.heldSemaphores.append(semphNames[obj["handle"]])
+
                     if semphNames[obj["handle"]] in runningTask.requestedSemaphores:
                         runningTask.requestedSemaphores.remove(semphNames[obj["handle"]])
                     eventName = eventName + ":" +runningTask.taskName+"->"+ str(semphNames[obj["handle"]])    
                     runningTask.eventName = eventName
-                        
+                    
                 elif(obj["event"]["data"] == "Blocked on Take"):
                     runningTask = [task for task in nextState.tasks if task.currentState == TASK_RUNNING][0]
-                    runningTask.requestedSemaphores.append(semphNames[obj["handle"]])
+                    if not semphNames[obj["handle"]] in runningTask.requestedSemaphores:
+                        runningTask.requestedSemaphores.append(semphNames[obj["handle"]])
+              
                     runningTask.previousState = runningTask.currentState
                     runningTask.currentState = TASK_BLOCKED
                     eventName = eventName + ":"+ runningTask.taskName+"->"+ str(semphNames[obj["handle"]])  
@@ -174,156 +177,6 @@ class StateHandler():
 
         print("generated " + str(len(states)) + " states")
         return states
-
-    def mutexCreated():
-        print("sdfh")
-    
-    def testStates(self):
-        self.setStates( [
-            StateSnapshot(
-                [
-                    TaskState(
-                        taskName="egg",
-                        currentState=TASK_SUSPENDED,
-                        previousState=TASK_READY,
-                        eventName="something caused this",
-                        requestedSemaphores = [ "GreenSemaphore"],
-                        heldSemaphores = [ "BlueSemaphore"],
-                        enableArrow = True
-                    ),
-                    TaskState(
-                        taskName="bacon",
-                        currentState=TASK_SUSPENDED,
-                        previousState=TASK_BLOCKED,
-                        eventName="something caused this",
-                        requestedSemaphores = [],
-                        heldSemaphores = [],
-                        enableArrow = True
-                    )],
-                ["RedSemaphore", "GreenSemaphore", "BlueSemaphore"],
-                'something happened first'
-            ),
-            StateSnapshot(
-                [
-                    TaskState(
-                        taskName="egg",
-                        currentState=TASK_BLOCKED,
-                        previousState=TASK_SUSPENDED,
-                        eventName="something caused this",
-                        requestedSemaphores = [],
-                        heldSemaphores = [ "RedSemaphore"],
-                        enableArrow = False
-                    ),
-                    TaskState(
-                        taskName="bacon",
-                        currentState=TASK_READY,
-                        previousState=TASK_BLOCKED,
-                        eventName="something caused this",
-                        requestedSemaphores = [],
-                        heldSemaphores = [  "RedSemaphore"],
-                        enableArrow = True
-                    ),
-                    TaskState(
-                        taskName="bacon",
-                        currentState=TASK_READY,
-                        previousState=TASK_BLOCKED,
-                        eventName="something caused this",
-                        requestedSemaphores = [],
-                        heldSemaphores = ["RedSemaphore"],
-                        enableArrow = False
-                    )
-                ],
-                ["RedSemaphore", "GreenSemaphore", "BlueSemaphore"],
-                'something happened then'
-            ),
-            StateSnapshot(
-                [
-                    TaskState(
-                        taskName="egg",
-                        currentState=TASK_SUSPENDED,
-                        previousState=TASK_READY,
-                        eventName="something caused this",
-                        requestedSemaphores = [],
-                        heldSemaphores = ["RedSemaphore"],
-                        enableArrow = False
-                    ),
-                    TaskState(
-                        taskName="bacon",
-                        currentState=TASK_READY,
-                        previousState=TASK_BLOCKED,
-                        eventName="something caused this",
-                        requestedSemaphores = [],
-                        heldSemaphores = ["RedSemaphore"],
-                        enableArrow = True
-                    ),
-                    TaskState(
-                        taskName="bacon",
-                        currentState=TASK_READY,
-                        previousState=TASK_BLOCKED,
-                        eventName="something caused this",
-                        requestedSemaphores = ["RedSemaphore"],
-                        heldSemaphores = [],
-                        enableArrow = False
-                    ),
-                    TaskState(
-                        taskName="egg",
-                        currentState=TASK_SUSPENDED,
-                        previousState=TASK_READY,
-                        eventName="something caused this",
-                        requestedSemaphores = ["RedSemaphore"],
-                        heldSemaphores = [],
-                        enableArrow = False
-                    ),
-                    TaskState(
-                        taskName="bacon",
-                        currentState=TASK_READY,
-                        previousState=TASK_BLOCKED,
-                        eventName="something caused this",
-                        requestedSemaphores = [],
-                        heldSemaphores = ["BlueSemaphore"],
-                        enableArrow = True
-                    ),
-                    TaskState(
-                        taskName="bacon",
-                        currentState=TASK_READY,
-                        previousState=TASK_BLOCKED,
-                        eventName="something caused this",
-                        requestedSemaphores = [],
-                        heldSemaphores = [],
-                        enableArrow = False
-                    ),
-                    TaskState(
-                        taskName="egg",
-                        currentState=TASK_SUSPENDED,
-                        previousState=TASK_READY,
-                        eventName="something caused this",
-                        requestedSemaphores = [],
-                        heldSemaphores = [],
-                        enableArrow = False
-                    ),
-                    TaskState(
-                        taskName="bacon",
-                        currentState=TASK_READY,
-                        previousState=TASK_BLOCKED,
-                        eventName="something caused this",
-                        requestedSemaphores = [],
-                        heldSemaphores = [],
-                        enableArrow = True
-                    ),
-                    TaskState(
-                        taskName="bacon",
-                        currentState=TASK_READY,
-                        previousState=TASK_BLOCKED,
-                        eventName="something caused this",
-                        requestedSemaphores = [],
-                        heldSemaphores = [],
-                        enableArrow = False
-                    )                    
-                ],
-                ["RedSemaphore", "GreenSemaphore", "BlueSemaphore"],
-                'something happened then'
-            )
-        ])
 
 
     

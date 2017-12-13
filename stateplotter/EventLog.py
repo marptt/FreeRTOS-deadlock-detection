@@ -39,11 +39,11 @@ class EventLog(QtGui.QListWidget):
     def onStatesChange(self, stateSnapshots):
         i = 0
         for stateSnapshot in stateSnapshots:
-            i = i + 1
             event = EventItem(i, stateSnapshot)
             self.addItem(event)
             self.events.append(event)
             self.setItemHidden(event, True)
+            i = i + 1
         
         self.topItem = 0
         self.bottomItem = visibleItems
