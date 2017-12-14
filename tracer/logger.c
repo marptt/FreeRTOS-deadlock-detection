@@ -6,6 +6,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include "queue.h"
+#include <time.h>
 
 #define GET_SOURCE_CODE_POSITION (source_code_position_t){.file = __FILE__, .function = __FUNCTION__, .line = __LINE__}
 
@@ -107,7 +108,24 @@ void loggerInit()
     sigemptyset(&signal_set);
     sigaddset(&signal_set, SIGINT);
     signal(SIGINT, onInterrupt); /* SIGINT, triggered by Ctrl+C */
-    logFile = fopen("logFile.json","w");
+
+    /* time_t rawtime; */
+    /* struct tm * timeinfo; */
+
+    /* time ( &rawtime ); */
+    /* timeinfo = localtime ( &rawtime ); */
+    /* printf ( "Current local time and date: %s", asctime (timeinfo) ); */
+
+    char output[50];
+    time_t rawtime;
+    struct tm * timeinfo;
+
+    time ( &rawtime );
+    timeinfo = localtime ( &rawtime );
+    sprintf(output, "logs/log%d%d%d.json", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec);
+    printf("%s", output);
+    
+    logFile = fopen(output,"w");
     fprintf(logFile, "{\"log\":[");
 }
 
