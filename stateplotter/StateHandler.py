@@ -1,6 +1,7 @@
 import json
 from pprint import pprint
 import copy
+import dependencyGraph as dg
 
 global TASK_BLOCKED   
 global TASK_SUSPENDED 
@@ -176,7 +177,10 @@ class StateHandler():
                 runningTask.previousState = runningTask.currentState
                 runningTask.currentState = TASK_BLOCKED
                 eventName = eventName + ":"+str(obj['duration'])
-                
+            
+            nextState.isDeadlocked, dGraph = dg.check_for_deadlock(nextState)
+            if nextState.isDeadlocked or counter==27:
+                dg.show_dependency_graph(dGraph)
             nextState.event = eventName            
             states.append(copy.copy(nextState))
             nextState = copy.deepcopy(states[-1])
