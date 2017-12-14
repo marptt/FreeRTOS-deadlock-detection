@@ -1,9 +1,8 @@
 import pyqtgraph as pg
-from pyqtgraph.Qt import QtCore, QtGui
+from PyQt4 import QtGui, QtCore  
 import numpy as np
 import copy
 
-visibleItems = 100
 
 class EventItem(QtGui.QListWidgetItem):
     def __init__(self, index, stateSnapshot):
@@ -19,22 +18,45 @@ class EventLog(QtGui.QListWidget):
         self.currentItemChanged.connect(self.clicked)
         self.stateHandler.subscribeToStates(self.onStatesChange)
         self.events = []
-        
+        self.visibleItems = 20
+
     def clicked(self, item):
         index = item.index
         self.stateHandler.emitCurrentStateChange(index)
-
-        for i in range(self.topItem, self.bottomItem):
-            self.setItemHidden(self.events[i], True)
         
-        if index > visibleItems:
-            self.topItem = index - (visibleItems/2)
-        else:
-            self.topItem = 0
-        self.bottomItem = index + (visibleItems/2)
+    def nextClicked(self, b):
+        if(self.bottomItem > len(self.events)):
+            return
+        
+        for i in range(self.topItem, min(self.bottomItem, len(self.events))):
+            self.setItemHidden(self.events[i], True)        
 
-        for i in range(self.topItem, self.bottomItem):
+        self.topItem += self.visibleItems
+        self.bottomItem += self.visibleItems
+
+        for i in range(self.topItem, min(self.bottomItem, len(self.events))):
             self.setItemHidden(self.events[i], False)        
+
+    def previousClicked(self, b):
+        if(self.topItem == 0):
+            return
+        
+        for i in range(self.topItem, min(self.bottomItem, len(self.events))):
+            self.setItemHidden(self.events[i], True)        
+
+        self.topItem -= self.visibleItems
+        self.bottomItem -= self.visibleItems
+
+        for i in range(self.topItem, min(self.bottomItem, len(self.events))):
+            self.setItemHidden(self.events[i], False)        
+
+    def visibleItemsChanged(self, n):
+        self.visibleItems = n
+
+    def loadFile(self, b):
+        print(self.textbox.text())
+        self.stateHandler.stateFromFile(self.textbox.text())
+        # TODO handle io exception
         
     def onStatesChange(self, stateSnapshots):
         i = 0
@@ -46,8 +68,44 @@ class EventLog(QtGui.QListWidget):
             i = i + 1
         
         self.topItem = 0
-        self.bottomItem = visibleItems
-        for i in range(self.topItem, self.bottomItem):
+        self.bottomItem = self.visibleItems
+        for i in range(self.topItem, min(self.bottomItem, len(self.events))):
             self.setItemHidden(self.events[i], False)
-
+                    
+class EventLogWidget(QtGui.QVBoxLayout):
+    def __init__(self, stateHandler):
+        eventLog = EventLog(stateHandler)
             
+        nextButton = QtGui.QPushButton("next")
+        previousButton = QtGui.QPushButton("previous")
+        nextButton.clicked.connect(eventLog.nextClicked)
+        previousButton.clicked.connect(eventLog.previousClicked)
+
+        linesInput = QtGui.QSpinBox()
+        linesInput.valueChanged.connect(eventLog.visibleItemsChanged)
+        linesInput.setValue(eventLog.visibleItems)
+        
+        hbox0 = QtGui.QHBoxLayout()
+        hbox0.addStretch(1)
+        hbox0.addWidget(nextButton)
+        hbox0.addWidget(previousButton)
+        hbox0.addWidget(linesInput)
+
+        loadButton = QtGui.QPushButton("load file")
+        loadButton.clicked.connect(eventLog.loadFile)
+        textbox = QtGui.QLineEdit()
+        eventLog.textbox = textbox
+        textbox.move(20, 20)
+        textbox.resize(280,40)
+        hbox1 = QtGui.QHBoxLayout()
+        hbox1.addWidget(loadButton)
+        hbox1.addWidget(textbox)
+        
+        vbox = QtGui.QVBoxLayout()
+
+        vbox.addWidget(eventLog)        
+        vbox.addLayout(hbox0)
+        vbox.addLayout(hbox1)
+        
+        QtGui.QVBoxLayout.__init__(self)
+        self.addLayout(vbox)

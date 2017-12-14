@@ -71,8 +71,8 @@ class StateHandler():
         self.states = states
         self.emitStatesChange(states)
 
-    def stateFromFile(self):
-        json_data = open("logFile.json").read()
+    def stateFromFile(self, filename):
+        json_data = open(filename).read()
         data = json.loads(json_data)
         self.setStates(self.generateState(data))
         
