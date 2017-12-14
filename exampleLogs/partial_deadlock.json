@@ -1,0 +1,5580 @@
+{"log":[{
+    "type": "SEMAPHORE",
+    "handle": 1464739264,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 140
+    },
+    "event":{
+        "data": "Mutex created",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464739264,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 140
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464739344,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 141
+    },
+    "event":{
+        "data": "Mutex created",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464739344,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 141
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464739424,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 142
+    },
+    "event":{
+        "data": "Mutex created",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464739424,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 142
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_USER",
+    "taskHandle": 1464739504,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 144
+    },
+    "event":{
+        "data": "Create",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739504,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_USER",
+    "taskHandle": 1464739760,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 145
+    },
+    "event":{
+        "data": "Create",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739760,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_USER",
+    "taskHandle": 1464740000,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 146
+    },
+    "event":{
+        "data": "Create",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740000,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_USER",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 147
+    },
+    "event":{
+        "data": "Create",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_USER",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 148
+    },
+    "event":{
+        "data": "Create",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_USER",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 149
+    },
+    "event":{
+        "data": "Create",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 151
+    },
+    "event":{
+        "data": "Mutex created",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 151
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 0
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739504,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 0
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 240,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 85
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739760,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 0
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 858,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 101
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740000,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 0
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 592,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 117
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 0
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739504,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 240
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739504,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 240
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464739264,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 86
+    },
+    "event":{
+        "data": "Take",
+        "tick": 240
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 988,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 87
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 240
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740000,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 592
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740000,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 592
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464739424,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 118
+    },
+    "event":{
+        "data": "Take",
+        "tick": 592
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1038,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 119
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 592
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739760,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 858
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739760,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 858
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464739344,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 102
+    },
+    "event":{
+        "data": "Take",
+        "tick": 858
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1180,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 103
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 858
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739504,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 988
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739504,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 988
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464739344,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 88
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 988
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 1000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 1000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 1000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 1000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 1000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740000,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1038
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740000,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1038
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464739264,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 120
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 1038
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739760,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1180
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464739760,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1180
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464739424,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 104
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 1180
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 1250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 1500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 1500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 1500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 2000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 1500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 1500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 2000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 1750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 2250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 2000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 2000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 2000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 2500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 2000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 2000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 2500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 2250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 2750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 2500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 2500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 2500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 3000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 2500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 2500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 3000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 2750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 3000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 3000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 3000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 3250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 3000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 3000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 3000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 3000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 3000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 3500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 3000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 3000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 3000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 3250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 3250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 3500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 3250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 3500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 3500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 3500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 3750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 3500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 3500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 3500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 3500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 3500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 4000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 3500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 3500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 3500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 3750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 3750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 4000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 3750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 4000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 4000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 4000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 4250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 4000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 4000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 4000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 4000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 4000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 4500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 4000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 4000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 4000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 4250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 4250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 4500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 4250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 4500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 4500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 4500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 4750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 4500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 4500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 4500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 4500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 4500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 5000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 4500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 4500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 4500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 4750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 4750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 5000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 4750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 5000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 5000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 5000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 5250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 5000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 5000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 5000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 5000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 5000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 5500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 5000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 5000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 5000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 5250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 5250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 5500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 5250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 5500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 5500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 5500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 5750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 5500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 5500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 5500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 5500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 5500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 6000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 5500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 5500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 5500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 5750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 5750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 6000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 5750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 6000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 6000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 6000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 6250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 6000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 6000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 6000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 6000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 6000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 6500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 6000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 6000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 6000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 6250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 6250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 6500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 6250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 6500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 6500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 6500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 6750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 6500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 6500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 6500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 6500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 6500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 7000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 6500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 6500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 6500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 6750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 6750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 7000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 6750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 7000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 7000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 7000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 7250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 7000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 7000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 7000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 7000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 7000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 7500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 7000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 7000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 7000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 7250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 7250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 7500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 7250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 7500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 7500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 7500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 7750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 7500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 7500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 7500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 7500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 7500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 8000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 7500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 7500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 7500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 7750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 7750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 8000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 7750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 8000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 8000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 8000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 8250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 8000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 8000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 8000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 8000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 8000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 8500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 8000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 8000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 8000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 8250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 8250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 8500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 8250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 8500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 8500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 8500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 8750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 8500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 8500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 8500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 8500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 8500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 9000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 8500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 8500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 8500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 8750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 8750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 9000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 8750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 9000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 9000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 9000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 9250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 9000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 9000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 9000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 9000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 9000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 9500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 9000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 9000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 9000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 9250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 9250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 9500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 9250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 9500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 9500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 9500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 9750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 9500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 9500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 9500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 9500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 9500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 10000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 9500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 9500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 9500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 9750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 9750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 10000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 9750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 10000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 10000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 10000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 10250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 10000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 10000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 10000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 10000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 10000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 10500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 10000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 10000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 10000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 10250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 10250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 10500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 10250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 10500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 10500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 10500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 10750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 10500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 10500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 10500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 10500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 10500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 11000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 10500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 10500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 10500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 10750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 10750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 11000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 10750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 11000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 11000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 11000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 11250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 11000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 11000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 11000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 11000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 11000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 11500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 11000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 11000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 11000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 11250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 11250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 11500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 11250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 11500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 11500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 11500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 11750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 11500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 11500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 11500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 11500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 11500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 12000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 11500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 11500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 11500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 11750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 11750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 12000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 11750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 12000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 12000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 12000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 12250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 12000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 12000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 12000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 12000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 12000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 12500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 12000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 12000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 12000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 12250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 12250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 12500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 12250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 12500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 12500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 12500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 12750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 12500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 12500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 12500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 12500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 12500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 13000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 12500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 12500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 12500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 12750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 12750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 13000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 12750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 13000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 13000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 13000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 13250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 13000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 13000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 13000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 13000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 13000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 13500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 13000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 13000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 13000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 13250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 13250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 13500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 13250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 13500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 13500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 13500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 13750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 13500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 13500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 13500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 13500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 13500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 14000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 13500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 13500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 13500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 13750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 13750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 14000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 13750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 14000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 14000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 14000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 14250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 14000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 14000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 14000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 14000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 14000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 14500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 14000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 14000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 14000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 14250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 14250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 14500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 14250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 14500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 14500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 14500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 14750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 14500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 14500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 14500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 14500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 14500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 15000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 14500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 14500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 14500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 14750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 14750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 15000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 14750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 15000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 15000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 15000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 15250,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 15000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 15000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 15000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 15000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 15000
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 15500,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 15000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 15000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 15000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 15250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 15250
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 15500,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 15250
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 15500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 15500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 15500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 15750,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 15500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740240,
+    "taskName": "ContinuousTask1",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 15500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 36
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 15500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 15500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Take",
+        "tick": 15500
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 16000,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 35
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 15500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740480,
+    "taskName": "ContinuousTask2",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 15500
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1464740960,
+    "source":{
+        "file": "main.c",
+        "function": "vContinuousProcessingTask",
+        "line": 34
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 15500
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 15750
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1464740720,
+    "taskName": "PeriodicTask",
+    "taskPriority": 2,
+    "event":{
+        "data": "Task switched in",
+        "tick": 15750
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 16000,
+    "source":{
+        "file": "main.c",
+        "function": "vTaskFunction",
+        "line": 49
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 15750
+    }
+},
+{
+    "type":"The End",
+    "event":{
+        "data": "end of file",
+        "tick": 15862
+    }
+}]}
