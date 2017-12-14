@@ -65,7 +65,7 @@ class GraphArrows():
             tailLen=length-1,
             tailWidth=0.3,
             pen=None,
-            brush='w',
+            brush=(225,225,225),
             pos=(x1,y1),
             pxMode = False
         )
@@ -109,9 +109,9 @@ class TaskGraphWidget(pg.GraphicsView):
               nodes = GraphNodes(x,y)
               nodes.setCurrentState(task.currentState)
               title = pg.TextItem(
-                  text = "Task:"+task.taskName +"\n" +
-                         "Event:" + task.eventName +"\n" +
-                         "Priority:" + "TODO",
+                  text = "Task: "+task.taskName +"\n" +
+                         "Event: " + task.eventName +"\n" +
+                         "Priority: " + str(task.priority),
                   border='w',
                   fill=(0, 0, 0, 100),
                   anchor=(0,0.5),

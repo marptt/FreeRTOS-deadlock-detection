@@ -30,6 +30,7 @@ class TaskState():
                  eventName,
                  requestedSemaphores,
                  heldSemaphores,
+                 priority,
                  enableArrow
     ):
         self.currentState = currentState
@@ -38,6 +39,7 @@ class TaskState():
         self.eventName = eventName
         self.requestedSemaphores = requestedSemaphores
         self.heldSemaphores = heldSemaphores
+        self.priority = priority
         self.enableArrow = enableArrow
         
 class StateHandler():
@@ -72,7 +74,7 @@ class StateHandler():
         self.emitStatesChange(states)
 
     def stateFromFile(self):
-        json_data=open("logFile.json").read()
+        json_data = open("logFile.json").read()
         data = json.loads(json_data)
         self.setStates(self.generateState(data))
         
@@ -81,34 +83,47 @@ class StateHandler():
 
         nextState = StateSnapshot( [],[],"" )
         states = []
+        semphNames = {}
         
         for obj in log:
-            eventName = str(obj["event"]["data"])
-            nextState.event = eventName
+            eventName = str(obj["event"]["tick"]) +":"+ str(obj["event"]["data"]) 
             
             if obj["type"] == "SEMAPHORE":
                 if( obj["event"]["data"]) == "Mutex created":
-                    nextState.semaphores.append(str(obj["handle"]))
+                    semphNames[obj["handle"]] = "semph{"+str(obj["source"]["file"])+", "+str(obj["source"]["line"])+"}"
+                    nextState.semaphores.append(semphNames[obj["handle"]])
+                    eventName = eventName + ":"+str(semphNames[obj["handle"]])  
                     
                 elif(obj["event"]["data"] == "Take"):
                     runningTask = [task for task in nextState.tasks if task.currentState == TASK_RUNNING][0]
-                    runningTask.heldSemaphores.append(obj["handle"])
-                    if obj["handle"] in runningTask.requestedSemaphores:
-                        runningTask.requestedSemaphores.remove(obj["handle"])
-                    
+                    runningTask.heldSemaphores.append(semphNames[obj["handle"]])
+                    if semphNames[obj["handle"]] in runningTask.requestedSemaphores:
+                        runningTask.requestedSemaphores.remove(semphNames[obj["handle"]])
+                    eventName = eventName + ":" +runningTask.taskName+"->"+ str(semphNames[obj["handle"]])    
+                    runningTask.eventName = eventName
+                        
                 elif(obj["event"]["data"] == "Blocked on Take"):
                     runningTask = [task for task in nextState.tasks if task.currentState == TASK_RUNNING][0]
-                    runningTask.requestedSemaphores.append(obj["handle"])
+                    runningTask.requestedSemaphores.append(semphNames[obj["handle"]])
                     runningTask.previousState = runningTask.currentState
                     runningTask.currentState = TASK_BLOCKED
-
+                    eventName = eventName + ":"+ runningTask.taskName+"->"+ str(semphNames[obj["handle"]])  
+                    runningTask.eventName = eventName
+                    
                 elif(obj["event"]["data"] == "Semaphore give"):
                     runningTask = [task for task in nextState.tasks if task.currentState == TASK_RUNNING]
+
                     if runningTask:
-                        runningTask[0].heldSemaphores.remove(obj["handle"])
-                    
+                        eventName = eventName + ":"+runningTask.taskName+"->"+str(semphNames[obj["handle"]])  
+                        runningTask[0].heldSemaphores.remove(semphNames[obj["handle"]])
+                        runningTask[0].eventName = eventName
+                    else:
+                        eventName = eventName + ":"+str(semphNames[obj["handle"]])  
+        
+                        
             elif obj["type"] == "TASK_USER":
                 if obj["event"]["data"] == "Create":
+                    eventName = eventName + ":"+obj['taskName']  
                     nextState.tasks.append(copy.deepcopy(TaskState(
                         taskName = obj["taskName"],
                         currentState = TASK_NONEXISTENT,
@@ -116,6 +131,7 @@ class StateHandler():
                         eventName = eventName,
                         requestedSemaphores = [],
                         heldSemaphores = [],
+                        priority = obj["taskPriority"],
                         enableArrow = False
                     )))
 
@@ -125,15 +141,20 @@ class StateHandler():
                         if task.taskName == obj["taskName"]:
                             task.previousState = task.currentState
                             task.currentState = TASK_READY
-                            
+                            eventName = eventName + ":"+obj['taskName']  
+                            task.eventName = eventName
+
                 if(obj["event"]["data"] == "Task switched in"):
+                    eventName = eventName + ":"+obj['taskName'] 
                     for task in nextState.tasks:
                         if task.currentState == TASK_RUNNING:
                             task.previousState = task.currentState
-                            task.currentState = TASK_READY
+                            task.currentState = TASK_READY                             
+                            task.eventName = eventName
 
                         if task.taskName == obj["taskName"]:
                             task.previousState = task.currentState
+                            task.eventName = eventName
                             task.currentState = TASK_RUNNING
                             
                         
@@ -142,8 +163,9 @@ class StateHandler():
                 runningTask = [task for task in nextState.tasks if task.currentState == TASK_RUNNING][0]
                 runningTask.previousState = runningTask.currentState
                 runningTask.currentState = TASK_BLOCKED
-
+                eventName = eventName + ":"+str(obj['duration'])
                 
+            nextState.event = eventName            
             states.append(copy.copy(nextState))
             nextState = copy.deepcopy(states[-1])
 

@@ -21,9 +21,9 @@ layout.addWidget(taskWidget)
 layout.addWidget(semaphoreWidget) 
 layout.addWidget(listwidget)   
 
-layout.setStretch(0,3)
+layout.setStretch(0,4)
 layout.setStretch(1,3)
-layout.setStretch(2,1)
+layout.setStretch(2,2)
 
 w.setLayout(layout)
 
