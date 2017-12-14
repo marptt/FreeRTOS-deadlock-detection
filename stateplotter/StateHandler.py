@@ -18,8 +18,8 @@ TASK_NONEXISTENT = 'Nonexistent'
 class StateSnapshot():
     def __init__(self, tasks, semaphores, event):
         self.tasks = tasks
-        self.semaphores = semaphores
-        self.event = event
+        self.semaphores = semaphores    
+        self.event = event      
 
 # TODO make this a dict
 class TaskState():
@@ -47,11 +47,6 @@ class StateHandler():
         self.currentStateCallbacks = []
         self.statesCallbacks = [] 
 
-        self.logFile = ""
-        json_data=open("logFile.json").read()
-
-        data = json.loads(json_data)
-        
     def subscribeToCurrentState(self, callback):
         self.currentStateCallbacks.append(callback)
 
@@ -72,13 +67,23 @@ class StateHandler():
         self.emitStatesChange(states)
 
     def stateFromFile(self, filename):
-        json_data = open(filename).read()
-        data = json.loads(json_data)
+        try:
+            json_data = open(filename).read()
+            
+        except IOError:
+            print("file not found: " + filename)
+            return
+
+        try:
+            data = json.loads(json_data)
+        except ValueError:
+            print("parsing error when reading " + filename)
+            return
+            
         self.setStates(self.generateState(data))
         
     def generateState(self, logFile):
         log = logFile["log"]
-
         nextState = StateSnapshot( [],[],"" )
         states = []
         semphNames = {}
