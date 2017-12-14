@@ -69,8 +69,12 @@ class EventLog(QtGui.QListWidget):
         for i in range(self.topItem, min(self.bottomItem, len(self.events))):
             self.setItemHidden(self.events[i], False)    
 
-    def loadFile(self, b):
+    def loadFileByButton(self, b):
         self.stateHandler.stateFromFile(self.textbox.text())
+
+    def loadFileByReturn(self):
+        self.stateHandler.stateFromFile(self.textbox.text())
+        
         
     def onStatesChange(self, stateSnapshots):
         i = 0
@@ -107,8 +111,9 @@ class EventLogWidget(QtGui.QVBoxLayout):
         hbox0.addWidget(linesInput)
         
         loadButton = QtGui.QPushButton("load file")
-        loadButton.clicked.connect(eventLog.loadFile)
+        loadButton.clicked.connect(eventLog.loadFileByButton)
         textbox = QtGui.QLineEdit()
+        textbox.returnPressed.connect(eventLog.loadFileByReturn)
         eventLog.textbox = textbox
         hbox1 = QtGui.QHBoxLayout()
         hbox1.addWidget(loadButton)
