@@ -7,6 +7,8 @@ class EventItem(QtGui.QListWidgetItem):
     def __init__(self, index, stateSnapshot):
         QtGui.QListWidgetItem.__init__(self, str(index) + ":" +stateSnapshot.event)
         self.index = index
+        if stateSnapshot.isDeadlocked:
+            self.setForeground(QtGui.QBrush( QtGui.QColor(255,0,0)))
         self.stateSnapshot = stateSnapshot
         
 class EventLog(QtGui.QListWidget):
@@ -54,7 +56,18 @@ class EventLog(QtGui.QListWidget):
             self.setItemHidden(self.events[i], False)        
 
     def visibleItemsChanged(self, n):
+        if not self.events:
+            return
+        
+        for i in range(self.topItem, min(self.bottomItem, len(self.events))):
+            self.setItemHidden(self.events[i], True)        
+
         self.visibleItems = n
+        self.topItem = 0
+        self.bottomItem = self.topItem + self.visibleItems
+
+        for i in range(self.topItem, min(self.bottomItem, len(self.events))):
+            self.setItemHidden(self.events[i], False)    
 
     def loadFile(self, b):
         self.stateHandler.stateFromFile(self.textbox.text())
@@ -88,9 +101,7 @@ class EventLogWidget(QtGui.QVBoxLayout):
         linesInput.valueChanged.connect(eventLog.visibleItemsChanged)
         linesInput.setValue(eventLog.visibleItems)
         linesInput.setMaximum(10000)
-        linesInput.resize(2800,4000)        
         hbox0 = QtGui.QHBoxLayout()
-        hbox0.addStretch(1)
         hbox0.addWidget(previousButton)
         hbox0.addWidget(nextButton)
         hbox0.addWidget(linesInput)
@@ -99,7 +110,6 @@ class EventLogWidget(QtGui.QVBoxLayout):
         loadButton.clicked.connect(eventLog.loadFile)
         textbox = QtGui.QLineEdit()
         eventLog.textbox = textbox
-        #textbox.move(20, 20)
         hbox1 = QtGui.QHBoxLayout()
         hbox1.addWidget(loadButton)
         hbox1.addWidget(textbox)

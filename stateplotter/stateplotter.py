@@ -5,6 +5,8 @@ from SemaphoreGraph import SemaphoreWidget
 from EventLog import EventLogWidget
 from StateHandler import StateHandler
 
+pg.setConfigOption('background', '#333333')
+
 app = QtGui.QApplication([])
 pg.setConfigOptions(antialias=True)
 

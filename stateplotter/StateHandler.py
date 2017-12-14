@@ -16,10 +16,11 @@ TASK_NONEXISTENT = 'Nonexistent'
 
 
 class StateSnapshot():
-    def __init__(self, tasks, semaphores, event):
+    def __init__(self, tasks, semaphores, event, isDeadlocked):
         self.tasks = tasks
         self.semaphores = semaphores    
-        self.event = event      
+        self.event = event
+        self.isDeadlocked = isDeadlocked
 
 # TODO make this a dict
 class TaskState():
@@ -81,10 +82,10 @@ class StateHandler():
             return
             
         self.setStates(self.generateState(data))
-        
+
     def generateState(self, logFile):
         log = logFile["log"]
-        nextState = StateSnapshot( [],[],"" )
+        nextState = StateSnapshot([],[],"", True )
         states = []
         semphNames = {}
         logLength = len(log)
@@ -179,7 +180,7 @@ class StateHandler():
             nextState.event = eventName            
             states.append(copy.copy(nextState))
             nextState = copy.deepcopy(states[-1])
-
+            
         print("generated " + str(len(states)) + " states")
         return states
 
