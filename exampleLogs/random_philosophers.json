@@ -1,0 +1,1100 @@
+{"log":[{
+    "type": "SEMAPHORE",
+    "handle": 1449248192,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 140
+    },
+    "event":{
+        "data": "Mutex created",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248192,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 140
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248272,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 141
+    },
+    "event":{
+        "data": "Mutex created",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248272,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 141
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248352,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 142
+    },
+    "event":{
+        "data": "Mutex created",
+        "tick": 0
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248352,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 142
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_USER",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 144
+    },
+    "event":{
+        "data": "Create",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_USER",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 145
+    },
+    "event":{
+        "data": "Create",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_USER",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "source":{
+        "file": "main.c",
+        "function": "diningPhilosophersExample",
+        "line": 146
+    },
+    "event":{
+        "data": "Create",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 0
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 914,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 85
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 0
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 511,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 101
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 0
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 503,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 117
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 0
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 503
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 503
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248352,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 118
+    },
+    "event":{
+        "data": "Take",
+        "tick": 503
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 640,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 119
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 503
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 511
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 511
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248272,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 102
+    },
+    "event":{
+        "data": "Take",
+        "tick": 511
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1130,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 103
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 511
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 640
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 640
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248192,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 120
+    },
+    "event":{
+        "data": "Take",
+        "tick": 640
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 818,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 121
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 640
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 818
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 818
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248192,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 122
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 818
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248352,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 123
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 818
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1358,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 117
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 818
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 914
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 914
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248192,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 86
+    },
+    "event":{
+        "data": "Take",
+        "tick": 914
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1708,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 87
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 914
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1130
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1130
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248352,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 104
+    },
+    "event":{
+        "data": "Take",
+        "tick": 1130
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 1661,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 105
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 1130
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1358
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1358
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248352,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 118
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 1358
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1661
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1661
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248352,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 106
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 1661
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1661
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248272,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 107
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 1661
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 2223,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 101
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 1661
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1661
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248352,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 118
+    },
+    "event":{
+        "data": "Take",
+        "tick": 1661
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1661
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248192,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 120
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 1661
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 1708
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 1708
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248272,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 88
+    },
+    "event":{
+        "data": "Take",
+        "tick": 1708
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 2263,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 89
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 1708
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2223
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2223
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248272,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 102
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 2223
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2263
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2263
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248272,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 90
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 2263
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2263
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248192,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 91
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 2263
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2263
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 2849,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 85
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 2263
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2263
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248272,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 102
+    },
+    "event":{
+        "data": "Take",
+        "tick": 2263
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 3000,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 103
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 2263
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2263
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248192,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 120
+    },
+    "event":{
+        "data": "Take",
+        "tick": 2263
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2263
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248192,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 122
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 2263
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248352,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 123
+    },
+    "event":{
+        "data": "Semaphore give",
+        "tick": 2263
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2263
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248352,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 118
+    },
+    "event":{
+        "data": "Take",
+        "tick": 2263
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 3215,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 119
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 2263
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 2849
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 2849
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248192,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 86
+    },
+    "event":{
+        "data": "Take",
+        "tick": 2849
+    }
+},
+{
+    "type": "DELAY",
+    "duration": 3741,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 87
+    },
+    "event":{
+        "data": "Delay until",
+        "tick": 2849
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 3000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248688,
+    "taskName": "philosopher_b",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 3000
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248352,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_b",
+        "line": 104
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 3000
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 3215
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248928,
+    "taskName": "philosopher_c",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 3215
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248192,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_c",
+        "line": 120
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 3215
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Moved to ready",
+        "tick": 3741
+    }
+},
+{
+    "type": "TASK_KERNEL",
+    "taskHandle": 1449248432,
+    "taskName": "philosopher_a",
+    "taskPriority": 1,
+    "event":{
+        "data": "Task switched in",
+        "tick": 3741
+    }
+},
+{
+    "type": "SEMAPHORE",
+    "handle": 1449248272,
+    "source":{
+        "file": "main.c",
+        "function": "vPhilosopherTask_a",
+        "line": 88
+    },
+    "event":{
+        "data": "Blocked on Take",
+        "tick": 3741
+    }
+},
+{
+    "type":"The End",
+    "event":{
+        "data": "end of file",
+        "tick": 11899
+    }
+}]}
