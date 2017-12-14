@@ -172,15 +172,15 @@ class StateHandler():
                             
                         
             elif obj["type"] == "DELAY":
-                
                 runningTask = [task for task in nextState.tasks if task.currentState == TASK_RUNNING][0]
                 runningTask.previousState = runningTask.currentState
                 runningTask.currentState = TASK_BLOCKED
                 eventName = eventName + ":"+str(obj['duration'])
-            
+                runningTask.eventName = eventName
+                
             nextState.isDeadlocked, dGraph = dg.check_for_deadlock(nextState)
-            if nextState.isDeadlocked or counter==27:
-                dg.show_dependency_graph(dGraph)
+            # if nextState.isDeadlocked or counter==27:
+            #     dg.show_dependency_graph(dGraph)
             nextState.event = eventName            
             states.append(copy.copy(nextState))
             nextState = copy.deepcopy(states[-1])
