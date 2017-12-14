@@ -1,24 +1,15 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-
-def initiate_graph():
-    return nx.DiGraph()
-    
-
-def create_node(graph, task):
-    graph.add_node(task) # Add name as attribute?
-
-
-def connect(graph , src, dest):
-    graph.add_edge(src, dest)
-
+def check_for_deadlock(state):
+    G = nx.DiGraph()
+    graph_from_state(G, state)
+    return deadlock_detection(G), G
 
 def deadlock_detection(graph):
     L = list(nx.simple_cycles(graph))
     nr = len(L)
     if nr == 0:
-       print('apa')
        return False
     return True
 
@@ -34,7 +25,11 @@ def graph_from_state(graph, state):
         for sem in t.requestedSemaphores:
             for holder in sema_holders[sem]:
                 graph.add_edge(t, holder)
- 
+
+def show_dependency_graph(graph):
+    nx.draw(graph, with_labels=True, font_weight='bold')
+    plt.show()
+
 
 # G = initiate_graph()
 # H = initiate_graph()
@@ -48,12 +43,12 @@ def graph_from_state(graph, state):
 # connect(G,"T1","T2")
 # connect(G,"T3","T1")
 
-edges = [ (0, 1), (1, 2), (2, 3), (3, 0),(2,4),(4,3),(2,0)]
-edges = [ (0, 1), (1, 2), (2, 3), (3, 4),(4,5),(5,0),(2,4)]
-edges = [ ('a', 'b'), ('b', 'c'), ('c', 'd')]
-G = nx.DiGraph(edges)
-L = deadlock_detection(G)
-l = list(nx.simple_cycles(G))
+# edges = [ (0, 1), (1, 2), (2, 3), (3, 0),(2,4),(4,3),(2,0)]
+# edges = [ (0, 1), (1, 2), (2, 3), (3, 4),(4,5),(5,0),(2,4)]
+# edges = [ ('a', 'b'), ('b', 'c'), ('c', 'd')]
+# G = nx.DiGraph(edges)
+# L = deadlock_detection(G)
+# l = list(nx.simple_cycles(G))
 
 # kalle = {'apa': 5}
 # kalle['hast'] = []
@@ -63,5 +58,5 @@ l = list(nx.simple_cycles(G))
 # print(len(L))
 # print(len(l))
 
-nx.draw(G, with_labels=True, font_weight='bold')
-plt.show()
+# nx.draw(G, with_labels=True, font_weight='bold')
+# plt.show()
