@@ -15,6 +15,8 @@ def deadlock_detection(graph):
 
 def graph_from_state(graph, state):
     sema_holders = {}
+    sema_ored = []
+    
     for sema in state.semaphores:
         sema_holders[sema] = []
         for t in state.tasks:
@@ -23,8 +25,15 @@ def graph_from_state(graph, state):
 
     for t in state.tasks:
         for sem in t.requestedSemaphores:
-            for holder in sema_holders[sem]:
-                graph.add_edge(t, holder)
+            if len(sema_holders[sem])==1:
+                graph.add_edge(t.taskName, sema_holders[sem][0].taskName)
+            else:
+                orText = 'OR-{}'.format(sem)
+                graph.add_edge(t.taskName, orText)
+                if sem not in sema_ored:
+                    for holder in sema_holders[sem]:
+                        graph.add_edge(orText, holder)
+                    sema_ored.append(sem)
 
 def show_dependency_graph(graph):
     nx.draw(graph, with_labels=True, font_weight='bold')

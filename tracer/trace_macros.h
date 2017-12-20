@@ -11,6 +11,7 @@
 
 #define traceBLOCKING_ON_QUEUE_RECEIVE(xQueue) onTraceBlockingOnQueueReceive( xQueue, source_code_position )
 #define traceBLOCKING_ON_QUEUE_SEND(xQueue) onTraceBlockingOnQueueSend( xQueue, source_code_position )
+#define traceCREATE_COUNTING_SEMAPHORE() onTraceCreateCounting( xHandle, source_code_position )
 #define traceCREATE_MUTEX(pxNewMutex) onTraceCreateMutex( pxNewMutex, source_code_position )
 #define traceMOVED_TASK_TO_READY_STATE(xTask) onTraceMovedTaskToReadyState(xTask)
 #define traceQUEUE_RECEIVE(xQueue) onTraceQueueReceive(xQueue, source_code_position ) 

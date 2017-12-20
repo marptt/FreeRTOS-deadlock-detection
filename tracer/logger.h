@@ -24,6 +24,7 @@ void onInterrupt();
 /*Trace functions*/
 void onTraceBlockingOnQueueReceive (void* xQueue, source_code_position_t source_code_position);
 void onTraceBlockingOnQueueSend(void* xQueue, source_code_position_t source_code_position);
+void onTraceCreateCounting( void* xHandle, source_code_position_t source_code_position );
 void onTraceCreateMutex(void* pxNewMutex, source_code_position_t source_code_position);
 void onTraceMovedTaskToReadyState(void* xTask);
 void onTraceQueueReceive(void* xQueue, source_code_position_t source_code_position);

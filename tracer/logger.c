@@ -132,6 +132,12 @@ void onTraceBlockingOnQueueSend(void* xQueue, source_code_position_t source_code
 }
 
 
+void onTraceCreateCounting( void* xHandle, source_code_position_t scp )
+{
+    writeLog(EVENT_FORMAT_SEMAPHORE, (int)xHandle, scp.file, scp.function, scp.line, "Counting semaphore created");
+}
+
+
 void onTraceCreateMutex(void* pxNewMutex, source_code_position_t scp)
 {
 	/* printSCP(__FUNCTION__,scp); */

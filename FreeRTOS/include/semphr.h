@@ -755,6 +755,7 @@ typedef QueueHandle_t SemaphoreHandle_t;
  * \ingroup Semaphores
  */
 #if( configSUPPORT_DYNAMIC_ALLOCATION == 1 )
+    /*DEADLOCK DETECTION: Modified to input the source code position(file, function, line) where the call were made*/
     #define xSemaphoreCreateMutex() xQueueCreateMutex( queueQUEUE_TYPE_MUTEX, GET_SOURCE_CODE_POSITION )
 #endif
 
@@ -1037,7 +1038,8 @@ typedef QueueHandle_t SemaphoreHandle_t;
  * \ingroup Semaphores
  */
 #if( configSUPPORT_DYNAMIC_ALLOCATION == 1 )
-	#define xSemaphoreCreateCounting( uxMaxCount, uxInitialCount ) xQueueCreateCountingSemaphore( ( uxMaxCount ), ( uxInitialCount ) )
+    /*DEADLOCK DETECTION: Modified to input the source code position(file, function, line) where the call were made*/
+    #define xSemaphoreCreateCounting( uxMaxCount, uxInitialCount ) xQueueCreateCountingSemaphore( ( uxMaxCount ), ( uxInitialCount ), GET_SOURCE_CODE_POSITION )
 #endif
 
 /**
@@ -1122,7 +1124,8 @@ typedef QueueHandle_t SemaphoreHandle_t;
  * \ingroup Semaphores
  */
 #if( configSUPPORT_STATIC_ALLOCATION == 1 )
-	#define xSemaphoreCreateCountingStatic( uxMaxCount, uxInitialCount, pxSemaphoreBuffer ) xQueueCreateCountingSemaphoreStatic( ( uxMaxCount ), ( uxInitialCount ), ( pxSemaphoreBuffer ) )
+    /*DEADLOCK DETECTION: Modified to input the source code position(file, function, line) where the call were made*/
+    #define xSemaphoreCreateCountingStatic( uxMaxCount, uxInitialCount, pxSemaphoreBuffer ) xQueueCreateCountingSemaphoreStatic( ( uxMaxCount ), ( uxInitialCount ), ( pxSemaphoreBuffer ), GET_SOURCE_CODE_POSITION )
 #endif /* configSUPPORT_STATIC_ALLOCATION */
 
 /**
