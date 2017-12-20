@@ -7,4 +7,5 @@ sudo python setup.py install
 
 pip install numpy 
 
-
+sudo easy_install networkx
+sudo apt-get install python-matplotlib
